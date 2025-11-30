@@ -81,7 +81,7 @@ function crearModalAuth() {
       </div>
 
       <p id="auth-error" style="
-        color:#ff4d4f; 
+        color:#ff0000; 
         margin-top:10px; 
         font-size:14px; 
         font-weight:700; 
@@ -247,6 +247,27 @@ function crearCampo(id, label, type = "text") {
     </div>
   `;
 }
+
+function logout() {
+    // Limpiar datos de sesión
+    localStorage.removeItem("token");
+    user = null;
+    token = null;
+    isPro = false;
+
+    // Mostrar de nuevo el modal de autenticación
+    crearModalAuth();
+
+    // Opcional: actualizar interfaz si tienes elementos que cambian según login
+    const btnLogout = document.getElementById("btn-logout");
+    if (btnLogout) btnLogout.style.display = "none"; // esconder botón logout si lo tienes
+}
+
+// Conectar botón logout
+document.addEventListener("DOMContentLoaded", () => {
+    const btnLogout = document.getElementById("btn-logout");
+    if (btnLogout) btnLogout.onclick = logout;
+});
 
 function crearModalPro() {
   const modal = document.createElement('div');
