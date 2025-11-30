@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 // Middleware
-app.use(cors({ origin: 'http://localhost:5500' }));
+app.use(cors({ origin: 'https://calculaincoterms.es' }));
 app.use(express.json());
 
 // Conexión a MongoDB
