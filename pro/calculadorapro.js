@@ -248,17 +248,32 @@ function crearCampo(id, label, type = "text") {
   `;
 }
 
-const btnLogout = document.getElementById("btn-logout");
-btnLogout.addEventListener("click", () => {
-  // Borrar token y estado de usuario
-  localStorage.removeItem("token");
-  user = null;
-  isPro = false;
-  token = null;
+// JS CIERRE DE SESIÓN
+function actualizarBotonLogout() {
+  const btnLogout = document.getElementById("btn-logout");
+  if (!btnLogout) return;
 
-  // Recargar la página o mostrar modal de login
-  crearModalAuth();
-});
+  btnLogout.onclick = () => {
+    // Borrar token y estado global
+    localStorage.removeItem("token");
+    user = null;
+    isPro = false;
+    token = null;
+
+    // Quitar modal anterior si existe
+    const modalExistente = document.getElementById("modal-auth");
+    if (modalExistente) modalExistente.remove();
+
+    // Crear modal de login/registro
+    crearModalAuth();
+
+    // Volver a configurar el listener
+    actualizarBotonLogout();
+  };
+}
+
+// Llamar esto después de login exitoso y al cargar página si el usuario ya está logueado
+actualizarBotonLogout();
 
 function crearModalPro() {
   const modal = document.createElement('div');

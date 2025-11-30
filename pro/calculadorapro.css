@@ -244,9 +244,10 @@ button:active {
   font-weight: 600;
 }
 
+/* BOTÓN CERRAR SESIÓN */
 #btn-logout {
-  padding: 12px 24px;
-  font-size: 16px;
+  padding: 10px 22px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--text-main);
   background: linear-gradient(90deg, var(--accent), var(--accent-hover));
@@ -255,12 +256,36 @@ button:active {
   cursor: pointer;
   box-shadow: var(--shadow);
   transition: all 0.3s ease;
+  max-width: 200px;
+  width: auto;
+  display: block;
+  margin: 20px auto 0; /* centrado horizontal y algo de espacio arriba */
+  z-index: 1000;
+  position: relative;
 }
 
 #btn-logout:hover {
   background: linear-gradient(90deg, var(--accent-hover), var(--accent));
   transform: translateY(-2px);
   box-shadow: 0 12px 24px rgba(0,0,0,0.65);
+}
+
+/* RESPONSIVO: en móviles, botón fijo arriba y contenedor se desplaza */
+@media (max-width: 480px) {
+  #btn-logout {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    width: 90%;
+    max-width: 280px;
+    z-index: 99999;
+  }
+
+  .container2 {
+    margin-top: 70px; /* deja espacio para el botón fijo */
+  }
 }
 
 @keyframes fadeIn {
