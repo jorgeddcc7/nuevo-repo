@@ -11,13 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 // Middleware
-const allowedOrigins = [
-  'http://localhost:5500',  
-  'https://calculaincoterms.es',
-  'https://nuevo-repo.onrender.com',
-];
-
-app.use(cors({ origin: allowedOrigins }));
+app.use(cors({ origin: 'https://calculaincoterms.es' }));
 app.use(express.json());
 
 // Conexión a MongoDB
