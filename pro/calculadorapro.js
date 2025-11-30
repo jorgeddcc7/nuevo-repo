@@ -248,25 +248,16 @@ function crearCampo(id, label, type = "text") {
   `;
 }
 
-function logout() {
-    // Limpiar datos de sesión
-    localStorage.removeItem("token");
-    user = null;
-    token = null;
-    isPro = false;
+const btnLogout = document.getElementById("btn-logout");
+btnLogout.addEventListener("click", () => {
+  // Borrar token y estado de usuario
+  localStorage.removeItem("token");
+  user = null;
+  isPro = false;
+  token = null;
 
-    // Mostrar de nuevo el modal de autenticación
-    crearModalAuth();
-
-    // Opcional: actualizar interfaz si tienes elementos que cambian según login
-    const btnLogout = document.getElementById("btn-logout");
-    if (btnLogout) btnLogout.style.display = "none"; // esconder botón logout si lo tienes
-}
-
-// Conectar botón logout
-document.addEventListener("DOMContentLoaded", () => {
-    const btnLogout = document.getElementById("btn-logout");
-    if (btnLogout) btnLogout.onclick = logout;
+  // Recargar la página o mostrar modal de login
+  crearModalAuth();
 });
 
 function crearModalPro() {

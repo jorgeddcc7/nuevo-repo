@@ -1,23 +1,23 @@
-/* VARIABLES & RESET */
-:root {
-  --bg-main: #0e1429;
-  --bg-gradient-1: #0a2540;
-  --bg-gradient-2: #0e1429;
+  /* VARIABLES & RESET */
+  :root {
+    --bg-main: #0e1429;
+    --bg-gradient-1: #0a2540;
+    --bg-gradient-2: #0e1429;
 
-  --card-1: #121b2b;
-  --card-2: #1f2f48;
-  --card-3: #2e3c5d;
+    --card-1: #121b2b;
+    --card-2: #1f2f48;
+    --card-3: #2e3c5d;
 
-  --accent: #61dafb;
-  --accent-hover: #4ac0e7;
+    --accent: #61dafb;
+    --accent-hover: #4ac0e7;
 
-  --text-main: #e1e6f0;
-  --text-light: #f8f7fd;
-  --text-muted: #bbb;
+    --text-main: #e1e6f0;
+    --text-light: #f8f7fd;
+    --text-muted: #bbb;
 
-  --radius: 8px;
-  --shadow: 0 8px 20px rgba(0, 0, 0, 0.55);
-}
+    --radius: 8px;
+    --shadow: 0 8px 20px rgba(0, 0, 0, 0.55);
+  }
 
 /* Reset básico */
 * {
@@ -244,51 +244,23 @@ button:active {
   font-weight: 600;
 }
 
-/* ==== MODALES ==== */
-
-.modal {
-    display: none; /* Se mostrará con JS */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.75);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 99999;
+#btn-logout {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+  background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
 }
 
-.modal-content {
-    background: #1f2f48;
-    padding: 30px;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 380px;
-    color: white;
-    text-align: center;
-    animation: fadeIn 0.3s ease;
-}
-
-.modal-content input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 8px;
-    border: none;
-}
-
-.modal-content button {
-    width: 100%;
-    padding: 12px;
-    background-color: #3fa9f5;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    margin-top: 15px;
-    cursor: pointer;
-    font-size: 16px;
+#btn-logout:hover {
+  background: linear-gradient(90deg, var(--accent-hover), var(--accent));
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.65);
 }
 
 @keyframes fadeIn {
