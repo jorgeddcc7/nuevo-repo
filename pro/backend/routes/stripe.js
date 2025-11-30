@@ -8,7 +8,7 @@ const authMiddleware = require('../middleware/auth');
 // Crear checkout session
 router.post('/create-checkout-session', authMiddleware, async (req, res) => {
   try {
-    const domain = process.env.FRONTEND_URL || 'http://localhost:5500';
+    const domain = process.env.FRONTEND_URL || 'https://calculaincoterms.es';
     const { plan } = req.body; // 'mensual', 'trimestral', 'anual'
     let priceId;
 

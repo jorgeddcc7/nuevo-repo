@@ -427,7 +427,7 @@ function crearModalPro() {
       }
 
       try {
-        const res = await fetch("http://localhost:4000/api/stripe/create-checkout-session", {
+        const res = await fetch("https://calculaincoterms.es/api/stripe/create-checkout-session", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -457,7 +457,7 @@ async function login(desdeRegistro = false) {
     ? document.getElementById("reg-pass").value
     : document.getElementById("log-pass").value;
 
-  const res = await fetch("http://localhost:4000/api/login", {
+  const res = await fetch("https://calculaincoterms.es/api/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password })
@@ -483,7 +483,7 @@ async function register() {
   const email = document.getElementById("reg-email").value;
   const password = document.getElementById("reg-pass").value;
 
-  const res = await fetch("http://localhost:4000/api/register", {
+  const res = await fetch("https://calculaincoterms.es/api/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password })
@@ -508,7 +508,7 @@ async function verificarToken() {
     return;
   }
 
-  const res = await fetch("http://localhost:4000/api/check-token", {
+  const res = await fetch("https://calculaincoterms.es/api/check-token", {
     headers: { "Authorization": "Bearer " + saved }
   });
 
