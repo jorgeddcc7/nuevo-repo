@@ -27,8 +27,8 @@ router.post('/create-checkout-session', authMiddleware, async (req, res) => {
       payment_method_types: ['card'],
       customer: req.user.stripeCustomerId || undefined,
       line_items: [{ price: priceId, quantity: 1 }],
-      success_url: `${domain}/?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${domain}/?checkout=cancel`
+      success_url: `${domain}/pro?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${domain}/pro?checkout=cancel`
     });
 
     // Guardar customerId si es nuevo
@@ -74,9 +74,9 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
 
       case 'invoice.paid': {
         const invoice = event.data.object;
-        const subscriptionId = invoice.subscription;
-        if (subscriptionId) {
-          const user = await User.findOne({ subscriptionId });
+        const customerId = invoice.customer;
+        if (customerId) {
+          const user = await User.findOne({ stripeCustomerId: customerId });
           if (user) {
             user.subscriptionStatus = 'active';
             user.pro = true;
