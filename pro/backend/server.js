@@ -8,13 +8,10 @@ const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 // Importar rutas
 const authRoutes = require('./routes/auth');
 const stripeRoutes = require('./routes/stripe');
+const User = require('./models/User');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
-
-// ⚠️ IMPORTANTE: El webhook necesita raw body ANTES de express.json()
-// Por eso creamos un middleware específico SOLO para esa ruta
-app.post('/api/stripe/webhook', express.raw({ type: 'application/json' }));
 
 // Resto del middleware
 app.use(cors({ origin: 'https://calculaincoterms.es' }));
@@ -32,52 +29,80 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.use('/api', authRoutes);
 app.use('/api/stripe', stripeRoutes);
 
-// Webhook Stripe (único y correcto)
-app.post('/api/stripe/webhook', async (req, res) => {
-  const sig = req.headers['stripe-signature'];
-  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
-  let event;
+// Webhook Stripe (Definición CORREGIDA)
+app.post(
+    '/api/stripe/webhook', 
+    // 1. Middleware para obtener el cuerpo CRUDO (Buffer) de la solicitud de Stripe
+    express.raw({ type: 'application/json' }), 
+    // 2. Función de manejo de la lógica del webhook
+    async (req, res) => {
+        const sig = req.headers['stripe-signature'];
+        const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+        let event;
 
-  try {
-    event = stripe.webhooks.constructEvent(req.body, sig, webhookSecret);
-  } catch (err) {
-    console.error('❌ Error verificando firma del webhook:', err.message);
-    return res.status(400).send(`Webhook Error: ${err.message}`);
-  }
+        try {
+            // Verificación de la firma con el cuerpo crudo (req.body)
+            event = stripe.webhooks.constructEvent(req.body, sig, webhookSecret);
+        } catch (err) {
+            console.error('❌ Error verificando firma del webhook:', err.message);
+            return res.status(400).send(`Webhook Error: ${err.message}`);
+        }
 
-  try {
-    switch (event.type) {
-      case 'checkout.session.completed':
-        const session = event.data.object;
-        console.log(`💰 Checkout completado para customer: ${session.customer}`);
-        break;
+        try {
+            // 💰 Manejo de eventos y actualización de la base de datos 
+            const eventData = event.data.object;
 
-      case 'invoice.paid':
-        const invoice = event.data.object;
-        console.log(`✔️ Factura pagada: ${invoice.id}`);
-        break;
+            switch (event.type) {
+                
+                case 'checkout.session.completed':
+                    // Verificar si es una sesión de suscripción y si el pago fue exitoso
+                    if (eventData.mode === 'subscription' && eventData.payment_status === 'paid') {
+                        const userId = eventData.metadata.userId; // ID de usuario guardado en stripe.js
+                        
+                        if (userId && eventData.subscription) {
+                            await User.findByIdAndUpdate(userId, { 
+                                pro: true, 
+                                stripeSubscriptionId: eventData.subscription,
+                                subscriptionStatus: 'active' 
+                            });
+                            console.log(`✅ [PRO] Usuario ${userId} activado. Sub ID: ${eventData.subscription}`);
+                        }
+                    }
+                    break;
+                
+                case 'customer.subscription.deleted':
+                case 'customer.subscription.updated':
+                    // Manejar cancelaciones/cambios de estado
+                    const subscription = eventData;
+                    
+                    if (subscription.status === 'canceled' || subscription.status === 'unpaid') {
+                        // Buscar usuario por el ID de suscripción y desactivarlo
+                          await User.findOneAndUpdate(
+                              { stripeSubscriptionId: subscription.id }, 
+                              { pro: false, stripeSubscriptionId: null, subscriptionStatus: subscription.status }
+                          );
+                          console.log(`❌ [NO PRO] Suscripción ${subscription.id} cancelada/inactiva.`);
+                    } else if (subscription.status === 'active') {
+                        // Asegurar que el estado es correcto (por ejemplo, después de un reintento de pago exitoso)
+                          await User.findOneAndUpdate(
+                              { stripeSubscriptionId: subscription.id }, 
+                              { pro: true, subscriptionStatus: 'active' }
+                          );
+                          console.log(`🔄 [PRO] Suscripción ${subscription.id} activa.`);
+                    }
+                    break;
+                    
+                default:
+                    console.log(`ℹ️ Evento no manejado: ${event.type}`);
+            }
 
-      case 'customer.subscription.created':
-      case 'customer.subscription.updated':
-        const subscription = event.data.object;
-        console.log(`🔄 Suscripción actualizada: ${subscription.id}`);
-        break;
-
-      case 'customer.subscription.deleted':
-        const deletedSubscription = event.data.object;
-        console.log(`❌ Suscripción eliminada: ${deletedSubscription.id}`);
-        break;
-
-      default:
-        console.log(`ℹ️ Evento no manejado: ${event.type}`);
+            res.json({ received: true });
+        } catch (err) {
+            console.error('🔥 Error procesando webhook:', err);
+            res.status(500).json({ error: 'Error interno en webhook' });
+        }
     }
-
-    res.json({ received: true });
-  } catch (err) {
-    console.error('🔥 Error procesando webhook:', err);
-    res.status(500).json({ error: 'Error interno en webhook' });
-  }
-});
+);
 
 // Ruta de prueba
 app.get('/', (req, res) => {
