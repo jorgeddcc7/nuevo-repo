@@ -14,12 +14,15 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 app.post(
-    '/api/stripe/webhook', // 🚨 CORREGIDO: Usamos app.post y la ruta completa
+    '/api/stripe/webhook', 
     express.raw({ type: 'application/json' }), 
     async (req, res) => {
         // En este punto, req.body es el Buffer crudo, necesario para verificar la firma
         const sig = req.headers['stripe-signature'];
         const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
+        console.log("DEBUG: Clave Webhook que usa el servidor:", webhookSecret); 
+        
         let event;
 
         try {
