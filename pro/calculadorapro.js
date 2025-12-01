@@ -484,7 +484,7 @@ async function login(desdeRegistro = false) {
     ? document.getElementById("reg-pass").value
     : document.getElementById("log-pass").value;
 
-  const res = await fetch("https://nuevo-repo.onrender.com/api/login", {
+  const res = await fetch("https://calculaincoterms.es/api/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password })
@@ -511,7 +511,7 @@ async function register() {
   const email = document.getElementById("reg-email").value;
   const password = document.getElementById("reg-pass").value;
 
-  const res = await fetch("https://nuevo-repo.onrender.com/api/register", {
+  const res = await fetch("https://calculaincoterms.es/api/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password })

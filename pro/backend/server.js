@@ -16,13 +16,11 @@ const PORT = process.env.PORT || 4000;
 
 // =========================================================================
 // RUTA WEBHOOK DE STRIPE
-// Se usa express.raw para obtener el cuerpo crudo, necesario para la verificación de firma
 app.post(
     '/api/stripe/webhook', 
     express.raw({ type: 'application/json' }), 
     async (req, res) => {
         const sig = req.headers['stripe-signature'];
-        // El secreto del webhook debe coincidir con el de Stripe
         const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;        
         let event;
 
@@ -41,18 +39,23 @@ app.post(
             switch (event.type) {
 
                 // =========================================================================
-                // 🚨 CASO CRÍTICO: MANEJAR LA PRIMERA COMPRA 🚨
+                // CASO CRÍTICO: MANEJAR LA PRIMERA COMPRA
                 case 'checkout.session.completed':
                     const session = eventData;
-                    // El email del usuario es la clave de búsqueda en este punto
-                    const customerEmail = session.customer_details?.email; 
+                    const rawEmail = session.customer_details?.email;
+                    // 🚨 CAMBIO CLAVE: Normalizar a minúsculas para asegurar la coincidencia
+                    const customerEmail = rawEmail ? rawEmail.toLowerCase() : null; 
+                    
                     const subscriptionId = session.subscription;
                     const customerId = session.customer;
                     
                     if (subscriptionId && customerEmail) {
+                        // 🚨 DEBUG: Imprime el email que se va a buscar en la DB
+                        console.log(`[WEBHOOK DEBUG] Buscando y actualizando usuario por email: ${customerEmail}`); 
+                        
                         // Buscamos al usuario por su email de registro y actualizamos todos los campos Stripe
                         const user = await User.findOneAndUpdate(
-                            { email: customerEmail }, 
+                            { email: customerEmail }, // Buscamos con el email normalizado
                             { 
                                 pro: true, 
                                 stripeCustomerId: customerId, 
@@ -66,7 +69,7 @@ app.post(
                             console.log(`✅ [PRO] Checkout completado. Usuario ${user.email} activado y IDs Stripe guardados.`);
                         } else {
                             // Advertencia: El usuario pagó pero no existe en nuestra DB.
-                            console.warn(`⚠️ [WEBHOOK] Checkout completado, pero NO se encontró usuario para email: ${customerEmail}.`);
+                            console.warn(`⚠️ [WEBHOOK] Checkout completado, pero NO se encontró usuario para email: ${customerEmail}. Asegúrese que el usuario existe en la DB.`);
                         }
                     }
                     break;
@@ -124,7 +127,7 @@ app.post(
 
 // Resto del middleware
 app.use(cors({ origin: 'https://calculaincoterms.es' }));
-app.use(express.json()); // Middleware global para JSON (usado por todas las rutas excepto el webhook)
+app.use(express.json()); 
 
 // Rutas normales
 app.use('/api', authRoutes);
@@ -137,22 +140,18 @@ app.get('/', (req, res) => {
 
 
 // =========================================================================
-// FUNCIÓN PARA CONECTAR DB E INICIAR EL SERVIDOR (Para evitar timeouts)
-// Esto garantiza que el servidor NO escuche hasta que la DB esté conectada.
+// FUNCIÓN PARA CONECTAR DB E INICIAR EL SERVIDOR
 async function startServer() {
     try {
-        // Conexión a MongoDB y espera hasta que esté lista
         await mongoose.connect(process.env.MONGODB_URI);
         
         console.log('✅ Conectado a MongoDB');
 
-        // Iniciar servidor SOLO si la conexión a la DB fue exitosa
         app.listen(PORT, () => {
             console.log(`🚀 Servidor escuchando en el puerto ${PORT}`);
         });
 
     } catch (err) {
-        // Esto atrapará errores de conexión, incluyendo fallos de IP Whitelist o URI
         console.error('❌ FATAL: Error conectando a MongoDB. Verifique URI y IP Whitelist:', err.message);
     }
 }
