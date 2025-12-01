@@ -19,10 +19,7 @@ app.post(
     async (req, res) => {
         // En este punto, req.body es el Buffer crudo, necesario para verificar la firma
         const sig = req.headers['stripe-signature'];
-        const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
-
-        console.log("DEBUG: Clave Webhook que usa el servidor:", webhookSecret); 
-        
+        const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;        
         let event;
 
         try {
