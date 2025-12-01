@@ -503,7 +503,8 @@ async function login(desdeRegistro = false) {
   user = data.user;
   isPro = user.pro;
 
-  document.getElementById("modal-auth").remove();
+  const modal = document.getElementById("modal-auth");
+  if (modal) modal.remove();
 }
 
 async function register() {
