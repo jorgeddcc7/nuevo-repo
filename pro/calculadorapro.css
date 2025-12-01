@@ -278,7 +278,7 @@ button:active {
   display: block;
   margin: 20px auto 0; /* centrado horizontal y algo de espacio arriba */
   z-index: 1000;
-  position: absolute;
+  position: fixed;
   right: 20px;
   top: 20px;
 }
@@ -292,7 +292,7 @@ button:active {
 /* RESPONSIVO: en móviles, botón fijo arriba y contenedor se desplaza */
 @media (max-width: 1300px) {
   #btn-logout {
-    position: fixed;
+    position: absolute;
     top: 15px;
     left: 50%;
     transform: translateX(-50%);
@@ -327,7 +327,7 @@ button:active {
   text-align: center;
   z-index: 1000;
   
-  position: absolute;
+  position: fixed;
   left: 20px;
   top: 40px;
 }
@@ -340,7 +340,7 @@ button:active {
 
 @media (max-width: 1300px) {
   #btn-volver {
-    position: fixed;
+    position: absolute;
     top: 70px; /* debajo del de logout */
     left: 50%;
     transform: translateX(-50%);
@@ -431,16 +431,3 @@ button:active {
   }
 }
 
-@media (max-width: 400px) {
-
-  #modal-pro {
-    overflow-y: auto;               /* habilita scroll */
-    -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
-    padding: 40px 0;                 /* espacio para subir/bajar */
-  }
-
-  #modal-pro-content {
-    margin: auto;                    /* centrado cuando se hace scroll */
-    transform: none !important;      /* evita que la animación corte el scroll */
-  }
-}
