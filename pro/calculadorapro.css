@@ -437,17 +437,3 @@ button:active {
     right: -6px !important;
   }
 }
-
-@media (max-width: 400px) {
-
-  #modal-pro {
-    overflow-y: auto;               /* habilita scroll */
-    -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
-    padding: 40px 0;                 /* espacio para subir/bajar */
-  }
-
-  #modal-pro-content {
-    margin: auto;                    /* centrado cuando se hace scroll */
-    transform: none !important;      /* evita que la animación corte el scroll */
-  }
-}
