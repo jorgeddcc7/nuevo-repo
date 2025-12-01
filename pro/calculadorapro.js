@@ -425,11 +425,6 @@ function crearModalPro() {
 
   // Bloquear scroll
   document.body.style.overflow = "hidden";
-    if (window.innerWidth < 400) {
-    modal.style.overflowY = "auto";
-    modal.style.webkitOverflowScrolling = "touch";
-    modal.style.padding = "40px 0"; 
-  }
 
   // Hover tarjetas
   modal.querySelectorAll(".pro-plan-card").forEach(card => {
