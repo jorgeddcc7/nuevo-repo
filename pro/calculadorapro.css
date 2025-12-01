@@ -438,7 +438,7 @@ button:active {
   }
 }
 
-@media (max-height: 650px), (max-width: 380px) {
+@media (max-width: 400px) {
 
   #modal-pro {
     overflow-y: auto;               /* habilita scroll */
