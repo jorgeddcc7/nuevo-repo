@@ -438,65 +438,16 @@ button:active {
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 400px) {
+
   #modal-pro {
     overflow-y: auto;               /* habilita scroll */
-    -webkit-overflow-scrolling: touch; /* scroll suave iOS */
-    padding: 40px 0;                 /* espacio arriba/abajo */
-    display: block;                  /* importante para que el scroll funcione */
-    position: fixed;
-    inset: 0;
+    -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
+    padding: 40px 0;                 /* espacio para subir/bajar */
   }
 
   #modal-pro-content {
-    margin: 0 auto;                 /* centrado horizontal */
-    transform: none !important;     /* desactivar animación que corta scroll */
-  }
-
-  /* Tus ajustes de tamaños pequeños */
-  #modal-pro-content {
-    padding: 25px 18px !important;
-    width: 92% !important;
-    max-width: 380px !important;
-    border-radius: 16px !important;
-  }
-
-  #modal-pro-content h2 {
-    font-size: 22px !important;
-  }
-
-  #modal-pro-content p {
-    font-size: 13px !important;
-  }
-
-  .pro-plan-card {
-    width: 160px !important;
-    padding: 18px !important;
-    border-radius: 12px !important;
-  }
-
-  .pro-plan-card h3 {
-    font-size: 17px !important;
-  }
-
-  .pro-plan-card p {
-    font-size: 22px !important;
-  }
-
-  .pro-plan-card p:nth-child(3) {
-    font-size: 14px !important;
-  }
-
-  .pro-plan-card .plan-btn {
-    padding: 10px !important;
-    font-size: 14px !important;
-    border-radius: 10px !important;
-  }
-
-  .pro-plan-card.recomendado div {
-    font-size: 10px !important;
-    padding: 3px 8px !important;
-    top: -6px !important;
-    right: -6px !important;
+    margin: auto;                    /* centrado cuando se hace scroll */
+    transform: none !important;      /* evita que la animación corte el scroll */
   }
 }
