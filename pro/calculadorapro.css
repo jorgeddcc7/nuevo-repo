@@ -454,6 +454,10 @@ button:active {
 
 /* Políticas */
 .footer-legal {
+    position: fixed;
+    bottom: 20px; 
+    left: 50%;  
+    transform: translateX(-50%); 
     width: 100%;
     background-color: transparent;
     text-align: center;
