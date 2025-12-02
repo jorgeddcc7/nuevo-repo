@@ -51,7 +51,6 @@ app.post(
                     
                     if (subscriptionId && customerEmail) {
                         // 🚨 DEBUG: Imprime el email que se va a buscar en la DB
-                        console.log(`[WEBHOOK DEBUG] Buscando y actualizando usuario por email: ${customerEmail}`); 
                         
                         // Buscamos al usuario por su email de registro y actualizamos todos los campos Stripe
                         const user = await User.findOneAndUpdate(
