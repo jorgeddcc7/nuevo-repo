@@ -50,7 +50,10 @@ function crearModalAuth() {
           background: linear-gradient(90deg, #0a74ff, #1f9bff);
           color:white; border:none; border-radius:12px; font-weight:700; font-size:16px; cursor:pointer; 
           box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.3s;
-        ">Registrarme</button>
+        "
+        onmouseover="this.style.transform='scale(1.03)'"
+        onmouseout="this.style.transform='scale(1)'"
+        >Registrarme</button>
 
         <p style="margin-top:22px; font-size:14px; color:#555;">
           ¿Ya tienes cuenta?
@@ -70,7 +73,10 @@ function crearModalAuth() {
           background: linear-gradient(90deg, #0a74ff, #1f9bff);
           color:white; border:none; border-radius:12px; font-weight:700; font-size:16px; cursor:pointer; 
           box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.3s;
-        ">Entrar</button>
+        "
+        onmouseover="this.style.transform='scale(1.03)'"
+        onmouseout="this.style.transform='scale(1)'"
+        >Entrar</button>
 
         <p style="margin-top:22px; font-size:14px; color:#555;">
           ¿No tienes cuenta?
