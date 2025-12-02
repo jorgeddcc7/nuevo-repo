@@ -1,607 +1,562 @@
 // Estado global
-let user = null;        // datos del usuario
-let isPro = false;      // si es PRO o no
+let user = null;        // datos del usuario
+let isPro = false;      // si es PRO o no
 let token = null;
-
-// Función para mostrar errores en el modal de autenticación
-function mostrarErrorAuth(message) {
-  const err = document.getElementById("auth-error");
-  if (err) {
-    err.innerText = message;
-    err.style.opacity = 1;
-    err.style.minHeight = "30px"; // Asegura que el contenedor tenga altura visible
-  }
-}
-
-// Función para limpiar errores en el modal de autenticación
-function limpiarErrorAuth() {
-  const err = document.getElementById("auth-error");
-  if (err) {
-    err.innerText = "";
-    err.style.opacity = 0;
-    err.style.minHeight = "0px";
-  }
-}
-
 
 // Crear modal LOGIN/REGISTER dinámicamente
 function crearModalAuth() {
-  const modal = document.createElement('div');
-  modal.id = "modal-auth";
-  modal.style = `
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.65);
-    backdrop-filter: blur(6px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 99999;
-    font-family: 'Inter', sans-serif;
-  `;
+  const modal = document.createElement('div');
+  modal.id = "modal-auth";
+  modal.style = `
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    font-family: 'Inter', sans-serif;
+  `;
 
-  modal.innerHTML = `
-    <div style="
-      background:#fff; 
-      padding:40px; 
-      width:400px; 
-      border-radius:24px; 
-      text-align:center; 
-      box-shadow: 0 20px 60px rgba(0,0,0,0.35), 0 0 10px rgba(0,0,0,0.1); 
-      position: relative;
-      transition: transform 0.4s ease, opacity 0.4s ease;
-      transform: translateY(-30px);
-      opacity:0;
-    " id="modal-auth-content">
+  modal.innerHTML = `
+    <div style="
+      background:#fff; 
+      padding:40px; 
+      width:400px; 
+      border-radius:24px; 
+      text-align:center; 
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35), 0 0 10px rgba(0,0,0,0.1); 
+      position: relative;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      transform: translateY(-30px);
+      opacity:0;
+    " id="modal-auth-content">
 
-      <h2 id="auth-title" style="
-        margin-bottom:34px; 
-        font-size:28px; 
-        color:#111; 
-        font-weight:800;
-      ">Crear cuenta</h2>
+      <h2 id="auth-title" style="
+        margin-bottom:34px; 
+        font-size:28px; 
+        color:#111; 
+        font-weight:800;
+      ">Crear cuenta</h2>
 
-      <p id="auth-error" style="
-        color:#ff4444;  /* Color de error más vibrante */
-        background: #ffebeb; /* Fondo suave para destacar */
-        border: 1px solid #ffbbbb;
-        padding: 10px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        font-size:14px; 
-        font-weight:700; 
-        min-height:0px;
-        opacity:0;
-        transition: all 0.25s ease;
-      "></p>
+      <!-- REGISTRO -->
+      <div id="form-register">
+        ${crearCampo("reg-email", "Email")}
+        ${crearCampo("reg-pass", "Contraseña", "password")}
 
+        <button id="btn-register" style="
+          width:100%; padding:16px; margin-top:22px; 
+          background: linear-gradient(90deg, #0a74ff, #1f9bff);
+          color:white; border:none; border-radius:12px; font-weight:700; font-size:16px; cursor:pointer; 
+          box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.3s;
+        ">Registrarme</button>
 
-      <!-- REGISTRO -->
-      <div id="form-register">
-        ${crearCampo("reg-email", "Email")}
-        ${crearCampo("reg-pass", "Contraseña", "password")}
+        <p style="margin-top:22px; font-size:14px; color:#555;">
+          ¿Ya tienes cuenta?
+          <button id="ir-login" style="
+            background:none; border:none; color:#0a74ff; cursor:pointer; font-weight:700; font-size:14px;
+          ">Inicia sesión</button>
+        </p>
+      </div>
 
-        <button id="btn-register" style="
-          width:100%; padding:16px; margin-top:22px; 
-          background: linear-gradient(90deg, #0a74ff, #1f9bff);
-          color:white; border:none; border-radius:12px; font-weight:700; font-size:16px; cursor:pointer; 
-          box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.3s;
-        ">Registrarme</button>
+      <!-- LOGIN -->
+      <div id="form-login" style="display:none;">
+        ${crearCampo("log-email", "Email")}
+        ${crearCampo("log-pass", "Contraseña", "password")}
 
-        <p style="margin-top:22px; font-size:14px; color:#555;">
-          ¿Ya tienes cuenta?
-          <button id="ir-login" style="
-            background:none; border:none; color:#0a74ff; cursor:pointer; font-weight:700; font-size:14px;
-          ">Inicia sesión</button>
-        </p>
-      </div>
+        <button id="btn-login" style="
+          width:100%; padding:16px; margin-top:22px; 
+          background: linear-gradient(90deg, #0a74ff, #1f9bff);
+          color:white; border:none; border-radius:12px; font-weight:700; font-size:16px; cursor:pointer; 
+          box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.3s;
+        ">Entrar</button>
 
-      <!-- LOGIN -->
-      <div id="form-login" style="display:none;">
-        ${crearCampo("log-email", "Email")}
-        ${crearCampo("log-pass", "Contraseña", "password")}
+        <p style="margin-top:22px; font-size:14px; color:#555;">
+          ¿No tienes cuenta?
+          <button id="ir-register" style="
+            background:none; border:none; color:#0a74ff; cursor:pointer; font-weight:700; font-size:14px;
+          ">Regístrate</button>
+        </p>
+      </div>
 
-        <button id="btn-login" style="
-          width:100%; padding:16px; margin-top:22px; 
-          background: linear-gradient(90deg, #0a74ff, #1f9bff);
-          color:white; border:none; border-radius:12px; font-weight:700; font-size:16px; cursor:pointer; 
-          box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.3s;
-        ">Entrar</button>
+      <p id="auth-error" style="
+        color:#ff0000; 
+        margin-top:10px; 
+        font-size:14px; 
+        font-weight:700; 
+        min-height:0px;
+        opacity:0;
+        transition: all 0.25s ease;
+      "></p>
+    </div>
+  `;
 
-        <p style="margin-top:22px; font-size:14px; color:#555;">
-          ¿No tienes cuenta?
-          <button id="ir-register" style="
-            background:none; border:none; color:#0a74ff; cursor:pointer; font-weight:700; font-size:14px;
-          ">Regístrate</button>
-        </p>
-      </div>
+  // Inserto el modal
+  document.body.appendChild(modal);
 
-    </div>
-  `;
+  // Input floating label + estilo PRO
+  modal.querySelectorAll("input").forEach(input => {
+  // Mostrar / ocultar contraseña con iconos SVG
+  modal.querySelectorAll("[data-eye]").forEach(eye => {
+    const id = eye.getAttribute("data-eye");
+    const input = modal.querySelector(`#${id}`);
 
-  // Inserto el modal
-  document.body.appendChild(modal);
+    const openIcon = eye.querySelector("[data-eye-open]");
+    const closedIcon = eye.querySelector("[data-eye-closed]");
 
-  // Input floating label + estilo PRO
-  modal.querySelectorAll("input").forEach(input => {
-    // Limpiar errores al escribir
-    input.addEventListener("input", limpiarErrorAuth);
-  });
+    let visible = false;
 
+    eye.onclick = () => {
+      visible = !visible;
 
-  // Mostrar / ocultar contraseña con iconos SVG
-  modal.querySelectorAll("[data-eye]").forEach(eye => {
-    const id = eye.getAttribute("data-eye");
-    const input = modal.querySelector(`#${id}`);
+      input.type = visible ? "text" : "password";
 
-    const openIcon = eye.querySelector("[data-eye-open]");
-    const closedIcon = eye.querySelector("[data-eye-closed]");
+      openIcon.style.display = visible ? "none" : "block";
+      closedIcon.style.display = visible ? "block" : "none";
 
-    let visible = false;
+      eye.style.opacity = visible ? "1" : "0.6";
+    };
 
-    eye.onclick = () => {
-      visible = !visible;
+    input.addEventListener("focus", () => (eye.style.opacity = "1"));
+    input.addEventListener("blur", () => (eye.style.opacity = visible ? "1" : "0.6"));
+  });
 
-      input.type = visible ? "text" : "password";
+    const label = input.nextElementSibling;
 
-      openIcon.style.display = visible ? "none" : "block";
-      closedIcon.style.display = visible ? "block" : "none";
+    const update = () => {
+      if (input.value.trim() !== "") {
+        label.style.top = "6px";
+        label.style.fontSize = "11px";
+        label.style.color = "#0a74ff";
+      } else {
+        label.style.top = "18px";
+        label.style.fontSize = "14px";
+        label.style.color = "#999";
+      }
+    };
 
-      eye.style.opacity = visible ? "1" : "0.6";
-    };
+    input.addEventListener("input", update);
+    input.addEventListener("focus", () => {
+      input.style.borderColor = "#0a74ff";
+      input.style.boxShadow = "0 0 0 3px rgba(10,116,255,0.25)";
+      update();
+    });
+    input.addEventListener("blur", () => {
+      input.style.borderColor = "#ccc";
+      input.style.boxShadow = "none";
+      update();
+    });
 
-    input.addEventListener("focus", () => (eye.style.opacity = "1"));
-    input.addEventListener("blur", () => (eye.style.opacity = visible ? "1" : "0.6"));
-  });
+    update();
+  });
 
-  modal.querySelectorAll("input").forEach(input => {
-    const label = input.nextElementSibling;
+  // Animación modal
+  setTimeout(() => {
+    const content = document.getElementById('modal-auth-content');
+    content.style.transform = 'translateY(0)';
+    content.style.opacity = '1';
+  }, 50);
 
-    const update = () => {
-      if (input.value.trim() !== "") {
-        label.style.top = "6px";
-        label.style.fontSize = "11px";
-        label.style.color = "#0a74ff";
-      } else {
-        label.style.top = "18px";
-        label.style.fontSize = "14px";
-        label.style.color = "#999";
-      }
-    };
+  // Bloquear scroll
+  document.body.style.overflow = 'hidden';
 
-    input.addEventListener("input", update);
-    input.addEventListener("focus", () => {
-      input.style.borderColor = "#0a74ff";
-      input.style.boxShadow = "0 0 0 3px rgba(10,116,255,0.25)";
-      update();
-    });
-    input.addEventListener("blur", () => {
-      input.style.borderColor = "#ccc";
-      input.style.boxShadow = "none";
-      update();
-    });
+  // Login y registro
+  document.getElementById("btn-login").onclick = async () => {
+    await login();
+    document.body.style.overflow = '';
+  };
+  document.getElementById("btn-register").onclick = async () => {
+    await register();
+    document.body.style.overflow = '';
+  };
 
-    update();
-  });
+  // Cambiar entre login/registro
+  document.getElementById("ir-login").onclick = () => cambiarModo("login");
+  document.getElementById("ir-register").onclick = () => cambiarModo("register");
 
-  // Animación modal
-  setTimeout(() => {
-    const content = document.getElementById('modal-auth-content');
-    content.style.transform = 'translateY(0)';
-    content.style.opacity = '1';
-  }, 50);
+  function cambiarModo(modo) {
+    document.getElementById("form-login").style.display = modo === "login" ? "block" : "none";
+    document.getElementById("form-register").style.display = modo === "register" ? "block" : "none";
+    
+    const title = document.getElementById("auth-title");
+    title.innerText = modo === "login" ? "Iniciar sesión" : "Crear cuenta";
 
-  // Bloquear scroll
-  document.body.style.overflow = 'hidden';
-
-  // Login y registro
-  document.getElementById("btn-login").onclick = async () => {
-    // Limpiar antes de intentar
-    limpiarErrorAuth(); 
-    await login();
-    document.body.style.overflow = '';
-  };
-  document.getElementById("btn-register").onclick = async () => {
-    // Limpiar antes de intentar
-    limpiarErrorAuth(); 
-    await register();
-    document.body.style.overflow = '';
-  };
-
-  // Cambiar entre login/registro
-  document.getElementById("ir-login").onclick = () => cambiarModo("login");
-  document.getElementById("ir-register").onclick = () => cambiarModo("register");
-
-  function cambiarModo(modo) {
-    document.getElementById("form-login").style.display = modo === "login" ? "block" : "none";
-    document.getElementById("form-register").style.display = modo === "register" ? "block" : "none";
-    
-    const title = document.getElementById("auth-title");
-    title.innerText = modo === "login" ? "Iniciar sesión" : "Crear cuenta";
-
-    // ¡IMPORTANTE! Limpiar el error al cambiar de formulario
-    limpiarErrorAuth();
-  }
+    const err = document.getElementById("auth-error");
+    err.innerText = "";
+    err.style.opacity = 0;
+    err.style.minHeight = "0px";
+  }
 }
 
 // 🔧 función generadora del campo (clean)
 function crearCampo(id, label, type = "text") {
-  const isPass = type === "password";
+  const isPass = type === "password";
 
-  return `
-    <div style="position: relative; margin-bottom:22px;">
-      <input id="${id}" type="${type}" required placeholder=" " style="
-        width:100%; 
-        padding:16px 50px 16px 14px;  /* padding-right mayor para el icono */
-        border:1px solid #ccc; 
-        border-radius:12px; 
-        font-size:16px; 
-        transition: 0.25s ease; 
-        background:#f7f7f7; 
-        color:#111;
-      ">
-      
-      <label for="${id}" style="
-        position:absolute; 
-        left:16px; 
-        top:18px; 
-        color:#999; 
-        font-size:14px; 
-        pointer-events:none; 
-        transition:0.25s ease;
-      ">${label}</label>
+  return `
+    <div style="position: relative; margin-bottom:22px;">
+      <input id="${id}" type="${type}" required placeholder=" " style="
+        width:100%; 
+        padding:16px 50px 16px 14px;  /* padding-right mayor para el icono */
+        border:1px solid #ccc; 
+        border-radius:12px; 
+        font-size:16px; 
+        transition: 0.25s ease; 
+        background:#f7f7f7; 
+        color:#111;
+      ">
+      
+      <label for="${id}" style="
+        position:absolute; 
+        left:16px; 
+        top:18px; 
+        color:#999; 
+        font-size:14px; 
+        pointer-events:none; 
+        transition:0.25s ease;
+      ">${label}</label>
 
-      ${
-        isPass
-          ? `<div data-eye="${id}" style="
-                position:absolute; 
-                right:12px; 
-                top:50%; 
-                transform: translateY(-50%);
-                width:24px; 
-                height:24px; 
-                cursor:pointer;
-                opacity:0.6;
-                transition:opacity 0.2s;
-                display:flex;
-                align-items:center;
-                justify-content:center;
-              ">
-                <svg data-eye-open style="width:24px; height:24px; display:block;" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z"/>
-                  <circle cx="12" cy="12" r="3"/>
-                </svg>
-        
-                <svg data-eye-closed style="width:24px; height:24px; display:none;" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 19c-7 0-11-7-11-7a19.26 19.26 0 0 1 5.06-5.94"/>
-                  <path d="M1 1l22 22"/>
-                </svg>
-              </div>`
-          : ""
-      }
-    </div>
-  `;
+      ${
+        isPass
+          ? `<div data-eye="${id}" style="
+                position:absolute; 
+                right:12px; 
+                top:50%; 
+                transform: translateY(-50%);
+                width:24px; 
+                height:24px; 
+                cursor:pointer;
+                opacity:0.6;
+                transition:opacity 0.2s;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+              ">
+                <svg data-eye-open style="width:24px; height:24px; display:block;" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+        
+                <svg data-eye-closed style="width:24px; height:24px; display:none;" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 19c-7 0-11-7-11-7a19.26 19.26 0 0 1 5.06-5.94"/>
+                  <path d="M1 1l22 22"/>
+                </svg>
+              </div>`
+          : ""
+      }
+    </div>
+  `;
 }
 
 // JS CIERRE DE SESIÓN
 function actualizarBotonLogout() {
-  const btnLogout = document.getElementById("btn-logout");
-  if (!btnLogout) return;
+  const btnLogout = document.getElementById("btn-logout");
+  if (!btnLogout) return;
 
-  btnLogout.onclick = () => {
-    // Borrar token y estado global
-    localStorage.removeItem("token");
-    user = null;
-    isPro = false;
-    token = null;
+  btnLogout.onclick = () => {
+    // Borrar token y estado global
+    localStorage.removeItem("token");
+    user = null;
+    isPro = false;
+    token = null;
 
-    // Quitar modal anterior si existe
-    const modalExistente = document.getElementById("modal-auth");
-    if (modalExistente) modalExistente.remove();
+    // Quitar modal anterior si existe
+    const modalExistente = document.getElementById("modal-auth");
+    if (modalExistente) modalExistente.remove();
 
-    // Crear modal de login/registro
-    crearModalAuth();
+    // Crear modal de login/registro
+    crearModalAuth();
 
-    // Volver a configurar el listener
-    actualizarBotonLogout();
-  };
+    // Volver a configurar el listener
+    actualizarBotonLogout();
+  };
 }
 
 // Llamar esto después de login exitoso y al cargar página si el usuario ya está logueado
 actualizarBotonLogout();
 
 function crearModalPro() {
-  const modal = document.createElement('div');
-  modal.id = "modal-pro";
-  modal.style = `
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.75);
-    backdrop-filter: blur(6px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 99999;
-    font-family: 'Montserrat', sans-serif;
-  `;
+  const modal = document.createElement('div');
+  modal.id = "modal-pro";
+  modal.style = `
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    font-family: 'Montserrat', sans-serif;
+  `;
 
-  modal.innerHTML = `
-    <div id="modal-pro-content" style="
-      background: var(--card-2);
-      padding: 35px 30px;
-      width: 90%;
-      max-width: 760px;
-      border-radius: 20px;
-      text-align: center;
-      color: var(--text-main);
-      box-shadow: var(--shadow);
-      position: relative;
-      transform: translateY(-30px);
-      opacity: 0;
-      transition: transform 0.4s ease, opacity 0.4s ease;
-    ">
+  modal.innerHTML = `
+    <div id="modal-pro-content" style="
+      background: var(--card-2);
+      padding: 35px 30px;
+      width: 90%;
+      max-width: 760px;
+      border-radius: 20px;
+      text-align: center;
+      color: var(--text-main);
+      box-shadow: var(--shadow);
+      position: relative;
+      transform: translateY(-30px);
+      opacity: 0;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    ">
 
-      <h2 style="font-size:28px; font-weight:800; color:var(--accent); margin-bottom:10px;">
-        Elige tu plan PRO
-      </h2>
+      <h2 style="font-size:28px; font-weight:800; color:var(--accent); margin-bottom:10px;">
+        Elige tu plan PRO
+      </h2>
 
-      <p style="color:var(--text-light); margin-bottom:30px; font-size:15px;">
-        Acceso ilimitado al calculador avanzado.
-      </p>
+      <p style="color:var(--text-light); margin-bottom:30px; font-size:15px;">
+        Acceso ilimitado al calculador avanzado.
+      </p>
 
-      <div style="
-        display:flex; 
-        gap:20px; 
-        justify-content:center; 
-        flex-wrap:wrap;
-      ">
+      <div style="
+        display:flex; 
+        gap:20px; 
+        justify-content:center; 
+        flex-wrap:wrap;
+      ">
 
-        <!-- MENSUAL -->
-        <div class="pro-plan-card" data-plan="mensual" style="
-          background:var(--card-3); 
-          width:210px; padding:25px; border-radius:16px;
-          border:2px solid transparent;
-          text-align:center; transition:0.3s;
-        ">
-          <h3 style="color:var(--text-light); font-size:20px;">Mensual</h3>
-          <p style="font-size:30px; font-weight:700; color:var(--accent); margin:10px 0;">€12.99</p>
-          <p style="color:var(--text-muted); margin-bottom:20px;">Acceso 30 días</p>
-          <button class="plan-btn" style="
-            width:100%;
-            padding:14px;
-            border:none;
-            border-radius:12px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
-            color: var(--bg-main);
-            cursor:pointer;
-            font-weight:800;
-            font-size:16px;
-            letter-spacing:0.3px;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.25);
-            transition: all 0.25s ease;
-          ">
-            Elegir
-          </button>
-        </div>
+        <!-- MENSUAL -->
+        <div class="pro-plan-card" data-plan="mensual" style="
+          background:var(--card-3); 
+          width:210px; padding:25px; border-radius:16px;
+          border:2px solid transparent;
+          text-align:center; transition:0.3s;
+        ">
+          <h3 style="color:var(--text-light); font-size:20px;">Mensual</h3>
+          <p style="font-size:30px; font-weight:700; color:var(--accent); margin:10px 0;">€12.99</p>
+          <p style="color:var(--text-muted); margin-bottom:20px;">Acceso 30 días</p>
+          <button class="plan-btn" style="
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:12px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: var(--bg-main);
+            cursor:pointer;
+            font-weight:800;
+            font-size:16px;
+            letter-spacing:0.3px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+            transition: all 0.25s ease;
+          ">
+            Elegir
+          </button>
+        </div>
 
-        <!-- TRIMESTRAL -->
-        <div class="pro-plan-card recomendado" data-plan="trimestral" style="
-          background:var(--card-3); 
-          width:210px; padding:25px; border-radius:16px;
-          border:2px solid var(--accent);
-          text-align:center; position:relative; transition:0.3s;
-        ">
-          <div style="
-            position:absolute; top:-10px; right:-10px; background:var(--accent);
-            color:var(--bg-main); padding:4px 10px; border-radius:8px;
-            font-size:12px; font-weight:700;
-          ">Recomendado</div>
-          <h3 style="color:var(--text-light); font-size:20px;">Trimestral</h3>
-          <p style="font-size:30px; font-weight:700; color:var(--accent); margin:10px 0;">€29.99</p>
-          <p style="color:var(--text-muted); margin-bottom:20px;">€9'99 / mes</p>
-          <button class="plan-btn recomendado-btn" style="
-            width:100%;
-            padding:14px;
-            border:none;
-            border-radius:12px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
-            color: var(--bg-main);
-            cursor:pointer;
-            font-weight:800;
-            font-size:16px;
-            letter-spacing:0.3px;
-            box-shadow: 0 0 18px rgba(70, 215, 255, 0.48), 0 4px 14px rgba(0,0,0,0.25);
-            transition: all 0.25s ease;
-          ">
-            Elegir
-          </button>
-        </div>
+        <!-- TRIMESTRAL -->
+        <div class="pro-plan-card recomendado" data-plan="trimestral" style="
+          background:var(--card-3); 
+          width:210px; padding:25px; border-radius:16px;
+          border:2px solid var(--accent);
+          text-align:center; position:relative; transition:0.3s;
+        ">
+          <div style="
+            position:absolute; top:-10px; right:-10px; background:var(--accent);
+            color:var(--bg-main); padding:4px 10px; border-radius:8px;
+            font-size:12px; font-weight:700;
+          ">Recomendado</div>
+          <h3 style="color:var(--text-light); font-size:20px;">Trimestral</h3>
+          <p style="font-size:30px; font-weight:700; color:var(--accent); margin:10px 0;">€29.99</p>
+          <p style="color:var(--text-muted); margin-bottom:20px;">€9'99 / mes</p>
+          <button class="plan-btn recomendado-btn" style="
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:12px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: var(--bg-main);
+            cursor:pointer;
+            font-weight:800;
+            font-size:16px;
+            letter-spacing:0.3px;
+            box-shadow: 0 0 18px rgba(70, 215, 255, 0.48), 0 4px 14px rgba(0,0,0,0.25);
+            transition: all 0.25s ease;
+          ">
+            Elegir
+          </button>
+        </div>
 
-        <!-- ANUAL -->
-        <div class="pro-plan-card" data-plan="anual" style="
-          background:var(--card-3); 
-          width:210px; padding:25px; border-radius:16px;
-          border:2px solid transparent;
-          text-align:center; transition:0.3s;
-        ">
-          <h3 style="color:var(--text-light); font-size:20px;">Anual</h3>
-          <p style="font-size:30px; font-weight:700; color:var(--accent); margin:10px 0;">€89.99</p>
-          <p style="color:var(--text-muted); margin-bottom:20px;">€7'49 / mes</p>
-          <button class="plan-btn" style="
-            width:100%;
-            padding:14px;
-            border:none;
-            border-radius:12px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
-            color: var(--bg-main);
-            cursor:pointer;
-            font-weight:800;
-            font-size:16px;
-            letter-spacing:0.3px;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.25);
-            transition: all 0.25s ease;
-          ">
-            Elegir
-          </button>
-        </div>
+        <!-- ANUAL -->
+        <div class="pro-plan-card" data-plan="anual" style="
+          background:var(--card-3); 
+          width:210px; padding:25px; border-radius:16px;
+          border:2px solid transparent;
+          text-align:center; transition:0.3s;
+        ">
+          <h3 style="color:var(--text-light); font-size:20px;">Anual</h3>
+          <p style="font-size:30px; font-weight:700; color:var(--accent); margin:10px 0;">€89.99</p>
+          <p style="color:var(--text-muted); margin-bottom:20px;">€7'49 / mes</p>
+          <button class="plan-btn" style="
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:12px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: var(--bg-main);
+            cursor:pointer;
+            font-weight:800;
+            font-size:16px;
+            letter-spacing:0.3px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+            transition: all 0.25s ease;
+          ">
+            Elegir
+          </button>
+        </div>
 
-      </div>
-    </div>
-  `;
+      </div>
+    </div>
+  `;
 
-  document.body.appendChild(modal);
+  document.body.appendChild(modal);
 
-  // Animación de entrada
-  const content = document.getElementById("modal-pro-content");
-  setTimeout(() => {
-    content.style.transform = "translateY(0)";
-    content.style.opacity = "1";
-  }, 50);
+  // Animación de entrada
+  const content = document.getElementById("modal-pro-content");
+  setTimeout(() => {
+    content.style.transform = "translateY(0)";
+    content.style.opacity = "1";
+  }, 50);
 
-  // Bloquear scroll
-  document.body.style.overflow = "hidden";
+  // Bloquear scroll
+  document.body.style.overflow = "hidden";
 
-  // Hover tarjetas
-  modal.querySelectorAll(".pro-plan-card").forEach(card => {
-    card.addEventListener("mouseenter", () => card.style.transform = "translateY(-6px)");
-    card.addEventListener("mouseleave", () => card.style.transform = "translateY(0)");
-  });
+  // Hover tarjetas
+  modal.querySelectorAll(".pro-plan-card").forEach(card => {
+    card.addEventListener("mouseenter", () => card.style.transform = "translateY(-6px)");
+    card.addEventListener("mouseleave", () => card.style.transform = "translateY(0)");
+  });
 
-  modal.querySelectorAll(".plan-btn").forEach(btn => {
-    btn.addEventListener("mouseenter", () => {
-      btn.style.transform = "translateY(-3px)";
-      btn.style.boxShadow = "0 6px 18px rgba(0,0,0,0.35)";
-    });
-    btn.addEventListener("mouseleave", () => {
-      btn.style.transform = "translateY(0)";
-      btn.style.boxShadow = "0 4px 14px rgba(0,0,0,0.25)";
-    });
-  });
+  modal.querySelectorAll(".plan-btn").forEach(btn => {
+    btn.addEventListener("mouseenter", () => {
+      btn.style.transform = "translateY(-3px)";
+      btn.style.boxShadow = "0 6px 18px rgba(0,0,0,0.35)";
+    });
+    btn.addEventListener("mouseleave", () => {
+      btn.style.transform = "translateY(0)";
+      btn.style.boxShadow = "0 4px 14px rgba(0,0,0,0.25)";
+    });
+  });
 
-  // Selección de plan
-  modal.querySelectorAll(".plan-btn").forEach(btn => {
-    btn.onclick = async () => {
-      const plan = btn.parentElement.dataset.plan;
+  // Selección de plan
+  modal.querySelectorAll(".plan-btn").forEach(btn => {
+    btn.onclick = async () => {
+      const plan = btn.parentElement.dataset.plan;
 
-      if (!token) {
-        // Usar la nueva función para mostrar el mensaje dentro del modal
-        // Dado que estamos en modal-pro, esto es un poco complejo. 
-        // Mantendré el alert aquí para no complicar el modal PRO con la lógica de modal AUTH.
-        alert("Debes iniciar sesión primero.");
-        return;
-      }
+      if (!token) {
+        alert("Debes iniciar sesión primero.");
+        return;
+      }
 
-      try {
-        const res = await fetch("https://nuevo-repo.onrender.com/api/stripe/create-checkout-session", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + token
-          },
-          body: JSON.stringify({ plan })
-        });
+      try {
+        const res = await fetch("https://nuevo-repo.onrender.com/api/stripe/create-checkout-session", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+          },
+          body: JSON.stringify({ plan })
+        });
 
-        const data = await res.json();
-        if (data.url) window.location.href = data.url;
+        const data = await res.json();
+        if (data.url) window.location.href = data.url;
 
-      } catch (err) {
-        console.error(err);
-        alert("Error al iniciar pago.");
-      }
-    };
-  });
+      } catch (err) {
+        console.error(err);
+        alert("Error al iniciar pago.");
+      }
+    };
+  });
 }
 
 // LOGIN
 async function login(desdeRegistro = false) {
-  const email = desdeRegistro
-    ? document.getElementById("reg-email").value
-    : document.getElementById("log-email").value;
+  const email = desdeRegistro
+    ? document.getElementById("reg-email").value
+    : document.getElementById("log-email").value;
 
-  const password = desdeRegistro
-    ? document.getElementById("reg-pass").value
-    : document.getElementById("log-pass").value;
+  const password = desdeRegistro
+    ? document.getElementById("reg-pass").value
+    : document.getElementById("log-pass").value;
 
-  try {
-    const res = await fetch("https://nuevo-repo.onrender.com/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password })
-    });
+  const res = await fetch("https://nuevo-repo.onrender.com/api/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  });
 
-    const data = await res.json();
+  const data = await res.json();
 
-    if (!data.success) {
-      mostrarErrorAuth(data.message);  // ⬅️ MOSTRAR ERROR
-      return;
-    }
-  
-    // Lógica de éxito
-    token = data.token;
-    localStorage.setItem("token", token);
+  if (!data.success) {
+    const err = document.getElementById("auth-error");
+    err.innerText = data.message;
+    err.style.opacity = "1";
+    err.style.minHeight = "20px";
+    return;
+  }
 
-    user = data.user;
-    isPro = user.pro;
+  token = data.token;
+  localStorage.setItem("token", token);
 
-    const modal = document.getElementById("modal-auth");
-    if (modal) modal.remove();
+  user = data.user;
+  isPro = user.pro;
 
-  } catch (error) {
-    console.error("Error en la conexión de login:", error);
-    mostrarErrorAuth("Error de conexión con el servidor. Inténtelo de nuevo.");
-  }
+  const modal = document.getElementById("modal-auth");
+  if (modal) modal.remove();
 }
 
 async function register() {
-  const email = document.getElementById("reg-email").value;
-  const password = document.getElementById("reg-pass").value;
+  const email = document.getElementById("reg-email").value;
+  const password = document.getElementById("reg-pass").value;
 
-  try {
-    const res = await fetch("https://nuevo-repo.onrender.com/api/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password })
-    });
+  const res = await fetch("https://nuevo-repo.onrender.com/api/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  });
 
-    const data = await res.json();
+  const data = await res.json();
 
-    if (!data.success) {
-      mostrarErrorAuth(data.message);  // ⬅️ MOSTRAR ERROR
-      return;
-    }
-  
-    // Registro correcto → iniciar sesión
-    await login(true);  // true = login desde registro
+  if (!data.success) {
+    const err = document.getElementById("auth-error");
+    err.innerText = data.message;
+    err.style.opacity = "1";
+    err.style.minHeight = "20px";
+    return;
+  }
 
-  } catch (error) {
-    console.error("Error en la conexión de registro:", error);
-    mostrarErrorAuth("Error de conexión con el servidor. Inténtelo de nuevo.");
-  }
+  // Registro correcto → iniciar sesión
+  await login(true);  // true = login desde registro
 }
 
 // Verificar token al cargar la página
 async function verificarToken() {
-  const saved = localStorage.getItem("token");
-  if (!saved) {
-    crearModalAuth();
-    return;
-  }
+  const saved = localStorage.getItem("token");
+  if (!saved) {
+    crearModalAuth();
+    return;
+  }
 
-  const res = await fetch("https://nuevo-repo.onrender.com/api/check-token", {
-    headers: { "Authorization": "Bearer " + saved }
-  });
+  const res = await fetch("https://nuevo-repo.onrender.com/api/check-token", {
+    headers: { "Authorization": "Bearer " + saved }
+  });
 
-  const data = await res.json();
+  const data = await res.json();
 
-  if (!data.valid) {
-    localStorage.removeItem("token");
-    crearModalAuth();
-    return;
-  }
+  if (!data.valid) {
+    localStorage.removeItem("token");
+    crearModalAuth();
+    return;
+  }
 
-  user = data.user;
-  isPro = user.pro;
-  token = saved;
+  user = data.user;
+  isPro = user.pro;
+  token = saved;
 }
 
 // Control del botón CALCULAR
