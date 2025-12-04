@@ -10,6 +10,8 @@ const stripe = Stripe(process.env.STRIPE_SECRET_KEY);  
 const authRoutes = require('./routes/auth');
 const stripeRoutes = require('./routes/stripe');
 const User = require('./models/User');
+const pingRoutes = require('./routes/ping');
+app.use('/api', pingRoutes);
 
 const app = express();
 const PORT = process.env.PORT || 4000;
