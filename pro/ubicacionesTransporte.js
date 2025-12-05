@@ -1,7 +1,7 @@
 const ubicacionesTransporte = {
   // --------- UNIÓN EUROPEA (27) ---------
   "Alemania": {
-    mar: ["Hamburgo", "Bremerhaven"],
+    mar: ["Hamburgo", "Bremerhaven", "Bremen"],
     aire: ["Frankfurt", "Múnich"]
   },
   "Austria": {
@@ -21,15 +21,15 @@ const ubicacionesTransporte = {
     aire: ["Praga"]
   },
   "Chipre": {
-    mar: ["Limassol", "Larnaca"],
+    mar: ["Limassol", "Larnaca", "Vasilikos"],
     aire: ["Larnaca", "Pafos"]
   },
   "Croacia": {
-    mar: ["Rijeka", "Split"],
+    mar: ["Rijeka", "Split", "Ploce"],
     aire: ["Zagreb"]
   },
   "Dinamarca": {
-    mar: ["Aarhus", "Copenhague"],
+    mar: ["Aarhus", "Copenhague", "Fredericia"],
     aire: ["Copenhague-Kastrup"]
   },
   "Eslovaquia": {
@@ -41,7 +41,7 @@ const ubicacionesTransporte = {
     aire: ["Liubliana"]
   },
   "España": {
-    mar: ["Valencia", "Algeciras", "Barcelona", "Bilbao"],
+    mar: ["Valencia", "Algeciras", "Barcelona", "Bilbao", "Las Palmas"],
     aire: ["Madrid-Barajas", "Barcelona-El Prat", "Zaragoza"]
   },
   "Estonia": {
@@ -49,11 +49,11 @@ const ubicacionesTransporte = {
     aire: ["Tallin"]
   },
   "Finlandia": {
-    mar: ["Helsinki", "Turku"],
+    mar: ["Helsinki", "Turku", "Kotka–Hamina"],
     aire: ["Helsinki-Vantaa"]
   },
   "Francia": {
-    mar: ["Le Havre", "Marsella"],
+    mar: ["Le Havre", "Marsella", "Dunkerque"],
     aire: ["París Charles de Gaulle"]
   },
   "Grecia": {
@@ -65,15 +65,15 @@ const ubicacionesTransporte = {
     aire: ["Budapest"]
   },
   "Irlanda": {
-    mar: ["Dublín", "Cork"],
+    mar: ["Dublín", "Cork", "Shannon–Foynes"],
     aire: ["Dublín"]
   },
   "Italia": {
-    mar: ["Génova", "Livorno", "Trieste"],
+    mar: ["Génova", "Livorno", "Trieste", "Gioia Tauro", "Venecia"],
     aire: ["Roma Fiumicino", "Milán Malpensa"]
   },
   "Letonia": {
-    mar: ["Riga"],
+    mar: ["Riga", "Ventspils"],
     aire: ["Riga"]
   },
   "Lituania": {
@@ -85,7 +85,7 @@ const ubicacionesTransporte = {
     aire: ["Luxemburgo"]
   },
   "Malta": {
-    mar: ["Valletta"],
+    mar: ["Valletta", "Malta Freeport"],
     aire: ["Luqa"]
   },
   "Países Bajos": {
@@ -93,11 +93,11 @@ const ubicacionesTransporte = {
     aire: ["Ámsterdam Schiphol"]
   },
   "Polonia": {
-    mar: ["Gdansk", "Gdynia"],
+    mar: ["Gdansk", "Gdynia", "Szczecin–Świnoujście"],
     aire: ["Varsovia"]
   },
   "Portugal": {
-    mar: ["Sines", "Oporto"],
+    mar: ["Sines", "Lisboa", "Oporto"],
     aire: ["Lisboa"]
   },
   "Rumanía": {
@@ -105,18 +105,18 @@ const ubicacionesTransporte = {
     aire: ["Bucarest"]
   },
   "Suecia": {
-    mar: ["Gotemburgo"],
+    mar: ["Gotemburgo", "Helsingborg"],
     aire: ["Estocolmo-Arlanda"]
   },
 
   // --------- RESTO DE PAÍSES ---------
 
   "Arabia Saudita": {
-    mar: ["Jeddah", "Dammam"],
+    mar: ["Jeddah", "Dammam", "King Abdullah Port"],
     aire: ["Riad", "Jeddah"]
   },
   "Argentina": {
-    mar: ["Buenos Aires"],
+    mar: ["Buenos Aires", "Rosario", "Bahía Blanca", "Dock Sud"],
     aire: ["Buenos Aires - Ezeiza"]
   },
   "Argelia": {
@@ -136,12 +136,12 @@ const ubicacionesTransporte = {
     aire: ["Sarajevo"]
   },
   "Brasil": {
-    mar: ["Santos", "Rio de Janeiro"],
+    mar: ["Santos", "Rio de Janeiro", "Paranaguá", "Itajaí"],
     aire: ["Sao Paulo-Guarulhos"]
   },
   "Canadá": {
     mar: ["Vancouver", "Montreal"],
-    aire: ["Toronto", "Vancouver"]
+    aire: ["Toronto", "Vancouver", "Prince Rupert", "Halifax"]
   },
   "Chile": {
     mar: ["Valparaíso", "San Antonio"],
@@ -152,7 +152,7 @@ const ubicacionesTransporte = {
     aire: ["Hong-Kong", "Beijing Capital", "Shanghai Pudong", "Guangzhou"]
   },
   "Colombia": {
-    mar: ["Cartagena", "Buenaventura"],
+    mar: ["Cartagena", "Buenaventura", "Santa Marta", "Barranquilla"],
     aire: ["Bogotá"]
   },
   "Corea del Sur": {
@@ -164,7 +164,7 @@ const ubicacionesTransporte = {
     aire: ["Abiyán"]
   },
   "Costa Rica": {
-    mar: ["Puerto Limón"],
+    mar: ["Puerto Limón", "Caldera"],
     aire: ["San José"]
   },
   "Cuba": {
@@ -184,7 +184,7 @@ const ubicacionesTransporte = {
     aire: ["San Salvador"]
   },
   "Estados Unidos": {
-    mar: ["Los Ángeles", "Nueva York", "Houston"],
+    mar: ["Los Ángeles", "Nueva York", "Houston", "Long Beach", "Houston", "Savannah"],
     aire: ["Los Ángeles", "Chicago", "Nueva York JFK"]
   },
   "Filipinas": {
@@ -192,7 +192,7 @@ const ubicacionesTransporte = {
     aire: ["Manila"]
   },
   "Guatemala": {
-    mar: ["Puerto Quetzal"],
+    mar: ["Puerto Quetzal", "Santo Tomás de Castilla"],
     aire: ["Ciudad de Guatemala"]
   },
   "Honduras": {
@@ -224,7 +224,7 @@ const ubicacionesTransporte = {
     aire: ["Beirut"]
   },
   "México": {
-    mar: ["Manzanillo", "Veracruz"],
+    mar: ["Manzanillo", "Veracruz", "Lázaro Cárdenas", "Altamira"],
     aire: ["Ciudad de México"]
   },
   "Nicaragua": {
@@ -256,7 +256,7 @@ const ubicacionesTransporte = {
     aire: ["Doha Hamad"]
   },
   "Reino Unido": {
-    mar: ["Felixstowe", "Southampton"],
+    mar: ["Felixstowe", "Southampton", "Liverpool"],
     aire: ["Londres Heathrow"]
   },
   "República Dominicana": {
@@ -264,7 +264,7 @@ const ubicacionesTransporte = {
     aire: ["Santo Domingo"]
   },
   "Rusia": {
-    mar: ["San Petersburgo", "Vladivostok"],
+    mar: ["San Petersburgo", "Vladivostok", "Ust-Luga", "Novorossiysk"],
     aire: ["Moscú Sheremétievo"]
   },
   "Singapur": {
@@ -288,11 +288,11 @@ const ubicacionesTransporte = {
     aire: ["Estambul"]
   },
   "Uruguay": {
-    mar: ["Montevideo"],
+    mar: ["Montevideo", "Nueva Palmira"],
     aire: ["Montevideo"]
   },
   "Venezuela": {
-    mar: ["La Guaira", "Puerto Cabello"],
+    mar: ["La Guaira", "Puerto Cabello", "Maracaibo"],
     aire: ["Caracas"]
   },
   "Vietnam": {
