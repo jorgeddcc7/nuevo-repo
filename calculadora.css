@@ -76,29 +76,32 @@ body {
     font-size: 16px;
 }
 
-.link__tratados {
+.link__pro {
     position: fixed;
-    top: 70px;
+    top: 70px; /* Debajo de conversor de divisas */
     left: 20px;
     font-size: 14px;
-    color: #007bff;
+    color: #61dafb; /* Texto PRO */
+    background-color: #121b2b; /* Fondo PRO */
     text-decoration: none;
-    font-weight: 600;
-    background-color: #fff;
+    font-weight: 700;
     padding: 8px 16px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #0003;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.45);
     transition: all 0.3s ease;
+    display: inline-block;
+    letter-spacing: 0.2px;
 }
 
-.link__tratados i {
-    margin-left: 8px;
-    font-size: 16px;
-}
-
-.link__distancia:hover, .link__facturas:hover, .link__divisas:hover, .link__tratados:hover {
+.link__distancia:hover, .link__facturas:hover, .link__divisas:hover {
     background-color: #007bff;
     color: #fff;
+    transform: scale(1.1);
+}
+
+.link__pro:hover {
+    color: #121b2b; /* Color del fondo original */
+    background-color: #61dafb; /* Texto PRO */
     transform: scale(1.1);
 }
 /* Contenedor calculadora */
@@ -198,12 +201,93 @@ button {
     font-size: 18px;
     width: 100%;
     margin-top: 20px;
+    margin-bottom: -8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
     background-color: #0056b3;
+}
+
+/* Botón Pro */
+.btn-pro {
+    position: relative;
+    overflow: hidden; /* necesario para shine */
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    padding: 14px 22px;
+    background: #121b2b;
+    color: #61dafb;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    border-radius: 8px;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 7px 10px rgba(0, 0, 0, 0.45);
+    text-shadow: 0 0 6px rgba(0,0,0,0.35);
+    transition: 0.25s ease;
+
+    /* Efecto B: Glow respirando siempre */
+    animation: proGlowStrong 3s infinite ease-in-out;
+}
+
+/* Hover: movimiento y sombra */
+.btn-pro:hover {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 9px 18px rgba(0, 0, 0, 0.55);
+}
+
+/* Efecto A: Shine Sweep solo en hover */
+.btn-pro::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255,255,255,0.25) 50%,
+        transparent 100%
+    );
+    transform: skewX(-20deg);
+    transition: none;
+    pointer-events: none;
+    opacity: 0; /* invisible por defecto */
+}
+
+/* Shine aparece y anima al pasar el ratón */
+.btn-pro:hover::before {
+    opacity: 1;
+    animation: shineSweep 0.8s forwards ease-out;
+}
+
+/* Animación del barrido */
+@keyframes shineSweep {
+    0% { left: -120%; }
+    100% { left: 140%; }
+}
+
+/* Glow respirando permanente */
+@keyframes proGlowStrong {
+    0% {
+        box-shadow: 0 0 14px rgba(97, 218, 251, 0.28),
+                    0 0 30px rgba(97, 218, 251, 0.15);
+    }
+    50% {
+        box-shadow: 0 0 32px rgba(97, 218, 251, 0.6),
+                    0 0 55px rgba(97, 218, 251, 0.35);
+    }
+    100% {
+        box-shadow: 0 0 14px rgba(97, 218, 251, 0.28),
+                    0 0 30px rgba(97, 218, 251, 0.15);
+    }
 }
 
 /* Precio final */
@@ -384,9 +468,12 @@ button:hover {
         position: absolute;
         top: 40px;
     }
-    .link__tratados {
+    .link__pro {
         position: absolute;
-        top: 40px;
+        top: 40px; 
+        left: 20px; 
+        white-space: nowrap;
+        width: fit-content;
     }
     .container {
         max-width: 700px;
@@ -429,9 +516,9 @@ button:hover {
         white-space: nowrap;
         width: fit-content;
     }
-    .link__tratados {
+    .link__pro {
         position: absolute;
-        top: 108px;
+        top: 108px; 
         left: 50%;
         transform: translateX(-50%);
         white-space: nowrap;
@@ -488,77 +575,6 @@ button:hover {
     }
 }
 
-
-
-/* AFILIADOS */
-.afiliados {
-    margin-bottom: -35px;
-}
-
-.afiliados h2 {
-    margin-top: 30px;
-    color: #007bff;
-    text-align: center;
-}
-
-.primero {
-    margin-top: 15px;
-}
-
-.add-banner img {
-    margin-bottom: 15px;
-    max-width: 100%;
-}
-
-.add-1 img {
-    max-width: 100px;
-    height: auto;
-    border-radius: 8px;
-    display: block;
-    margin: 10px auto;
-    transition: scale .3s ease;
-}
-
-.filmora img {
-    max-width: 200px;
-    margin-top: 15px;
-    margin-bottom: -5px;
-}
-
-.add-1 img:hover {
-    scale: 1.1;
-}
-
-.producto-afiliado {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    margin-top: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.info-producto-afiliado {
-    text-align: center;
-}
-
-.info-producto-afiliado h3 {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-    color: #2c3e50;
-}
-
-.info-producto-afiliado p {
-    font-size: 0.95em;
-    line-height: 1.5;
-    color: #444;
-}
 
 /* TABLA INCOTERMS */
 .incoterms-title {

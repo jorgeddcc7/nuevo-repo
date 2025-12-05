@@ -652,10 +652,10 @@ button:active {
 }
 
 #modal-preferencias button:last-of-type {
-    background-color: #444;
+    background-color: #aaa;
     margin-left: 10px;
 }
 
 #modal-preferencias button:last-of-type:hover {
-    background-color: #aaa;
+    background-color: #777
 }
