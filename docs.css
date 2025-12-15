@@ -3,6 +3,21 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+/* Scroll */
+::-webkit-scrollbar {
+    width: 10px; /* o el tamaño que prefieras */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #056bd8; /* Color del "dedo" del scrollbar */
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: #fff; /* Color del fondo del track */
 }
 
 body {

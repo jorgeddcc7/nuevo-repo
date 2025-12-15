@@ -27,6 +27,20 @@
   scroll-behavior: smooth;
 }
 
+/* Scroll */
+::-webkit-scrollbar {
+    width: 10px; /* o el tamaño que prefieras */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--accent); /* Color del "dedo" del scrollbar */
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000; /* Color del fondo del track */
+}
+
 body {
   font-family: "Montserrat", sans-serif;
   background: linear-gradient(135deg, var(--bg-gradient-1), var(--bg-gradient-2));
