@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CalculaIncoterms - Examen</title>
+  <link rel="stylesheet" href="exams.css" />
+</head>
+<body>
+  <a class="link__divisas" href="/conversor">Conversor <i>↗</i></a>
+  <a class="link__distancia" href="/distancia">Distancia <i>↗</i></a>
+  <a class="link__facturas" href="/facturas">Facturas <i>↗</i></a>
+  <a class="link__pro" href="/pro">PRO</a>
+
+  <main class="container2">
+    <header>
+      <h1 id="exam-title">Examen</h1>
+      <p class="descripcion" id="exam-desc">
+        Responde las 10 preguntas de este examen. Selecciona una opción y pulsa "Siguiente".
+      </p>
+    </header>
+
+    <section class="seccion-calculo">
+      <div id="question-container"></div>
+      <div style="text-align:center; margin-top:12px;">
+        <button id="next-btn" class="boton-calcular">Siguiente</button>
+      </div>
+
+      <div id="result-container" style="display:none; margin-top:20px; text-align:center;">
+        <div id="score"></div>
+        <button id="restart-btn" type="button" class="boton-calcular" style="margin-top:15px;">Volver a secciones</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="exams.js"></script>
+  <script src="casos.js"></script>
+</body>
+</html>

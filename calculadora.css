@@ -36,6 +36,21 @@ body {
     font-size: 16px;
 }
 
+.link__tests {
+    position: fixed;
+    top: 70px;
+    left: 20px;
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+    background-color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #0003;
+    transition: all 0.3s ease;
+}
+
 .link__divisas {
     position: fixed;
     top: 30px;
@@ -78,7 +93,7 @@ body {
 
 .link__pro {
     position: fixed;
-    top: 70px; /* Debajo de conversor de divisas */
+    top: 110px; /* Debajo de conversor de divisas */
     left: 20px;
     font-size: 14px;
     color: #61dafb; /* Texto PRO */
@@ -468,12 +483,15 @@ button:hover {
         position: absolute;
         top: 40px;
     }
-    .link__pro {
+    .link__tests {
         position: absolute;
         top: 40px; 
         left: 20px; 
         white-space: nowrap;
         width: fit-content;
+    }
+    .link__pro {
+        top: 80px;
     }
     .container {
         max-width: 700px;
@@ -493,6 +511,10 @@ button:hover {
 @media (max-width: 901px) {
     .container {
         max-width: 400px;
+    }
+    .link__pro {
+        top: 10px;
+        left: 39%;
     }
 }
 @media (max-width: 500px) {
@@ -516,7 +538,7 @@ button:hover {
         white-space: nowrap;
         width: fit-content;
     }
-    .link__pro {
+    .link__tests {
         position: absolute;
         top: 108px; 
         left: 50%;
@@ -524,8 +546,16 @@ button:hover {
         white-space: nowrap;
         width: fit-content;
     }
+        .link__pro {
+        position: absolute;
+        top: 142px; 
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        width: fit-content;
+    }
     .container {
-        margin-top: 115px;
+        margin-top: 155px;
     }
     .packs-container {
         grid-template-columns: 1fr; 
