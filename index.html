@@ -53,114 +53,340 @@
 
 
     <div class="container">
-        <div class="hero-wrapper">
-            <header class="hero">
-                <!-- Video de fondo -->
-                <video class="hero-video" autoplay muted loop playsinline>
-                    <source src="fotos/hero.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            
-                <!-- Overlay semi-transparente -->
-                <div class="hero-overlay"></div>
-            
-                <!-- Contenedor de texto -->
-                <div class="hero-card">
-                    <h1>Calcula tu coste de envío con Incoterms 2020 en segundos</h1>
-                    <p>Introduce los datos de tu envío y obtén el precio final según el Incoterm que elijas, junto con la rentabilidad para el exportador.</p>
-                    <a href="#formulario" class="cta-hero">Ver tu precio final</a>
-                </div>
-            </header>
-        </div>
         <div class="container2">
-            <header>
-                <h1>Calculadora de Incoterms</h1>
-                <h2 class="hidden-title">Incoterm Calculator</h2>
-                <p>
-                    Utiliza esta herramienta para calcular los costos relacionados con diferentes términos de comercio internacional. 
-                    <a href="#tabla-incoterms">Incoterms</a>
-                </p>
-            </header>
-            <!-- Enlaces útiles -->
             <a href="distancias.html" class="link__distancia" target="_blank">Estimador tiempo de entrega</a>
             <a href="divisas.html" class="link__divisas" target="_blank">Conversor de divisas</a>
-            <a href="https://calculaincoterms.es/pro" class="link__pro" target="_blank">Calculadora PRO</a>
             <a href="docs.html" class="link__facturas" target="_blank">Generador de facturas</a>
             <a href="tests/test.html" class="link__tests" target="_blank">Tests de comercio</a>
+            <header>
+                <h1>Calculadora de Incoterms</h1>
+                <p>
+                    Pasa del coste a la estrategia: Obtén el desglose detallado de responsables, aranceles aproximados, acuerdos, documentación requerida y comparación inmediata entre Incoterms.
+                </p>
+            </header>
 
             <!-- Formulario de cálculo -->
             <section id="formulario">
                 <h2>Datos para el cálculo</h2>
+                <p>Introduce los datos de tu operación internacional y selecciona el Incoterm correspondiente.</p>
+
+                <!-- Ubicaciones -->
+                <div class="input-group">
+                    <label for="lugar-exportacion">País exportación:</label>
+                    <select id="lugar-exportacion" required>
+                        <option value="">-- Selecciona --</option>
+                        <option value="Arabia Saudita">Arabia Saudita</option>
+                        <option value="Argentina">Argentina</option>
+                        <option value="Argelia">Argelia</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Austria">Austria</option>
+                        <option value="Bélgica">Bélgica</option>
+                        <option value="Bolivia">Bolivia</option>
+                        <option value="Bosnia y Herzegovina">Bosnia y Herzegovina</option>
+                        <option value="Brasil">Brasil</option>
+                        <option value="Bulgaria">Bulgaria</option>
+                        <option value="Canadá">Canadá</option>
+                        <option value="Chequia">Chequia</option>
+                        <option value="Chile">Chile</option>
+                        <option value="Alemania">Alemania</option>
+                        <option value="China">China</option>
+                        <option value="Chipre">Chipre</option>
+                        <option value="Colombia">Colombia</option>
+                        <option value="Corea del Sur">Corea del Sur</option>
+                        <option value="Costa de Marfil">Costa de Marfil</option>
+                        <option value="Costa Rica">Costa Rica</option>
+                        <option value="Croacia">Croacia</option>
+                        <option value="Cuba">Cuba</option>
+                        <option value="Dinamarca">Dinamarca</option>
+                        <option value="Egipto">Egipto</option>
+                        <option value="Emiratos Árabes Unidos">Emiratos Árabes Unidos</option>
+                        <option value="El Salvador">El Salvador</option>
+                        <option value="Eslovaquia">Eslovaquia</option>
+                        <option value="Eslovenia">Eslovenia</option>
+                        <option value="España">España</option>
+                        <option value="Estados Unidos">Estados Unidos</option>
+                        <option value="Estonia">Estonia</option>
+                        <option value="Filipinas">Filipinas</option>
+                        <option value="Finlandia">Finlandia</option>
+                        <option value="Francia">Francia</option>
+                        <option value="Grecia">Grecia</option>
+                        <option value="Guatemala">Guatemala</option>
+                        <option value="Honduras">Honduras</option>
+                        <option value="Hungría">Hungría</option>
+                        <option value="India">India</option>
+                        <option value="Indonesia">Indonesia</option>
+                        <option value="Irlanda">Irlanda</option>
+                        <option value="Israel">Israel</option>
+                        <option value="Italia">Italia</option>
+                        <option value="Jamaica">Jamaica</option>
+                        <option value="Japón">Japón</option>
+                        <option value="Letonia">Letonia</option>
+                        <option value="Líbano">Líbano</option>
+                        <option value="Lituania">Lituania</option>
+                        <option value="Luxemburgo">Luxemburgo</option>
+                        <option value="Malta">Malta</option>
+                        <option value="Marruecos">Marruecos</option>
+                        <option value="México">México</option>
+                        <option value="Nicaragua">Nicaragua</option>
+                        <option value="Noruega">Noruega</option>
+                        <option value="Nueva Zelanda">Nueva Zelanda</option>
+                        <option value="Países Bajos">Países Bajos</option>
+                        <option value="Panamá">Panamá</option>
+                        <option value="Paraguay">Paraguay</option>
+                        <option value="Perú">Perú</option>
+                        <option value="Polonia">Polonia</option>
+                        <option value="Portugal">Portugal</option>
+                        <option value="Qatar">Qatar</option>
+                        <option value="Reino Unido">Reino Unido</option>
+                        <option value="República Dominicana">República Dominicana</option>
+                        <option value="Rumanía">Rumanía</option>
+                        <option value="Rusia">Rusia</option>
+                        <option value="Singapur">Singapur</option>
+                        <option value="Sudáfrica">Sudáfrica</option>
+                        <option value="Suecia">Suecia</option>
+                        <option value="Suiza">Suiza</option>
+                        <option value="Tailandia">Tailandia</option>
+                        <option value="Turquía">Turquía</option>
+                        <option value="Uruguay">Uruguay</option>
+                        <option value="Venezuela">Venezuela</option>
+                        <option value="Vietnam">Vietnam</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="lugar-importacion">País importación:</label>
+                    <select id="lugar-importacion" required>
+                        <option value="">-- Selecciona --</option>
+                        <option value="Arabia Saudita">Arabia Saudita</option>
+                        <option value="Argentina">Argentina</option>
+                        <option value="Argelia">Argelia</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Austria">Austria</option>
+                        <option value="Bélgica">Bélgica</option>
+                        <option value="Bolivia">Bolivia</option>
+                        <option value="Bosnia y Herzegovina">Bosnia y Herzegovina</option>
+                        <option value="Brasil">Brasil</option>
+                        <option value="Bulgaria">Bulgaria</option>
+                        <option value="Canadá">Canadá</option>
+                        <option value="Chequia">Chequia</option>
+                        <option value="Chile">Chile</option>
+                        <option value="Alemania">Alemania</option>
+                        <option value="China">China</option>
+                        <option value="Chipre">Chipre</option>
+                        <option value="Colombia">Colombia</option>
+                        <option value="Corea del Sur">Corea del Sur</option>
+                        <option value="Costa de Marfil">Costa de Marfil</option>
+                        <option value="Costa Rica">Costa Rica</option>
+                        <option value="Croacia">Croacia</option>
+                        <option value="Cuba">Cuba</option>
+                        <option value="Dinamarca">Dinamarca</option>
+                        <option value="Egipto">Egipto</option>
+                        <option value="Emiratos Árabes Unidos">Emiratos Árabes Unidos</option>
+                        <option value="El Salvador">El Salvador</option>
+                        <option value="Eslovaquia">Eslovaquia</option>
+                        <option value="Eslovenia">Eslovenia</option>
+                        <option value="España">España</option>
+                        <option value="Estados Unidos">Estados Unidos</option>
+                        <option value="Estonia">Estonia</option>
+                        <option value="Filipinas">Filipinas</option>
+                        <option value="Finlandia">Finlandia</option>
+                        <option value="Francia">Francia</option>
+                        <option value="Grecia">Grecia</option>
+                        <option value="Guatemala">Guatemala</option>
+                        <option value="Honduras">Honduras</option>
+                        <option value="Hungría">Hungría</option>
+                        <option value="India">India</option>
+                        <option value="Indonesia">Indonesia</option>
+                        <option value="Irlanda">Irlanda</option>
+                        <option value="Israel">Israel</option>
+                        <option value="Italia">Italia</option>
+                        <option value="Jamaica">Jamaica</option>
+                        <option value="Japón">Japón</option>
+                        <option value="Letonia">Letonia</option>
+                        <option value="Líbano">Líbano</option>
+                        <option value="Lituania">Lituania</option>
+                        <option value="Luxemburgo">Luxemburgo</option>
+                        <option value="Malta">Malta</option>
+                        <option value="Marruecos">Marruecos</option>
+                        <option value="México">México</option>
+                        <option value="Nicaragua">Nicaragua</option>
+                        <option value="Noruega">Noruega</option>
+                        <option value="Nueva Zelanda">Nueva Zelanda</option>
+                        <option value="Países Bajos">Países Bajos</option>
+                        <option value="Panamá">Panamá</option>
+                        <option value="Paraguay">Paraguay</option>
+                        <option value="Perú">Perú</option>
+                        <option value="Polonia">Polonia</option>
+                        <option value="Portugal">Portugal</option>
+                        <option value="Qatar">Qatar</option>
+                        <option value="Reino Unido">Reino Unido</option>
+                        <option value="República Dominicana">República Dominicana</option>
+                        <option value="Rumanía">Rumanía</option>
+                        <option value="Rusia">Rusia</option>
+                        <option value="Singapur">Singapur</option>
+                        <option value="Sudáfrica">Sudáfrica</option>
+                        <option value="Suecia">Suecia</option>
+                        <option value="Suiza">Suiza</option>
+                        <option value="Tailandia">Tailandia</option>
+                        <option value="Turquía">Turquía</option>
+                        <option value="Uruguay">Uruguay</option>
+                        <option value="Venezuela">Venezuela</option>
+                        <option value="Vietnam">Vietnam</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="tipo-transporte">Tipo de transporte (opcional):</label>
+                    <select id="tipo-transporte" name="tipo_transporte">
+                        <option value="">Selecciona una opción</option>
+                        <option value="maritimo">Marítimo</option>
+                        <option value="aereo">Aéreo</option>
+                        <option value="terrestre">Terrestre</option>
+                        <option value="ferroviario">Ferroviario</option>
+                        <option value="multimodal">Multimodal</option>
+                    </select>
+                </div>
+
+                <div id="contenedor-puerto-aeropuerto-salida" style="display:none;">
+                    <label for="select-puerto-aeropuerto-salida">Puerto / Aeropuerto de salida:</label>
+                    <select id="select-puerto-aeropuerto-salida" style="margin-top: 10px; margin-bottom: 15px;"></select>
+                </div>
+
+                <div id="contenedor-puerto-aeropuerto-llegada" style="display:none;">
+                    <label for="select-puerto-aeropuerto-llegada">Puerto / Aeropuerto de llegada:</label>
+                    <select id="select-puerto-aeropuerto-llegada" style="margin-top: 10px;"></select>
+                </div>
+
+                <div id="recomendaciones-incoterm" style="margin-top:10px;"></div>
+
+                <!-- Divisa -->
                 <div class="input-group">
                     <label for="divisa">Selecciona la divisa:</label>
-                    <select id="divisa">
+                    <select id="divisa" name="divisa" required>
                         <option value="EUR" selected>EUR (€)</option>
                         <option value="USD">USD ($)</option>
                     </select>
                 </div>
 
+                <!-- Costes -->
                 <div class="input-group">
-                    <label for="precio-base">Precio en fábrica (EUR):</label>
-                    <input type="number" id="precio-base" placeholder="Ej. 500" required>
+                    <label for="precio-fabrica">Precio en fábrica:</label>
+                    <input type="number" id="precio-fabrica" placeholder="Ej. 500" required />
+                </div>
+                <div class="input-group">
+                    <label for="precio-venta">Precio de venta (opcional):</label>
+                    <input type="number" id="precio-venta" placeholder="Ej. 650" />
                 </div>
 
                 <div class="input-group">
-                    <label for="transporte-local">Transporte local (EUR):</label>
-                    <input type="number" id="transporte-local" placeholder="Ej. 50">
+                    <label for="transporte-local">Transporte local:</label>
+                    <input type="number" id="transporte-local" name="transporte_local" placeholder="Ej. 50" min="0" step="any" />
                 </div>
+
                 <div class="input-group">
-                    <label for="seguro">Seguro (EUR):</label>
-                    <input type="number" id="seguro" placeholder="Ej. 20">
+                    <label for="seguro">Seguro:</label>
+                    <input type="number" id="seguro" name="seguro" placeholder="Ej. 20" min="0" step="any" />
                 </div>
+
                 <div class="input-group">
-                    <label for="transporte-internacional">Transporte internacional (EUR):</label>
-                    <input type="number" id="transporte-internacional" placeholder="Ej. 100">
+                    <label for="transporte-internacional">Transporte internacional:</label>
+                    <input type="number" id="transporte-internacional" name="transporte_internacional" placeholder="Ej. 100" min="0" step="any" />
                 </div>
+
                 <div class="input-group">
-                    <label for="aduana-exportacion">Aduana de exportación (EUR):</label>
-                    <input type="number" id="aduana-exportacion" placeholder="Ej. 15">
+                    <label for="aduana-exportacion">Aduana de exportación:</label>
+                    <input type="number" id="aduana-exportacion" name="aduana_exportacion" placeholder="Ej. 15" min="0" step="any" />
                 </div>
+
                 <div class="input-group">
-                    <label for="aduana-importacion">Aduana de importación (EUR):</label>
-                    <input type="number" id="aduana-importacion" placeholder="Ej. 15">
+                    <label for="aduana-importacion">Aduana de importación:</label>
+                    <input type="number" id="aduana-importacion" name="aduana_importacion" placeholder="Ej. 15" min="0" step="any" />
                 </div>
+
                 <div class="input-group">
-                    <label for="carga">Carga (EUR):</label>
-                    <input type="number" id="carga" placeholder="Ej. 25">
+                    <label for="carga">Carga:</label>
+                    <input type="number" id="carga" name="carga" placeholder="Ej. 25" min="0" step="any" />
                 </div>
+
                 <div class="input-group">
-                    <label for="descarga">Descarga (EUR):</label>
-                    <input type="number" id="descarga" placeholder="Ej. 25">
+                    <label for="descarga">Descarga:</label>
+                    <input type="number" id="descarga" name="descarga" placeholder="Ej. 25" min="0" step="any" />
                 </div>
+
                 <div class="input-group">
-                    <label for="precio-venta">Precio de venta (EUR):</label>
-                    <input type="number" id="precio-venta" placeholder="Ej. 650" required>
+                    <label for="otros-costes">Otros costes (importe total):</label>
+                    <input type="number" id="otros-costes" name="otros_costes">
+                </div>
+
+                <!-- Incoterm -->
+                <div class="input-group">
+                    <label for="incoterm-select">Selecciona el Incoterm:</label>
+                    <select id="incoterm-select" name="incoterm" required>
+                        <option value="EXW">EXW</option>
+                        <option value="FCA">FCA</option>
+                        <option value="CPT">CPT</option>
+                        <option value="CIP">CIP</option>
+                        <option value="DAP">DAP</option>
+                        <option value="DPU">DPU</option>
+                        <option value="DDP">DDP</option>
+                        <option value="FOB">FOB</option>
+                        <option value="FAS">FAS</option>
+                        <option value="CFR">CFR</option>
+                        <option value="CIF">CIF</option>
+                    </select>
                 </div>
             </section>
 
-            <!-- Checkbox para transporte marítimo -->
-            <div class="checkbox-container">
-                <label for="es-marítimo">
-                    <input type="checkbox" id="es-marítimo"> Es transporte marítimo
-                </label>
-            </div>
-
-            <!-- Selector de Incoterms -->
-            <div class="incoterm-bar">
-                <label for="incoterm-slider">Selecciona el Incoterm:</label>
-                <input type="range" id="incoterm-slider" min="0" max="6" step="1" value="0">
-                <div class="incoterm-labels" id="incoterm-labels">
-                    <!-- Etiquetas generadas dinámicamente -->
-                </div>
-            </div>
-
             <!-- Botón de cálculo y resultado -->
             <button id="calcular">Calcular</button>
-            <a href="https://calculaincoterms.es/pro" class="btn-pro" target="_blank">
-                Calculadora PRO
-            </a>
-            <p id="precio-final">Precio final: €0.00</p>
-            <p id="rentabilidad" style="font-size: 1rem; margin-top: 4px; padding: 6px 10px; text-align: center; width: fit-content; margin-left: auto; margin-right: auto;">Rentabilidad para el exportador: 0.00€ (0.00%)</p>
+
+            <div id="resumen-datos" class="resumen-datos" style="margin-top: 20px;">
+            <!-- Resumen -->
+            </div>
+
+            <!-- Gráfico de Costes -->
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  
+            <section id="grafico-costes-section" style="display: none;">
+                <h3 style="text-align: center; color: #61dafb;">Distribución de Costes</h3>
+                <canvas id="grafico-costes" width="400" height="400"></canvas>
+            </section>
+
+            <div id="info-acuerdo" style="display: none; background-color: #1f2f48; padding: 20px; border-radius: 12px; color: #e1e6f0; margin: 20px auto; max-width: 480px;">
+            <!-- Resultado del acuerdo comercial se insertará aquí -->
+            </div>
+
+            <!-- Tabla de Aranceles -->
+            <section id="aranceles-section" style="display:none; background-color:#1f2f48; padding:20px; border-radius:12px; margin:20px auto; color:#e1e6f0;">
+                <h3 style="text-align:center; color:#61dafb; margin-bottom: 10px;">Aranceles Típicos</h3>
+                <div id="tabla-aranceles"></div>
+            </section>
+
+
+            <!-- Sección Comparar con otro Incoterm -->
+            <div id="comparar-incoterm-section" style="display: none; margin-top: 30px;">
+                <h3>Comparar con otro Incoterm</h3>
+                <div class="input-group">
+                    <label for="incoterm-comparar">Selecciona otro Incoterm para comparar:</label>
+                    <select id="incoterm-comparar" name="incoterm_comparar">
+                        <option value="">-- Elegir --</option>
+                        <option value="EXW">EXW</option>
+                        <option value="FCA">FCA</option>
+                        <option value="CPT">CPT</option>
+                        <option value="CIP">CIP</option>
+                        <option value="DAP">DAP</option>
+                        <option value="DPU">DPU</option>
+                        <option value="DDP">DDP</option>
+                        <option value="FOB">FOB</option>
+                        <option value="FAS">FAS</option>
+                        <option value="CFR">CFR</option>
+                        <option value="CIF">CIF</option>
+                    </select>
+                </div>
+                <button id="btn-comparar">Comparar</button>
+
+                <!-- Resultado comparación -->
+                <div id="resultado-comparacion" class="resumen-datos" style="margin-top: 20px; display:none;"></div>
+            </div>
 
             <section class="packs-container">
                 <h2 class="packs-title">📦 Packs de Recursos para Comercio Internacional</h2>
@@ -783,6 +1009,10 @@
         </div>
     </div>
     
+    <script src="pro/ubicacionesTransporte.js"></script>
+    <script src="pro/acuerdos.js"></script>
+    <script src="pro/incotermslogic.js"></script>
+    <script src="pro/calculadorapro.js"></script>
     <script src="calculadora.js"></script>
 </body>
 </html>
