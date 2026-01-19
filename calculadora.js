@@ -97,3 +97,29 @@ function closeModal(id) {
         console.log('Google Analytics activado');
     }
 }
+
+// 🔹 Mostrar resumen al calcular
+document.getElementById('calcular').addEventListener('click', async () => {
+    const resumen = document.getElementById('resumen-datos');
+
+    // Validamos que todos los campos obligatorios tengan valor
+    if (validarCamposObligatorios()) {
+        // Llamamos a tu función de cálculo (si ya existe)
+        if (typeof calcularPrecio === "function") {
+            await calcularPrecio();
+        }
+
+        // Mostramos el resumen con animación suave
+        resumen.style.display = 'block';
+        resumen.style.opacity = 0;
+        resumen.style.transition = 'opacity 0.4s ease';
+        requestAnimationFrame(() => {
+            resumen.style.opacity = 1;
+        });
+    } else {
+        // Si falta algo, limpiamos y ocultamos el resumen
+        resumen.innerHTML = '';
+        resumen.style.display = 'none';
+    }
+});
+
