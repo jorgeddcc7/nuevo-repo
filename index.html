@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="Calculadora de Incoterms" />
-    <meta property="og:description" content="Utiliza nuestra herramienta gratuita para calcular el precio final de tu envío según el Incoterm seleccionado. Incluye guía de Incoterms 2020 y responsabilidades del vendedor y comprador."/>
+    <meta property="og:description" content="Calcula el precio final de tu envío internacional según Incoterms 2020. Desglose de costes, responsabilidades del comprador y vendedor, aranceles y documentación necesaria."/>
     <meta property="og:image" content="cap.png" />
     <meta property="og:url" content="https://calculaincoterms.es" />
     <meta name="author" content="Calcula Incoterms">
     <meta name="robots" content="index, follow">
-    <title>Calculadora de Incoterms</title>
+    <title>Calculadora de Incoterms | Costes, responsabilidades y precio final</title>
     <link rel="stylesheet" href="calculadora.css">
     <link rel="icon" href="favicon2.ico" type="image/ico">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6775666300374227"
@@ -18,8 +18,13 @@
         {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            "name": "Calculadora de Incoterms 2020",
+            "name": "Calcula Incoterms",
             "url": "https://calculaincoterms.es",
+            "featureList": [
+                "Cálculo de Incoterms 2020",
+                "Desglose de costes logísticos",
+                "Responsabilidades comprador y vendedor"
+            ]
             "applicationCategory": ["BusinessApplication", "EducationalApplication"],
             "operatingSystem": "All",
             "offers": {
@@ -50,14 +55,14 @@
         </div>
     </div>
 
-
-
-    <div class="container">
+    <main class="container">
         <div class="container2">
-            <a href="distancias.html" class="link__distancia" target="_blank">Estimador tiempo de entrega</a>
-            <a href="divisas.html" class="link__divisas" target="_blank">Conversor de divisas</a>
-            <a href="docs.html" class="link__facturas" target="_blank">Generador de facturas</a>
-            <a href="tests/test.html" class="link__tests" target="_blank">Tests de comercio</a>
+            <nav class="tool-nav">
+                <a href="distancias.html" class="link__distancia" target="_blank">Estimador tiempo de entrega</a>
+                <a href="divisas.html" class="link__divisas" target="_blank">Conversor de divisas</a>
+                <a href="docs.html" class="link__facturas" target="_blank">Generador de facturas</a>
+                <a href="tests/test.html" class="link__tests" target="_blank">Tests de comercio</a>
+            </nav>
             <header>
                 <h1>Calculadora de Incoterms</h1>
                 <p>
@@ -67,7 +72,7 @@
 
             <!-- Formulario de cálculo -->
             <section id="formulario">
-                <h2>Datos para el cálculo</h2>
+                <h2>Datos para calcular Incoterms</h2>
                 <p>Introduce los datos de tu operación internacional y selecciona el Incoterm correspondiente.</p>
 
                 <!-- Ubicaciones -->
@@ -270,7 +275,7 @@
 
                 <!-- Costes -->
                 <div class="input-group">
-                    <label for="precio-fabrica">Precio en fábrica:</label>
+                    <label for="precio-fabrica">Precio en fábrica (EXW):</label>
                     <input type="number" id="precio-fabrica" placeholder="Ej. 500" required />
                 </div>
                 <div class="input-group">
@@ -340,7 +345,7 @@
             <!-- Botón de cálculo y resultado -->
             <button id="calcular">Calcular</button>
 
-            <div id="resumen-datos" class="resumen-datos" style="margin-top: 20px;">
+            <div id="resumen-datos" class="resumen-datos">
             <!-- Resumen -->
             </div>
 
@@ -757,8 +762,9 @@
             
                 <button type="submit">Enviar</button>
             </form>         
-        </section>    
-        <div class="footer-legal">
+        </section>  
+    </main>
+    <div class="footer-legal">
             <a href="#" onclick="openModal('privacidad', event)">Política de Privacidad</a> |
             <a href="#" onclick="openModal('cookies', event)">Política de Cookies</a> |
             <a href="#" onclick="openModal('terminos', event)">Términos y Condiciones</a> |
