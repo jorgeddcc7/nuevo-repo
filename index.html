@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
-    <script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
     <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
     <script>
         window.ezstandalone = window.ezstandalone || {};
         ezstandalone.cmd = ezstandalone.cmd || [];
+    
+        // Configuración del banner de consentimiento (cuando se active)
+        ezstandalone.cmd.push(function() {
+            if (ezstandalone.consentUI) {
+                ezstandalone.consentUI.setStyle({
+                    bannerBackground: "#007bff",   // Fondo azul
+                    bannerTextColor: "#ffffff",    // Texto blanco
+                    buttonBackground: "#0056b3",   // Botón azul más oscuro
+                    buttonTextColor: "#ffffff",    // Texto del botón
+                    bannerPosition: "top"          // Posición superior
+                });
+            }
+        });
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,7 +58,6 @@
         gtag('config', 'G-9G78K6JBFB');
     </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9G78K6JBFB"></script>
-
 </head>
 <body>
         <!-- Cookies -->
