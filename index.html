@@ -1,26 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
-    <script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
-    <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
-    <script>
-        window.ezstandalone = window.ezstandalone || {};
-        ezstandalone.cmd = ezstandalone.cmd || [];
-    
-        // Configuración del banner de consentimiento (cuando se active)
-        ezstandalone.cmd.push(function() {
-            if (ezstandalone.consentUI) {
-                ezstandalone.consentUI.setStyle({
-                    bannerBackground: "#007bff",   // Fondo azul
-                    bannerTextColor: "#ffffff",    // Texto blanco
-                    buttonBackground: "#0056b3",   // Botón azul más oscuro
-                    buttonTextColor: "#ffffff",    // Texto del botón
-                    bannerPosition: "top"          // Posición superior
-                });
-            }
-        });
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="Calculadora de Incoterms" />
@@ -62,14 +42,16 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9G78K6JBFB"></script>
 </head>
 <body>
-    <div id="ezoic-pub-ad-placeholder-118"></div>
-    <div id="ezoic-pub-ad-placeholder-119"></div>
-    <script>
-        ezstandalone.cmd.push(function () {
-            ezstandalone.showAds(118, 119);
-        });
-    </script>
-
+    <!-- Cookies -->
+    <div id="cookie-banner">
+        <div class="cookie-text">
+            <p>Este sitio utiliza cookies para mejorar tu experiencia, analizar el tráfico y personalizar contenidos. ¿Aceptas su uso?</p>
+        </div>
+        <div class="cookie-buttons">
+            <button id="reject-cookies">Rechazar</button>
+            <button id="accept-cookies">Aceptar</button>
+        </div>
+    </div>
     <main class="container">
         <div class="container2">
             <nav class="tool-nav">
