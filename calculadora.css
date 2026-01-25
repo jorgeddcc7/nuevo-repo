@@ -90,32 +90,30 @@ body {
     font-size: 16px;
 }
 
-.link__pro {
+.link__peso i {
+    margin-left: 8px;
+    font-size: 16px;
+}
+
+.link__peso {
     position: fixed;
-    top: 110px; /* Debajo de conversor de divisas */
+    top: 110px;
     left: 20px;
     font-size: 14px;
-    color: #61dafb; /* Texto PRO */
-    background-color: #121b2b; /* Fondo PRO */
+    color: #007bff;
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 600;
+    background-color: #fff;
     padding: 8px 16px;
-    border-radius: 6px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.45);
+    border-radius: 5px;
+    box-shadow: 0 0 5px #0003;
     transition: all 0.3s ease;
-    display: inline-block;
-    letter-spacing: 0.2px;
 }
 
-.link__distancia:hover, .link__facturas:hover, .link__divisas:hover, .link__tests:hover {
+
+.link__distancia:hover, .link__facturas:hover, .link__divisas:hover, .link__tests:hover, .link__peso:hover {
     background-color: #007bff;
     color: #fff;
-    transform: scale(1.1);
-}
-
-.link__pro:hover {
-    color: #121b2b; /* Color del fondo original */
-    background-color: #61dafb; /* Texto PRO */
     transform: scale(1.1);
 }
 
@@ -489,92 +487,71 @@ button:hover {
     box-shadow: 0 10px 20px rgba(40, 167, 69, 0.25);
 }
 
+/* ===== Media queries optimizadas para links y container ===== */
 @media (max-width: 1280px) {
-    .link__distancia, .link__divisas {
+    /* Links principales */
+    .link__distancia,
+    .link__divisas,
+    .link__facturas,
+    .link__tests,
+    .link__peso {
         position: absolute;
-        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
         white-space: nowrap;
         width: fit-content;
     }
-    .link__facturas {
-        position: absolute;
-        top: 40px;
-    }
-    .link__tests {
-        position: absolute;
-        top: 40px; 
-        left: 20px; 
-        white-space: nowrap;
-        width: fit-content;
-    }
-    .link__pro {
-        top: 80px;
-    }
-    .container {
-        max-width: 700px;
-        margin-top: 50px;
+
+    /* Altura de los links según jerarquía */
+    .link__distancia { top: 20px; }
+    .link__divisas { top: 60px; }
+    .link__facturas { top: 100px; }
+    .link__tests { top: 140px; }
+    .link__peso { top: 180px; }
+
+    /* Container centrado */
+    .container2 {
+        max-width: 800px;
+        margin: 220px auto 50px auto; /* margen superior suficiente para links */
+        padding: 20px;
     }
 }
+
 @media (max-width: 1150px) {
-    .container {
-        max-width: 670px;
-    }
+    .container2 { max-width: 670px; }
 }
+
 @media (max-width: 1000px) {
-    .container {
-        max-width: 500px;
-    }
+    .container2 { max-width: 500px; }
 }
-@media (max-width: 901px) {
-    .container {
-        max-width: 400px;
-    }
-    .link__pro {
-        top: 10px;
-        left: 39%;
-    }
-}
+
 @media (max-width: 500px) {
-    .link__distancia {
-        position: absolute;
-        top: 37px;
+    /* Links centrados y escalados */
+    .link__distancia,
+    .link__divisas,
+    .link__facturas,
+    .link__tests,
+    .link__peso {
         left: 50%;
         transform: translateX(-50%);
-        white-space: nowrap;
-        width: fit-content;
+        font-size: 12px; /* un poco más pequeño */
+        padding: 6px 12px;
     }
-    .link__divisas {
-        left: 50%;
-        transform: translateX(-50%);
+
+    /* Alturas de links para móvil */
+    .link__distancia { top: 30px; }
+    .link__divisas { top: 65px; }
+    .link__facturas { top: 100px; }
+    .link__tests { top: 135px; }
+    .link__peso { top: 170px; }
+
+    /* Container centrado debajo de los links */
+    .container2 {
+        max-width: 90%;
+        margin-top: 210px; /* suficiente espacio para links */
+        padding: 18px;
     }
-    .link__facturas {
-        position: absolute;
-        top: 73px;
-        left: 50%;
-        transform: translateX(-50%);
-        white-space: nowrap;
-        width: fit-content;
-    }
-    .link__tests {
-        position: absolute;
-        top: 108px; 
-        left: 50%;
-        transform: translateX(-50%);
-        white-space: nowrap;
-        width: fit-content;
-    }
-        .link__pro {
-        position: absolute;
-        top: 142px; 
-        left: 50%;
-        transform: translateX(-50%);
-        white-space: nowrap;
-        width: fit-content;
-    }
-    .container {
-        margin-top: 155px;
-    }
-    .packs-container {
+        .packs-container {
         grid-template-columns: 1fr; 
         padding: 25px 15px;
         margin: 40px auto;
@@ -621,7 +598,6 @@ button:hover {
         padding: 12px;
     }
 }
-
 
 /* TABLA INCOTERMS */
 .incoterms-title {
