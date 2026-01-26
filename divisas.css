@@ -103,7 +103,27 @@ body {
     transition: all 0.3s ease;
 }
 
-.link__distancia:hover, .link__facturas:hover, .link__incoterms:hover, .link__tests:hover {
+.link__peso i {
+    margin-left: 8px;
+    font-size: 16px;
+}
+
+.link__peso {
+    position: fixed;
+    top: 110px;
+    left: 20px;
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+    background-color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #0003;
+    transition: all 0.3s ease;
+}
+
+.link__distancia:hover, .link__facturas:hover, .link__incoterms:hover, .link__tests:hover, .link__peso:hover {
     background-color: #007bff;
     color: #fff;
     transform: scale(1.1);
@@ -202,6 +222,10 @@ button:hover {
         position: absolute;
         top: 40px;
     }
+    .link__peso {
+        position: absolute;
+        top: 77px;
+    }
     canvas {
         max-width: 600px;
     }
@@ -237,8 +261,16 @@ button:hover {
         white-space: nowrap;
         width: fit-content;
     }
+    .link__peso {
+        position: absolute;
+        top: 143px;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        width: fit-content;
+    }
     .container {
-        margin-top: 145px;
+        margin-top: 180px;
     }
     #convertir {
         width: fit-content;
