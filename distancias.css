@@ -160,7 +160,7 @@ body {
     border-radius: 10px;
 }
 
-.descripcion h3 {
+.descripcion h2 {
     color: #494949;
     font-size: 20px;
     margin-bottom: 10px;
@@ -234,6 +234,33 @@ body {
     animation: caerYCrecer 0.6s forwards ease-out; /* Animación de caída y escalado */
 }
 
+#contenido-seo-tiempo {
+    max-width: 900px;
+    margin: 0px auto 0;
+    padding: 15px 20px;
+    color: #515457;              
+    font-size: 0.9rem;           
+    line-height: 1.6;
+}
+
+#contenido-seo-tiempo h2 {
+    font-size: 1.1rem;
+    color: #4480d9;              
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+#contenido-seo-tiempo h3 {
+    font-size: 1rem;
+    color: #4480d9;
+    margin-top: 18px;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+#contenido-seo-tiempo p {
+    margin: 0 0 10px 0;
+}
 
 /* Animación de caída desde arriba y aumentando tamaño */
 @keyframes caerYCrecer {

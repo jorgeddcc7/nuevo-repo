@@ -3,44 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Calculadora de Incoterms" />
-    <meta property="og:description" content="Calcula el precio final de tu envío internacional según Incoterms 2020. Desglose de costes, responsabilidades del comprador y vendedor, aranceles y documentación necesaria."/>
-    <meta property="og:image" content="cap.png" />
-    <meta property="og:url" content="https://calculaincoterms.es" />
-    <meta name="author" content="Calcula Incoterms">
+
+    <title>Calculadora de Incoterms 2020 para Exportadores | Costes y Responsabilidades</title>
+
+    <meta name="description" content="Calculadora gratuita de Incoterms 2020 para exportación e importación. Calcula costes logísticos, responsabilidades del comprador y vendedor, aranceles y precio final del envío internacional.">
+
     <meta name="robots" content="index, follow">
-    <title>Calculadora de Incoterms | Costes, responsabilidades y precio final</title>
+    <meta name="author" content="Calcula Incoterms">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de Incoterms 2020 para Exportación">
+    <meta property="og:description" content="Calcula el precio final de tu envío internacional según Incoterms 2020. Costes, riesgos y responsabilidades claras para exportadores e importadores.">
+    <meta property="og:image" content="https://calculaincoterms.es/cap.png">
+    <meta property="og:url" content="https://calculaincoterms.es">
+    <meta property="og:site_name" content="Calcula Incoterms">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon2.ico" type="image/x-icon">
+
     <link rel="stylesheet" href="calculadora.css">
-    <link rel="icon" href="favicon2.ico" type="image/ico">
+
+    <!-- Schema.org -->
     <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            "name": "Calcula Incoterms",
-            "url": "https://calculaincoterms.es",
-            "featureList": [
-                "Cálculo de Incoterms 2020",
-                "Desglose de costes logísticos",
-                "Responsabilidades comprador y vendedor"
-            ]
-            "applicationCategory": ["BusinessApplication", "EducationalApplication"],
-            "operatingSystem": "All",
-            "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "EUR"
-            }
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calcula Incoterms",
+        "url": "https://calculaincoterms.es",
+        "description": "Calculadora online de Incoterms 2020 para comercio internacional, exportadores e importadores.",
+        "applicationCategory": ["BusinessApplication", "EducationalApplication"],
+        "operatingSystem": "All",
+        "featureList": [
+            "Cálculo de Incoterms 2020",
+            "Desglose de costes logísticos",
+            "Responsabilidades del comprador y vendedor"
+        ],
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
         }
-        </script>   
+    }
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9G78K6JBFB"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-9G78K6JBFB');
     </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9G78K6JBFB"></script>
 </head>
+
 <body>
     <!-- Cookies -->
     <div id="cookie-banner">
@@ -62,15 +78,15 @@
                 <a href="peso.html" class="link__peso" target="_blank">Volumen y Peso Dimensional</a>
             </nav>
             <header>
-                <h1>Calculadora de Incoterms</h1>
+                <h1>Calculadora de Incoterms 2020 para Exportación e Importación</h1>
                 <p>
-                    Pasa del coste a la estrategia: Obtén el desglose detallado de responsables, aranceles aproximados, acuerdos, documentación requerida y comparación inmediata entre <a href="#tabla-incoterms">Incoterms</a>.
+                    Calcula de forma precisa los costes logísticos, responsabilidades y riesgos en operaciones de comercio internacional. Esta calculadora de Incoterms 2020 te permite comparar Incoterms, ver acuerdos comerciales, estimar aranceles y entender qué asume el exportador y el importador en cada operación.
                 </p>
             </header>
 
             <!-- Formulario de cálculo -->
             <section id="formulario">
-                <h2>Datos para calcular Incoterms</h2>
+                <h2>Datos de la operación de comercio internacional</h2>
                 <p>Introduce los datos de tu operación internacional y selecciona el Incoterm correspondiente.</p>
 
                 <!-- Ubicaciones -->
@@ -273,7 +289,7 @@
 
                 <!-- Costes -->
                 <div class="input-group">
-                    <label for="precio-fabrica">Precio en fábrica (EXW):</label>
+                    <label for="precio-fabrica">Precio en fábrica – Incoterm EXW:</label>
                     <input type="number" id="precio-fabrica" placeholder="Ej. 500" required />
                 </div>
                 <div class="input-group">
@@ -350,7 +366,7 @@
             <!-- Gráfico de Costes -->
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  
             <section id="grafico-costes-section" style="display: none;">
-                <h3 style="text-align: center; color: #61dafb;">Distribución de Costes</h3>
+                <h3 style="text-align: center; color: #61dafb;">Distribución de costes según el Incoterm seleccionado</h3>
                 <canvas id="grafico-costes" width="400" height="400"></canvas>
             </section>
 
@@ -367,7 +383,7 @@
 
             <!-- Sección Comparar con otro Incoterm -->
             <div id="comparar-incoterm-section" style="display: none; margin-top: 30px;">
-                <h3>Comparar con otro Incoterm</h3>
+                <h3>Comparar costes entre Incoterms</h3>
                 <div class="input-group">
                     <label for="incoterm-comparar">Selecciona otro Incoterm para comparar:</label>
                     <select id="incoterm-comparar" name="incoterm_comparar">
@@ -390,6 +406,20 @@
                 <!-- Resultado comparación -->
                 <div id="resultado-comparacion" class="resumen-datos" style="margin-top: 20px; display:none;"></div>
             </div>
+
+            <section id="contenido-seo">
+                <h2>¿Qué es un Incoterm y para qué sirve?</h2>
+                <p>
+                    Los Incoterms son reglas internacionales publicadas por la Cámara de Comercio Internacional (ICC) que definen
+                    las obligaciones, costes y riesgos entre comprador y vendedor en una operación de comercio exterior.
+                </p>
+            
+                <h3>¿Cómo usar esta calculadora de Incoterms?</h3>
+                <p>
+                    Introduce el país de exportación e importación, selecciona el tipo de transporte y el Incoterm para obtener
+                    una estimación clara del precio final, los costes logísticos y las responsabilidades de cada parte.
+                </p>
+            </section>
 
             <section class="packs-container">
                 <h2 class="packs-title">📦 Packs de Recursos Profesionales para Comercio Internacional</h2>
@@ -454,12 +484,13 @@
             </section>
 
             <section id="tabla-incoterms">
-                <h2 class="incoterms-title">¿Qué son los Incoterms? - Guía Incoterms 2020</h2>
+                <h2 class="incoterms-title">¿Qué son los Incoterms? Guía completa de Incoterms 2020</h2>
                 <p class="incoterms-intro">
-                Los Incoterms son términos internacionales que definen las responsabilidades de compradores y vendedores en el comercio internacional.
+                    Los Incoterms son reglas internacionales publicadas por la Cámara de Comercio Internacional (ICC) que definen las responsabilidades, costes y riesgos entre compradores y vendedores en operaciones de comercio internacional.
                 </p>
-                <p>A continuación, se muestran los diferentes Incoterms con sus significados y responsabilidades para el vendedor y el comprador:</p>
+                <p>A continuación se muestran los diferentes Incoterms 2020 con su significado y el reparto de responsabilidades entre vendedor y comprador en exportación e importación:</p>
                 <table class="tabla-incoterms">
+                    <caption>Tabla comparativa de Incoterms 2020 y responsabilidades del vendedor y comprador</caption>
                     <thead>
                         <tr>
                             <th>Incoterm</th>
@@ -470,74 +501,113 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>EXW</td>
+                            <td><strong>EXW</strong></td>
                             <td>Ex Works</td>
                             <td>El vendedor entrega la mercancía en sus instalaciones. El comprador asume todos los costos y riesgos desde el origen.</td>
                             <td>Asume transporte, seguro, aduanas de exportación e importación.</td>
                         </tr>
                         <tr>
-                            <td>FCA</td>
+                            <td><strong>FCA</strong></td>
                             <td>Free Carrier</td>
                             <td>El vendedor entrega la mercancía al transportista designado por el comprador en un lugar acordado.</td>
                             <td>Asume transporte principal, seguro, y costos adicionales desde el transportista.</td>
                         </tr>
                         <tr>
-                            <td>CPT</td>
+                            <td><strong>CPT</strong></td>
                             <td>Carriage Paid To</td>
                             <td>El vendedor paga el transporte hasta un destino acordado, pero el riesgo se transfiere al comprador cuando se entrega al transportista.</td>
                             <td>Asume riesgos y costos posteriores a la entrega al transportista.</td>
                         </tr>
                         <tr>
-                            <td>CIP</td>
+                            <td><strong>CIP</strong></td>
                             <td>Carriage and Insurance Paid To</td>
                             <td>El vendedor paga transporte y seguro hasta el destino acordado.</td>
                             <td>Asume riesgos desde el momento en que la mercancía se entrega al transportista.</td>
                         </tr>
                         <tr>
-                            <td>DAP</td>
+                            <td><strong>DAP</strong></td>
                             <td>Delivered at Place</td>
                             <td>El vendedor entrega la mercancía en el lugar acordado, pero no incluye los costos de importación.</td>
                             <td>Asume costos de aduana de importación.</td>
                         </tr>
                         <tr>
-                            <td>DPU</td>
+                            <td><strong>DPU</strong></td>
                             <td>Delivered at Place Unloaded</td>
                             <td>El vendedor entrega la mercancía en el lugar acordado, descargada del medio de transporte, pero no incluye los costos de importación.</td>
                             <td>Asume los costos de importación y descarga de la mercancía.</td>
                         </tr>
                         <tr>
-                            <td>DDP</td>
+                            <td><strong>DDP</strong></td>
                             <td>Delivered Duty Paid</td>
                             <td>El vendedor asume todos los costos y riesgos hasta el destino final, incluyendo aranceles y aduanas.</td>
                             <td>Solo debe recibir la mercancía.</td>
                         </tr>
                         <tr>
-                            <td>FOB</td>
+                            <td><strong>FOB</strong></td>
                             <td>Free on Board</td>
                             <td>El vendedor asume costos y riesgos hasta que la mercancía esté a bordo del buque.</td>
                             <td>Asume transporte marítimo, seguro y costos adicionales.</td>
                         </tr>
                         <tr>
-                            <td>FAS</td>
+                            <td><strong>FAS</strong></td>
                             <td>Free Alongside Ship</td>
                             <td>El vendedor entrega la mercancía al costado del buque en el puerto de embarque acordado.</td>
                             <td>Asume los costos de transporte marítimo y descarga, así como los riesgos desde el momento en que la mercancía está junto al buque.</td>
                         </tr>
                         <tr>
-                            <td>CFR</td>
+                            <td><strong>CFR</strong></td>
                             <td>Cost and Freight</td>
                             <td>El vendedor paga transporte marítimo hasta el puerto de destino, pero no incluye seguro.</td>
                             <td>Asume riesgos y costos desde el momento en que la mercancía está a bordo del buque.</td>
                         </tr>
                         <tr>
-                            <td>CIF</td>
+                            <td><strong>CIF</strong></td>
                             <td>Cost, Insurance and Freight</td>
                             <td>El vendedor paga transporte y seguro marítimo hasta el puerto de destino.</td>
                             <td>Asume costos adicionales y riesgos posteriores al transporte marítimo.</td>
                         </tr>                    
                     </tbody>
                 </table>
+                <div class="post-tabla-info">
+                    <p>
+                        Elegir el Incoterm adecuado es clave para evitar sobrecostes, conflictos contractuales y errores en la
+                        distribución de riesgos en operaciones de comercio internacional.
+                    </p>
+                    <p>
+                        No todos los Incoterms son válidos para todos los tipos de transporte ni para todas las operaciones de
+                        exportación o importación. Utiliza la calculadora para comparar escenarios.
+                    </p>
+                </div>
             </section>
+
+            <section id="faq-incoterms">
+                <h2>Preguntas frecuentes sobre Incoterms</h2>
+            
+                <h3>¿Qué son los Incoterms?</h3>
+                <p>
+                    Los Incoterms son reglas internacionales publicadas por la Cámara de Comercio Internacional (ICC) que
+                    definen las obligaciones, costes y riesgos entre comprador y vendedor en una operación de comercio internacional.
+                </p>
+            
+                <h3>¿Qué Incoterm es mejor para exportar?</h3>
+                <p>
+                    No existe un Incoterm mejor en todos los casos. Incoterms como FCA, CPT o CIF suelen ser adecuados para
+                    exportadores, dependiendo del tipo de transporte y del nivel de control deseado.
+                </p>
+            
+                <h3>¿Cuál es la diferencia entre CIF y FOB?</h3>
+                <p>
+                    En FOB el vendedor asume los costes y riesgos hasta que la mercancía está a bordo del buque, mientras que
+                    en CIF el vendedor también paga el transporte marítimo y el seguro hasta el puerto de destino.
+                </p>
+            
+                <h3>¿Los Incoterms incluyen aranceles?</h3>
+                <p>
+                    Solo el Incoterm DDP incluye el pago de aranceles e impuestos de importación por parte del vendedor.
+                    En el resto de Incoterms, estos costes suelen corresponder al comprador.
+                </p>
+            </section>
+
         <!-- GLOSARIO -->
         <div class="glosario-container">
             <h2>Glosario de Términos</h2>
@@ -1018,6 +1088,48 @@
             </div>
         </div>
     </div>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué son los Incoterms?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Los Incoterms son reglas internacionales publicadas por la Cámara de Comercio Internacional (ICC) que definen las obligaciones, costes y riesgos entre comprador y vendedor en una operación de comercio internacional."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué Incoterm es mejor para exportar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No existe un Incoterm mejor en todos los casos. Incoterms como FCA, CPT o CIF suelen ser adecuados para exportadores, dependiendo del tipo de transporte y del nivel de control deseado."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuál es la diferencia entre CIF y FOB?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En FOB el vendedor asume los costes y riesgos hasta que la mercancía está a bordo del buque, mientras que en CIF el vendedor también paga el transporte marítimo y el seguro hasta el puerto de destino."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Los Incoterms incluyen aranceles?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Solo el Incoterm DDP incluye el pago de aranceles e impuestos de importación por parte del vendedor. En el resto de Incoterms, estos costes suelen corresponder al comprador."
+          }
+        }
+      ]
+    }
+    </script>
+
     
     <script src="pro/ubicacionesTransporte.js"></script>
     <script src="pro/acuerdos.js"></script>
