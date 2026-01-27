@@ -140,6 +140,23 @@ body {
     margin: 30px auto;
 }
 
+/* Intro SEO debajo del H1 */
+.intro-seo {
+    max-width: 500px;          /* evita que se estire */
+    margin: 10px auto 25px;    /* centrado sin romper container */
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #666;
+    text-align: center;
+}
+
+/* En pantallas grandes no crecer demasiado */
+@media (min-width: 1024px) {
+    .intro-seo {
+        max-width: 650px;
+    }
+}
+
 .add-1 img {
     margin-top: -10px;
 }

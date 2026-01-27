@@ -4,11 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Calculadora de peso volumétrico y volumen | Transporte aéreo y marítimo</title>
+    <title>Calculadora de peso volumétrico y volumen (m³) | Envíos internacionales y logística</title>
 
-    <meta name="description" content="Calcula el volumen en m³, el peso volumétrico y el peso facturable de tu mercancía. Herramienta gratuita para transporte aéreo y marítimo.">
+    <meta name="description" content="Calcula el peso volumétrico, volumen en m³ y peso facturable de tu mercancía. Ideal para exportadores, importadores y envíos internacionales por aire o mar.">
     <link rel="icon" href="favicon2.ico" type="image/ico">
     <link rel="stylesheet" href="peso.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de peso volumétrico y volumen",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "description": "Herramienta gratuita para calcular peso volumétrico, volumen en m³ y peso facturable en transporte aéreo y marítimo.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -31,11 +46,13 @@
         </nav>
 
         <header>
-            <h1>Calculadora de Volumen y Peso Dimensional</h1>
+            <h1>Calculadora de Volumen y Peso Volumétrico</h1>
             <p>
                 Calcula el <strong>volumen en metros cúbicos (m³)</strong>,
                 el <strong>peso volumétrico</strong> y el
-                <strong>peso facturable</strong> de tu mercancía.
+                <strong>peso facturable</strong> de tu mercancía para
+                <strong>envíos internacionales</strong>, exportaciones e importaciones
+                por transporte aéreo, marítimo o terrestre.
             </p>
         </header>
 
@@ -43,13 +60,13 @@
             <h2 id="form-calculo" class="sr-only">Formulario de cálculo de peso volumétrico</h2>
 
             <label for="largo">Largo (cm)</label>
-            <input type="number" id="largo" placeholder="Ej: 50" inputmode="numeric">
+            <input type="number" id="largo" placeholder="Ej: 50" inputmode="numeric" required>
 
             <label for="ancho">Ancho (cm)</label>
-            <input type="number" id="ancho" placeholder="Ej: 30" inputmode="numeric">
+            <input type="number" id="ancho" placeholder="Ej: 30" inputmode="numeric" required>
 
             <label for="alto">Alto (cm)</label>
-            <input type="number" id="alto" placeholder="Ej: 30" inputmode="numeric">
+            <input type="number" id="alto" placeholder="Ej: 30" inputmode="numeric" required>
 
             <label for="pesoReal">Peso real (kg)</label>
             <input type="number" id="pesoReal" placeholder="Opcional" inputmode="decimal">
@@ -66,11 +83,21 @@
 
         <!-- Bloque SEO explicativo -->
         <section class="seo-text">
-            <h2>¿Qué es el peso volumétrico?</h2>
+            <h2>Preguntas frecuentes sobre el peso volumétrico</h2>
+
+            <h3>¿Qué es el peso volumétrico?</h3>
+            <p>El peso volumétrico es un cálculo usado en transporte para determinar el espacio que ocupa una mercancía, independientemente de su peso real.</p>
+
+            <h3>¿Cómo se calcula el peso volumétrico?</h3>
+            <p>Se multiplica largo × ancho × alto y se divide entre un factor estándar, que varía según el tipo de transporte.</p>
+
+            <h3>¿Qué peso se factura: real o volumétrico?</h3>
+            <p>Las empresas de transporte facturan el mayor entre el peso real y el peso volumétrico.</p>
+
+            <h3>¿Es diferente en transporte aéreo y marítimo?</h3>
+            <p>Sí. El transporte aéreo usa factores más estrictos que el marítimo debido al espacio limitado.</p>
             <p>
-                El peso volumétrico, también llamado peso dimensional, es un cálculo utilizado en el transporte aéreo y marítimo
-                para determinar el coste del envío en función del espacio que ocupa la mercancía.
-                Si el peso volumétrico es superior al peso real, el transportista aplicará este para calcular la tarifa.
+                Antes de enviar tu mercancía, revisa también qué <a href="index.html">Incoterm</a> estás utilizando y consulta nuestro <a href="distancias.html">estimador de tiempos de entrega</a> para planificar mejor tu envío.
             </p>
         </section>
     </main>
@@ -329,6 +356,41 @@
             </div>
         </div>
     </div>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "¿Qué es el peso volumétrico?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El peso volumétrico es un cálculo usado en transporte para determinar el espacio que ocupa una mercancía, independientemente de su peso real."
+        }
+      },{
+        "@type": "Question",
+        "name": "¿Cómo se calcula el peso volumétrico?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Se multiplica largo × ancho × alto y se divide entre un factor estándar que varía según el tipo de transporte."
+        }
+      },{
+        "@type": "Question",
+        "name": "¿Qué peso se factura: real o volumétrico?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Las empresas de transporte facturan el mayor entre el peso real y el peso volumétrico."
+        }
+      },{
+        "@type": "Question",
+        "name": "¿Es diferente en transporte aéreo y marítimo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, el transporte aéreo utiliza factores más estrictos que el marítimo debido a las limitaciones de espacio."
+        }
+      }]
+    }
+    </script>
 <script src="peso.js"></script>
 </body>
 </html>

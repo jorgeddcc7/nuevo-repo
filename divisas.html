@@ -3,28 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversor de Divisas</title>
+
+    <title>Conversor de divisas en tiempo real | Cambio de moneda online</title>
+
+    <meta name="description" content="Convierte divisas en tiempo real con nuestro conversor de monedas online. Ideal para comercio internacional, exportaciones, importaciones e inversión.">
+
+    <link rel="canonical" href="https://calculaincoterms.es/divisas.html">
     <link rel="stylesheet" href="divisas.css">
     <link rel="icon" href="favicon2.ico" type="image/ico">
+
+    <meta property="og:title" content="Conversor de divisas en tiempo real">
+    <meta property="og:description" content="Calcula tipos de cambio entre monedas internacionales. Herramienta gratuita para comercio exterior y finanzas.">
+    <meta property="og:url" content="https://calculaincoterms.es/divisas.html">
+
+    <!-- Google Analytics -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-9G78K6JBFB');
     </script>
-    <meta property="og:title" content="Conversor de Divisas">
-    <meta property="og:description" content="Convierte divisas en tiempo real con nuestro conversor de divisas gratuito.">
-    <meta property="og:url" content="https://calculaincoterms.es/divisas.html">
-
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9G78K6JBFB"></script>
-    <!--Gráfico-->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6775666300374227"
-    crossorigin="anonymous"></script>
+    <!-- Chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
     <!-- Cookies -->
     <div id="cookie-banner">
@@ -45,7 +49,13 @@
 
     <div class="main">
         <div class="container">
-            <h1>Conversor de Divisas</h1>
+            <h1>Conversor de divisas en tiempo real para comercio internacional</h1>
+            <p class="intro-seo">
+                Utiliza nuestro <strong>conversor de divisas en tiempo real</strong> para calcular tipos de cambio entre monedas
+                internacionales. Esta herramienta es ideal para <strong>exportadores, importadores, empresas internacionales,
+                inversores y profesionales del comercio exterior</strong> que necesitan conocer el valor exacto de una divisa
+                antes de realizar pagos, facturas o transferencias internacionales.
+            </p>
             <!-- Formulario para ingresar los datos -->
             <div class="form-group">
                 <label for="cantidad">Cantidad a convertir:</label>
@@ -105,7 +115,7 @@
             <!-- Resultado -->
             <p id="resultado" style="display: none;"></p>
         </div>
-        <h2>Evolución del Tipo de Cambio EUR/USD - Septiembre 2025</h2>
+        <h2>Evolución del Tipo de Cambio EUR/USD</h2>
         <div class="graph">
             <canvas id="exchangeRateChart"></canvas>
         </div>
@@ -367,6 +377,38 @@
         </div>
     </div>
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Este conversor de divisas es gratuito?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, el conversor de divisas es completamente gratuito y no requiere registro."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo usar este conversor para comercio internacional?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, está diseñado para exportadores, importadores y empresas que operan con múltiples monedas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Incluye comisiones bancarias?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, los valores son orientativos y no incluyen comisiones bancarias ni márgenes de cambio."
+          }
+        }
+      ]
+    }
+    </script>
     <script src="divisas.js"></script>
 </body>
 </html>
