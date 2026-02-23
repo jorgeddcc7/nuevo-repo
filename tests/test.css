@@ -31,7 +31,7 @@ body {
 }
 
 /* Links fijos */
-.link__distancia, .link__divisas, .link__facturas, .link__peso, .link__incoterms {
+.link__distancia, .link__divisas, .link__facturas, .link__peso, .link__incoterms, .link__pago {
   position: fixed;
   font-size: 14px;
   font-weight: 600;
@@ -47,8 +47,9 @@ body {
 .link__facturas { top:70px; right:20px; color:#007bff; }
 .link__divisas { top:70px; left:20px; color:#007bff}
 .link__peso { top:112px; left:20px; color:#007bff; }
+.link__pago { top:112px; right:20px; color:#007bff; }
 
-.link__distancia:hover, .link__facturas:hover, .link__divisas:hover, .link__incoterms:hover, .link__peso:hover {
+.link__distancia:hover, .link__facturas:hover, .link__divisas:hover, .link__incoterms:hover, .link__peso:hover, .link__pago:hover {
   background-color:#007bff; color:#fff; transform: scale(1.05);
 }
 
@@ -163,7 +164,8 @@ h1 {
   .link__divisas,
   .link__facturas,
   .link__incoterms,
-  .link__pro {
+  .link__pro,
+  .link__pago {
     font-size: 10px;
     padding: 5px 8px;
   }
@@ -176,7 +178,8 @@ h1 {
   .link__divisas,
   .link__facturas,
   .link__incoterms,
-  .link__pro {
+  .link__pro,
+  .link__pago {
     font-size: 12px;
     padding: 6px 10px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.2);
@@ -190,6 +193,7 @@ h1 {
   /* Columna derecha (2 links) */
   .link__distancia { top: 15px; right: 10px; }
   .link__facturas  { top: 50px; right: 10px; }
+  .link__pago      { top: 85px; right: 10px; }
 
   /* Bajamos el container para que no se pise */
   .container2 {
@@ -204,7 +208,8 @@ h1 {
   .link__divisas,
   .link__facturas,
   .link__incoterms,
-  .link__pro {
+  .link__pro,
+  .link__pago {
     font-size: 16px;
     padding: 6px 10px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.2);
@@ -218,6 +223,7 @@ h1 {
   /* Columna derecha (2 links) */
   .link__distancia { top: 15px; right: 10px; }
   .link__facturas  { top: 50px; right: 10px; }
+  .link__pago      { top: 85px; right: 10px; }
 
   /* Bajamos el container para que no se pise */
   .container2 {
@@ -231,7 +237,8 @@ h1 {
   .link__divisas,
   .link__facturas,
   .link__incoterms,
-  .link__pro {
+  .link__pro,
+  .link__pago {
     font-size: 16px;
     padding: 6px 10px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.2);

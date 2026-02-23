@@ -3,24 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de Documentos</title>
-    <link rel="stylesheet" href="docs.css">
-    <link rel="icon" href="favicon2.ico" type="image/ico">    
+    <title>Medios de Pago Internacionales | Guía de Seguridad en Comercio Exterior</title>
+    <meta name="description" content="Aprende a elegir el mejor medio de pago para tus exportaciones. Análisis de transferencias, remesas y créditos documentarios con herramientas interactivas.">
+    <link rel="stylesheet" href="calculadora.css">
+    <link rel="stylesheet" href="medios.css"> 
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9G78K6JBFB"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-9G78K6JBFB');
     </script>
-    <meta name="description" content="Genera tus facturas proforma de manera sencilla y gratuita. Ideal para comerciantes, empresas y profesionales del comercio internacional.">
-    <meta property="og:title" content="Generador de Facturas Proforma">
-    <meta property="og:url" content="https://calculaincoterms.es/docs1.html">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9G78K6JBFB"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.26/jspdf.plugin.autotable.min.js"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6775666300374227" crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- Cookies -->
@@ -33,27 +27,228 @@
             <button id="accept-cookies">Aceptar</button>
         </div>
     </div>
-    
-    <a href="/distancias.html" class="link__distancia" target="_blank">Estimador de tiempo de entrega</a>
-    <a href="/index.html" class="link__incoterms" target="_blank">Calculadora de INCOTERMS</a>
-    <a href="/divisas.html" class="link__divisas" target="_blank">Conversor de divisas</a>
-    <a href="tests/test.html" class="link__tests" target="_blank">Tests de comercio</a>
-    <a href="/peso.html" class="link__peso" target="_blank">Volumen y Peso Dimensional</a>
-    <a href="/medios/medios.html" class="link__pago" target="_blank">Medios de Pago</a>
+    <main class="container">
+        <div class="container2">
+            <nav class="tool-nav">
+                <a href="https://calculaincoterms.es/" target="_blank">Calculadora Incoterms</a>
+                <a href="https://calculaincoterms.es/distancias.html" target="_blank">Estimador entrega</a>
+                <a href="https://calculaincoterms.es/divisas.html" target="_blank">Conversor divisas</a>
+                <a href="https://calculaincoterms.es/tests/test.html" target="_blank">Tests Comercio</a>
+                <a href="https://calculaincoterms.es/peso.html" target="_blank">Volumen y Peso</a>
+                <a href="https://calculaincoterms.es/peso.html" target="_blank">Generador Documentos</a>
 
-    <div class="container">
-        <h1>Generador de Documentos</h1>
+            </nav>
 
-        <div class="cards">
-            <div class="card" data-value="docs.html">
-                <h2>📄 Factura</h2>
-                <p>Generar factura comercial</p>
+            <header>
+                <h1>Medios de Pago Internacionales</h1>
+                <p>La seguridad financiera en tus operaciones de comercio exterior: qué son, cómo funcionan y cuál elegir.</p>
+            </header>
+
+            <section id="que-es">
+                <h2>¿Qué es un medio de pago internacional?</h2>
+                <p>En el comercio exterior, el tiempo que pasa entre el envío y la recepción de la mercancía genera un <strong>vacío de confianza</strong>. Los medios de pago son los instrumentos que los bancos ponen a disposición de exportadores e importadores para garantizar que el dinero llegue a su destino siempre que se cumplan las condiciones pactadas.</p>
+                
+                <div class="info-highlight">
+                    <strong>¿Por qué no usar siempre una transferencia?</strong><br>
+                    Porque una transferencia simple no garantiza que el vendedor envíe la mercancía, ni que el comprador pague una vez recibida. Los medios documentarios actúan como un "árbitro" legal.
+                </div>
+            </section>
+
+        <section id="balanza-confianza">
+            <h2>Balanza de Confianza y Riesgo</h2>
+            <p>La elección del medio depende directamente del grado de confianza entre las partes y del poder de negociación. "Nivel de Confianza" se refiere a cuánta confianza debería haber entre ambas partes.</p>
+            
+            <div class="risk-table-wrapper">
+                <table class="risk-table">
+                    <thead>
+                        <tr>
+                            <th>Medio de Pago</th>
+                            <th>Nivel de Confianza</th>
+                            <th>Riesgo Exportador</th>
+                            <th>Riesgo Importador</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong><a href="#pago">Pago Anticipado</a></strong></td>
+                            <td>Nula (del vendedor)</td>
+                            <td><span class="badge badge-safe">Inexistente</span></td>
+                            <td><span class="badge badge-danger">Máximo</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong><a href="#cred">Crédito Documentario</a></strong></td>
+                            <td>Baja / Crítica</td>
+                            <td><span class="badge badge-safe">Muy Bajo</span></td>
+                            <td><span class="badge badge-safe">Bajo</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong><a href="#rem">Remesa Documentaria</a></strong></td>
+                            <td>Media</td>
+                            <td><span class="badge badge-warn">Medio</span></td>
+                            <td><span class="badge badge-warn">Medio</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong><a href="#trans">Transferencia (Swift)</a></strong></td>
+                            <td>Alta</td>
+                            <td><span class="badge badge-danger">Alto</span></td>
+                            <td><span class="badge badge-safe">Bajo</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong><a href="#cheq">Cheque Internacional</a></strong></td>
+                            <td>Muy Alta</td>
+                            <td><span class="badge badge-danger">Muy Alto</span></td>
+                            <td><span class="badge badge-safe">Muy Bajo</span></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+        </section>
 
-            <div class="card" data-value="docs2.html">
-                <h2>📦 Packing List</h2>
-                <p>Generar lista de embalaje</p>
-            </div>
+            <hr class="separator">
+
+            <section id="interactivos">
+                <h2>Explora los documentos de pago</h2>
+                <p>Haz clic en los puntos destacados para entender cada parte del documento.</p>
+                <section id="detalle-metodos">
+                        <div class="metodo-pago">
+                        <h3 id="pago">1. Pago Anticipado (Cash in Advance)</h3>
+                        <p><strong>¿Qué es?</strong> Es el sistema más seguro para el vendedor. El importador paga el total de la mercancía antes de que esta sea enviada o incluso fabricada. Es común en primeras operaciones o con productos personalizados.</p>
+
+                        <div class="info-box">
+                            <strong>Ejemplo:</strong> 
+                            Un artesano en España recibe un pedido de 50 lámparas a medida desde Japón. Al ser un producto que no podrá revender fácilmente, exige el pago del 100% por adelantado antes de comprar los materiales.
+                        </div>
+                    
+                        <div class="interactive-doc" id="doc-anticipado">
+                                <img src="factura-pago-adelantado.png" alt="Factura de Pago Adelantado">
+
+                                <div class="hotspot" style="top: 20%; left: 10%;" data-info="Proveedor: Asegúrate de que los datos fiscales coincidan con el contrato o pedido inicial.">1</div>
+                                <div class="hotspot" style="top: 52%; left: 45%;" data-info="Método de pago: En operaciones internacionales, aquí se especifican las instrucciones para la transferencia (SWIFT/BIC).">2</div>
+                                <div class="hotspot" style="top: 56%; left: 80%;" data-info="Vencimiento: Plazo máximo para emitir el pago y garantizar la fabricación o envío.">3</div>
+                                <div class="hotspot" style="top: 88%; left: 85%;" data-info="Total: Importe íntegro que debe recibir el exportador para dar por cumplida la obligación.">4</div>
+                        </div>
+                    
+                        <div class="metodo-pago">
+                        <h3 id="cred">2. Crédito Documentario (Carta de Crédito)</h3>
+                        <p><strong>¿Qué es?</strong> Es el instrumento más robusto. El banco del importador garantiza al exportador que pagará, siempre y cuando este presente los documentos que demuestren el envío (factura, BL, certificados). Aquí el compromiso de pago es del <strong>banco</strong>, no del cliente.</p>
+
+                        <div class="info-box">
+                            <strong>Ejemplo:</strong> 
+                            Una empresa española vende acero a una constructora en Arabia Saudí por 500.000€. Como no se conocen, abren un Crédito Documentario. El banco saudí retiene el dinero y solo lo libera cuando el banco español le entrega el documento de embarque del barco.
+                        </div>
+                    
+                        <div class="nota-tecnica" style="background-color: #fcf8e3; border: 1px solid #faebcc; color: #8a6d3b; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                                <strong>⚠️ Nota para el Exportador:</strong> 
+                                No esperes un documento decorado o un contrato firmado. En el 99% de las operaciones reales, lo que recibirás de tu banco es un mensaje **SWIFT MT700** como el que mostramos abajo. Es un formato estandarizado internacionalmente que utiliza códigos numéricos (campos) para evitar errores de interpretación entre bancos de distintos idiomas.
+                        </div>
+
+                        <div class="interactive-doc" id="doc-lc">
+                            <img src="1.webp" alt="Mensaje SWIFT MT700 Crédito Documentario">
+                            
+
+                            <div class="hotspot" style="top: 40%; left: 5%;" 
+                                 data-info="CAMPO 31D (Expiry): Fecha límite para presentar documentos. En este caso, el 29 de noviembre de 2017 en Corea. Si te pasas un día, no cobras.">1</div>
+                        
+                            <div class="hotspot" style="top: 44%; left: 5%;" 
+                                 data-info="CAMPO 50 (Applicant): Es tu cliente (el importador). Verifica que su nombre y dirección sean correctos para la factura.">2</div>
+                        
+                            <div class="hotspot" style="top: 50%; left: 5%;" 
+                                 data-info="CAMPO 59 (Beneficiary): ¡Eres tú! Tu nombre debe aparecer exactamente igual que en tu cuenta bancaria o el banco rechazará el pago.">3</div>
+                        
+                            <div class="hotspot" style="top: 55%; left: 5%;" 
+                                 data-info="CAMPO 32B: El importe total garantizado. En este ejemplo, 59.840,00 USD.">4</div>
+                        
+                            <div class="hotspot" style="top: 69%; left: 5%;" 
+                                 data-info="CAMPOS 44E/F: Puertos de carga y descarga. Si el barco sale de un puerto no coreano, tendrías una discrepancia (error).">5</div>
+                        
+                            <div class="hotspot" style="top: 77%; left: 5%;" 
+                                 data-info="CAMPO 45A: Descripción de la mercancía. Aquí dice 'LLDPE GRADE U8835H'. En tu factura DEBE poner exactamente eso, ni una letra más ni menos.">6</div>
+                        
+                            <div class="hotspot" style="top: 85%; left: 5%;" 
+                                 data-info="CAMPO 46A: Los documentos que debes entregar al banco para cobrar: Bill of Lading, Factura firmada y Packing List.">7</div>
+                        </div>
+                    
+                        <div class="metodo-pago">
+                        <h3 id="rem">3. Remesa Documentaria</h3>
+                        <p><strong>¿Qué es?</strong> Es un sistema de "pago contra documentos". El vendedor envía la mercancía y entrega los documentos de propiedad a su banco, quien los envía al banco del comprador. El comprador solo puede retirar los papeles para recoger la mercancía si antes paga o acepta una letra.</p>
+
+                        <div class="info-box">
+                            <strong>Ejemplo:</strong> 
+                            Envías un contenedor de azulejos a Italia. Tu cliente italiano no puede sacar el contenedor del puerto porque tú tienes el Bill of Lading. Tu banco le dice: "Paga los 5.000€ en ventanilla y te sello los papeles para que te lleves el azulejo".
+                        </div>
+                        </div>
+                    
+                        <div class="interactive-doc" id="doc-remesa">
+                                <img src="letra.png" alt="Letra de Cambio Internacional Moderna">
+
+                                <div class="hotspot" style="top: 18%; left: 45%;" 
+                                     data-info="VENCIMIENTO: Indica cuándo cobrarás el dinero. En este ejemplo es el 15 de Junio de 2026. Hasta esa fecha el dinero no estará en tu cuenta.">1</div>
+                        
+                                <div class="hotspot" style="top: 10%; left: 75%;" 
+                                     data-info="IMPORTE: Debe figurar en cifras y letras. Asegúrate de que incluya los gastos bancarios si así lo habéis pactado.">2</div>
+                        
+                                <div class="hotspot" style="top: 75%; left: 10%;" 
+                                     data-info="ACEPTO: Este es el punto crítico. Cuando el importador firma aquí, reconoce legalmente la deuda y el banco le entrega los documentos para retirar la mercancía.">3</div>
+                        
+                                <div class="hotspot" style="top: 85%; left: 85%;" 
+                                     data-info="LIBRADOR: Aquí firmas tú como exportador. Estás emitiendo la orden de que se te pague la cantidad indicada.">4</div>
+
+                                <div class="hotspot" style="top: 60%; left: 75%;" 
+                                     data-info="DOMICILIO DE PAGO: Los datos bancarios donde se cargará el cobro al importador.">5</div>
+                        </div>
+                    
+                        <div class="metodo-pago">
+                        <h3 id="trans">4. Transferencia Bancaria Internacional (Orden de Pago)</h3>
+                        <p><strong>¿Qué es?</strong> Es el envío de fondos que el importador (comprador) ordena a su banco para que los ponga a disposición del exportador (vendedor) en su cuenta bancaria.</p>
+                        <div class="info-box">
+                            <strong>Ejemplo:</strong> 
+                            Un importador de aceite en México compra 10.000€ a un proveedor en España. El importador va a su banca online, introduce el código BIC/SWIFT del banco español y el IBAN del exportador. El dinero llega en 24-48 horas.
+                        </div>
+                        <p class="nota-tecnica">💡 <strong>Clave técnica:</strong> En comercio exterior es vital decidir quién paga las comisiones: 
+                            <strong>OUR</strong> (el comprador paga todo), 
+                            <strong>SHA</strong> (gastos compartidos) o 
+                            <strong>BEN</strong> (el vendedor paga todo).</p>
+                        </div>
+                
+                        <div class="metodo-pago">
+                        <h3 id="cheq">5. Cheque Bancario Internacional</h3>
+                        <p><strong>¿Qué es?</strong> Un título valor físico emitido por un banco. A diferencia del cheque personal, el bancario asegura que hay fondos porque el banco ya ha retirado el dinero de la cuenta del cliente al emitirlo. Es lento debido al envío físico por correo.</p>
+
+                        <div class="info-box">
+                                <strong>Tipos de cheques comunes:</strong>
+                                <ul style="margin-top: 10px; padding-left: 20px;">
+                                    <li><strong>Personal:</strong> Riesgo alto, depende de que el cliente tenga fondos.</li>
+                                    <li><strong>Bancario:</strong> El banco garantiza el pago (el más usado en exportación).</li>
+                                    <li><strong>Cruzado:</strong> Solo se cobra mediante ingreso en cuenta (más seguro).</li>
+                                    <li><strong>No a la orden:</strong> Solo puede cobrarlo el beneficiario indicado.</li>
+                                </ul>
+                        </div>
+
+                        <div class="info-box">
+                            <strong>Ejemplo:</strong> 
+                            Un distribuidor en Canadá paga una factura a una empresa española enviando un cheque bancario por correo certificado. El exportador español debe llevarlo físicamente a su oficina bancaria para tramitar el cobro internacional.
+                        </div>
+                    
+                    <div class="interactive-doc" id="doc-cheque">
+                            <img src="cheque.png" alt="Ejemplo de Cheque Bancario">
+
+                            <div class="hotspot" style="top: 10%; left: 15%;" 
+                                 data-info="ENTIDAD EMISORA: Al ser un cheque bancario, el responsable del pago es el banco. Verifica que sea una entidad de prestigio internacional.">1</div>
+                    
+                            <div class="hotspot" style="top: 33%; left: 35%;" 
+                                 data-info="PÁGUESE A: Aquí debe figurar el nombre completo de tu empresa. Un error en una sola letra puede invalidar el cobro en ventanilla.">2</div>
+                    
+                            <div class="hotspot" style="top: 33%; left: 80%;" 
+                                 data-info="IMPORTE: La cifra numérica. Debe coincidir exactamente con el importe escrito en letras más abajo.">3</div>
+                    
+                            <div class="hotspot" style="top: 12%; left: 80%;" 
+                                 data-info="DATOS BANCARIOS: Identifican la cuenta de origen de los fondos. En cheques internacionales, el código IBAN es fundamental para la trazabilidad.">4</div>
+                    
+                            <div class="hotspot" style="top: 75%; left: 80%;" 
+                                 data-info="FIRMA: En el cheque bancario, firma el apoderado del banco. Sin firma autorizada, el documento no tiene valor legal.">5</div>
+                    </div>
+                </div>
+            </section>
         </div>
         <div class="footer-legal">
             <a href="#" onclick="openModal('privacidad', event)">Política de Privacidad</a> |
@@ -61,9 +256,9 @@
             <a href="#" onclick="openModal('terminos', event)">Términos y Condiciones</a> |
             <a href="#" onclick="openModal('preferencias', event)">Preferencias de Cookies</a>
         </div>
-    </div>
+    </main>
 
-        <!-- MODALES -->
+    <!-- MODALES -->
     <div id="modal-privacidad" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('privacidad')">&times;</span>
@@ -312,7 +507,6 @@
         </div>
     </div>
 
-    <script src="docs1.js"></script>
-
+    <script src="medios.js"></script>
 </body>
 </html>

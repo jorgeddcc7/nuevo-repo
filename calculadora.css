@@ -8,119 +8,41 @@
 
 /* Estilo general */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family:'Segoe UI', Arial, sans-serif;
     background-color: #f4f7fc;
     min-height: 180vh;
     margin: 0;
 }
 
-/* Links */
-.link__distancia {
-    position: fixed;
-    top: 30px;
-    right: 20px;
-    font-size: 14px;
-    color: #007bff;
+/* Botones y Navegación */
+.tool-nav {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.tool-nav a {
     text-decoration: none;
-    font-weight: 600;
-    background-color: #fff;
-    padding: 8px 16px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #0003;
-    transition: all 0.3s ease;
-}
-
-.link__distancia i {
-    margin-left: 8px;
-    font-size: 16px;
-}
-
-.link__tests {
-    position: fixed;
-    top: 70px;
-    left: 20px;
-    font-size: 14px;
     color: #007bff;
-    text-decoration: none;
-    font-weight: 600;
-    background-color: #fff;
-    padding: 8px 16px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 8px 15px;
+    border: 1px solid #007bff;
     border-radius: 5px;
-    box-shadow: 0 0 5px #0003;
-    transition: all 0.3s ease;
+    transition: 0.3s;
 }
 
-.link__divisas {
-    position: fixed;
-    top: 30px;
-    left: 20px;
-    font-size: 14px;
-    color: #007bff;
-    text-decoration: none;
-    font-weight: 600;
-    background-color: #fff;
-    padding: 8px 16px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #0003;
-    transition: all 0.3s ease;
-}
-
-.link__divisas i {
-    margin-left: 8px;
-    font-size: 16px;
-}
-
-.link__facturas {
-    position: fixed;
-    top: 70px;
-    right: 20px;
-    font-size: 14px;
-    color: #007bff;
-    text-decoration: none;
-    font-weight: 600;
-    background-color: #fff;
-    padding: 8px 16px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #0003;
-    transition: all 0.3s ease;
-}
-
-.link__facturas i {
-    margin-left: 8px;
-    font-size: 16px;
-}
-
-.link__peso i {
-    margin-left: 8px;
-    font-size: 16px;
-}
-
-.link__peso {
-    position: fixed;
-    top: 110px;
-    left: 20px;
-    font-size: 14px;
-    color: #007bff;
-    text-decoration: none;
-    font-weight: 600;
-    background-color: #fff;
-    padding: 8px 16px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #0003;
-    transition: all 0.3s ease;
-}
-
-
-.link__distancia:hover, .link__facturas:hover, .link__divisas:hover, .link__tests:hover, .link__peso:hover {
+.tool-nav a:hover {
     background-color: #007bff;
-    color: #fff;
-    transform: scale(1.1);
+    color: white;
 }
 
 /* Contenedor calculadora */
 .container2 {
     width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -457,7 +379,6 @@ button:hover {
 /* ===== GRID DE PACKS ===== */
 .packs-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
 }
 
@@ -565,69 +486,10 @@ button:hover {
 }
 
 /* ===== Media queries optimizadas para links y container ===== */
-@media (max-width: 1280px) {
-    /* Links principales */
-    .link__distancia,
-    .link__divisas,
-    .link__facturas,
-    .link__tests,
-    .link__peso {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        white-space: nowrap;
-        width: fit-content;
-    }
 
-    /* Altura de los links según jerarquía */
-    .link__distancia { top: 20px; }
-    .link__divisas { top: 60px; }
-    .link__facturas { top: 100px; }
-    .link__tests { top: 140px; }
-    .link__peso { top: 180px; }
 
-    /* Container centrado */
-    .container2 {
-        max-width: 800px;
-        margin: 220px auto 50px auto; /* margen superior suficiente para links */
-        padding: 20px;
-    }
-}
-
-@media (max-width: 1150px) {
-    .container2 { max-width: 670px; }
-}
-
-@media (max-width: 1000px) {
-    .container2 { max-width: 500px; }
-}
 
 @media (max-width: 500px) {
-    /* Links centrados y escalados */
-    .link__distancia,
-    .link__divisas,
-    .link__facturas,
-    .link__tests,
-    .link__peso {
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 12px; /* un poco más pequeño */
-        padding: 6px 12px;
-    }
-
-    /* Alturas de links para móvil */
-    .link__distancia { top: 30px; }
-    .link__divisas { top: 65px; }
-    .link__facturas { top: 100px; }
-    .link__tests { top: 135px; }
-    .link__peso { top: 170px; }
-
-    /* Container centrado debajo de los links */
-    .container2 {
-        max-width: 90%;
-        margin-top: 210px; /* suficiente espacio para links */
-        padding: 18px;
-    }
         .packs-container {
         grid-template-columns: 1fr; 
         padding: 25px 15px;

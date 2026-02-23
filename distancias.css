@@ -125,7 +125,22 @@ body {
     transition: all 0.3s ease;
 }
 
-.link__calculadora:hover, .link__facturas:hover, .link__divisas:hover, .link__tests:hover, .link__peso:hover {
+.link__pago {
+    position: fixed;
+    top: 110px;
+    right: 20px;
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+    background-color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #0003;
+    transition: all 0.3s ease;
+}
+
+.link__calculadora:hover, .link__facturas:hover, .link__divisas:hover, .link__tests:hover, .link__peso:hover, .link__pago:hover {
     background-color: #007bff;
     color: #fff;
     transform: scale(1.1);
@@ -291,6 +306,10 @@ body {
         position: absolute;
         top: 80px;
     }
+    .link__pago {
+        position: absolute;
+        top: 80px;
+    }
     .seccion-calculo {
         max-width: 700px;
         margin-top: 50px;
@@ -363,8 +382,16 @@ body {
         white-space: nowrap;
         width: fit-content;
     }
+    .link__pago {
+        position: absolute;
+        top: 181px;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        width: fit-content;
+    }
     .seccion-calculo {
-        margin-top: 185px;
+        margin-top: 215px;
     }
     #recursos-utiles {
         max-width: 400px;
