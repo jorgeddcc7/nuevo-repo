@@ -34,6 +34,23 @@ body {
     transition: 0.3s;
 }
 
+.tool-nav a.nav-blog-link {
+    background: linear-gradient(135deg, #007bff, #0056b3); /* Fondo azul degradado */
+    color: white; /* Texto blanco siempre */
+    border: 1px solid transparent; /* Quitamos el borde normal */
+    font-weight: 600;
+    padding: 8px 18px; /* Un pelín más ancho para que respire */
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.25); /* Sombra azulada que lo hace flotar */
+    display: inline-flex;
+    align-items: center;
+}
+
+.tool-nav a.nav-blog-link:hover {
+    transform: translateY(-2px); /* Se eleva un poquito */
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4); /* La sombra se hace más intensa */
+    background: linear-gradient(135deg, #0056b3, #003d82); /* Se oscurece un poco */
+}
+
 .tool-nav a:hover {
     background-color: #007bff;
     color: white;
@@ -679,24 +696,30 @@ button:hover {
     white-space: pre-line;
 }
 
-.redes {
-    position: relative;
+.redes-sociales {
     display: flex;
-    flex-direction: row;
+    align-items: center; /* Centra el texto con la imagen en altura */
+    gap: 15px; /* Espacio exacto entre elementos */
+    margin-top: 35px;
+    padding-top: 25px;
+    border-top: 1px solid #e2e8f0; /* Una línea divisoria muy elegante */
+    font-weight: 600;
+    color: var(--dark-blue);
 }
 
-.facebook {
-    width: 35px;
-    position: absolute;
-    bottom: -8px;
-    left: 100px;
+.social-link {
+    display: inline-block;
+    transition: transform 0.3s ease;
 }
 
-.linkedin {
+.social-link img {
     width: 32px;
-    position: absolute;
-    bottom: -7px;
-    left: 170px;
+    height: auto;
+    display: block; /* Quita el margen fantasma de las imágenes */
+}
+
+.linkedin img {
+    width: 55px;
 }
 
 /* Contacto */

@@ -1,0 +1,693 @@
+:root {
+    --primary-blue: #007bff;
+    --dark-blue: #0056b3;
+    --light-bg: #f4f7fc;
+    --white: #ffffff;
+    --text-main: #333;
+    --text-muted: #666;
+    --success: #28a745;
+    --danger: #dc3545;
+    --warning: #ffc107;
+}
+
+/* Scroll */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-thumb { background-color: #056bd8; border-radius: 4px; }
+::-webkit-scrollbar-track { background: #fff; }
+
+* {
+    box-sizing: border-box; /* Añadido para mejor control de anchos */
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: var(--light-bg);
+    color: var(--text-main);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Contenedor principal */
+.container2 {
+    width: 95%;
+    max-width: 1100px;
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    padding: 40px;
+    margin: 40px auto;
+    flex-grow: 1; 
+}
+
+/* Header Estilo CalculaIncoterms */
+header {
+    background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+    padding: 30px 20px;
+    border-radius: 12px;
+    color: white;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   NUEVO: ESTILOS BLOG - DISEÑO APPLE/MINIMALISTA
+========================================== */
+
+/* Grid responsivo */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 35px;
+    margin-top: 20px;
+}
+
+/* Diseño de la tarjeta */
+.blog-card {
+    background: var(--white);
+    border-radius: 24px; /* Bordes muy curvos estilo Apple */
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); /* Sombra súper suave */
+    border: 1px solid rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Efecto Hover en la tarjeta */
+.blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+/* Contenedor de la imagen */
+.card-img-wrapper {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+/* Mini Zoom a la imagen al pasar el ratón */
+.blog-card:hover .card-img-wrapper img {
+    transform: scale(1.05);
+}
+
+/* Contenido de la tarjeta (textos) */
+.card-content {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Empuja el botón "Leer más" hacia abajo */
+}
+
+/* Etiqueta de Categoría */
+.category-tag {
+    align-self: flex-start;
+    background: #f0f6ff;
+    color: var(--primary-blue);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 15px;
+}
+
+/* Título del artículo */
+.card-content h2 {
+    color: var(--dark-blue);
+    font-size: 1.3rem;
+    margin: 0 0 15px 0;
+    line-height: 1.4;
+    border-left: none; /* Reseteamos tu estilo de H2 base para que aquí quede limpio */
+    padding-left: 0;
+}
+
+/* Extracto del artículo */
+.card-content p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+/* Botón de "Leer más" */
+.read-more {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--primary-blue);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    margin-top: auto; /* Se asegura de estar abajo del todo */
+}
+
+.read-more .arrow {
+    margin-left: 6px;
+    transition: transform 0.3s ease;
+}
+
+.read-more:hover {
+    color: var(--dark-blue);
+}
+
+/* Animación de la flechita */
+.read-more:hover .arrow {
+    transform: translateX(5px);
+}
+
+/* Responsivo para móviles */
+@media (max-width: 768px) {
+    .container2 { padding: 20px; margin: 20px auto; }
+    header { padding: 20px 15px; }
+    header h1 { font-size: 1.8rem; }
+    .card-content { padding: 20px; }
+}
+
+/* =========================================
+   ESTILOS DEL ARTÍCULO INDIVIDUAL (POST)
+========================================== */
+
+.post-container {
+    padding-top: 30px;
+    padding-bottom: 60px;
+    max-width: 1050px;
+}
+
+/* Botón Volver */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+    transition: color 0.3s ease;
+}
+.back-link .arrow { margin-right: 8px; font-size: 1.1rem; transition: transform 0.3s ease; }
+.back-link:hover { color: var(--primary-blue); }
+.back-link:hover .arrow { transform: translateX(-5px); }
+
+/* Cabecera del Artículo (Limpia y sin fondo azul) */
+.post-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    padding: 0;
+    background: transparent;
+}
+.post-header h1 {
+    font-size: 2.5rem;
+    color: var(--dark-blue);
+    margin: 20px 0;
+    line-height: 1.3;
+}
+.post-meta {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-weight: 500;
+}
+
+/* Imagen Destacada */
+.post-hero-image {
+    width: 100%;
+    max-height: 500px;
+    border-radius: 24px;
+    overflow: hidden;
+    margin-bottom: 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+.post-hero-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Contenido del texto */
+.post-content {
+    max-width: 760px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    color: #444;
+}
+.post-content .lead-text { font-size: 1.25rem; color: var(--text-main); line-height: 1.8; margin-bottom: 40px; }
+.post-content p { margin-bottom: 25px; }
+.post-content h2 { margin-top: 50px; margin-bottom: 20px; font-size: 1.8rem; color: var(--dark-blue); border-left: none; padding-left: 0;}
+
+/* --- LA TABLA CORREGIDA --- */
+.risk-table-wrapper {
+    background: var(--white);
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    margin: 40px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+.risk-table { width: 100%; border-collapse: collapse; text-align: left; }
+.risk-table th { background-color: #f8fafc; padding: 18px 20px; color: var(--dark-blue); font-weight: 700; border-bottom: 2px solid #e2e8f0; }
+.risk-table td { padding: 18px 20px; border-bottom: 1px solid #f1f5f9; color: var(--text-main); vertical-align: middle; }
+.risk-table tr:last-child td { border-bottom: none; }
+
+/* --- LAS ETIQUETAS (BADGES) CORREGIDAS --- */
+.badge { padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; display: inline-block; text-align: center; }
+.badge-safe { background-color: #def7ec; color: #03543f; }
+.badge-warn { background-color: #fdf6b2; color: #723b13; }
+.badge-danger { background-color: #fde8e8; color: #9b1c1c; }
+
+/* CTA Final */
+.post-cta {
+    background: linear-gradient(135deg, #f8fbff, #eef5ff);
+    border: 1px solid rgba(0, 123, 255, 0.1);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    margin-top: 60px;
+}
+.post-cta h3 { color: var(--dark-blue); margin-bottom: 15px; font-size: 1.5rem; }
+.post-cta p { margin-bottom: 25px; }
+.tool-btn { display: inline-block; background-color: var(--primary-blue); color: white; padding: 12px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: all 0.3s ease; }
+.tool-btn:hover { background-color: var(--dark-blue); transform: translateY(-2px); }
+
+/* Móviles */
+@media (max-width: 768px) {
+    .post-header h1 { font-size: 1.8rem; }
+    .post-hero-image { border-radius: 16px; max-height: 300px; margin-bottom: 30px; }
+    .post-content .lead-text { font-size: 1.1rem; }
+    .post-cta { padding: 25px 15px; }
+    .risk-table-wrapper { overflow-x: auto; }
+}
+
+/* SOBRE NOSOTROS */
+
+.about-blog {
+    max-width: 800px; /* Ancho de lectura perfecto, centrado */
+    margin: -15px auto 50px auto; /* Márgenes amplios para respirar */
+    background-color: var(--white);
+    border-radius: 24px; /* Bordes premium */
+    padding: 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Sombra ultra suave */
+    border: 1px solid rgba(0,0,0,0.03);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+}
+
+/* Efecto al pasar el ratón: Se eleva un poquito, sin hacer un zoom brusco */
+.about-blog:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.about-blog h3 {
+    color: var(--dark-blue);
+    font-size: 2rem;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    line-height: 1.3;
+}
+
+.about-blog p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+/* Redes Sociales modernas (Flexbox en lugar de position: absolute) */
+.redes-sociales {
+    display: flex;
+    align-items: center; /* Centra el texto con la imagen en altura */
+    gap: 15px; /* Espacio exacto entre elementos */
+    margin-top: 35px;
+    padding-top: 25px;
+    border-top: 1px solid #e2e8f0; /* Una línea divisoria muy elegante */
+    font-weight: 600;
+    color: var(--dark-blue);
+}
+
+.social-link {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.social-link img {
+    width: 32px;
+    height: auto;
+    display: block; /* Quita el margen fantasma de las imágenes */
+}
+
+.linkedin img {
+    width: 55px;
+}
+
+/* Efecto de rebote en los iconos al pasar el ratón */
+.social-link:hover {
+    transform: scale(1.15) translateY(-2px); 
+}
+
+/* Ajustes para móviles */
+@media (max-width: 768px) {
+    .about-blog {
+        padding: 30px 20px;
+        margin: 40px auto;
+        width: 95%;
+    }
+    .about-blog h3 { font-size: 1.6rem; }
+}
+
+/* Contenedor principal del formulario */
+.contact-form {
+    max-width: 600px;
+    margin: 5px auto 40px auto; /* Mantiene tu margen original */
+    background-color: var(--white);
+    padding: 40px; /* Más respiro interior */
+    border-radius: 24px; /* Mismos bordes curvos que el blog */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Sombra muy suave */
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+/* Cabecera del formulario */
+.form-header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form-header h3 {
+    color: var(--dark-blue);
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.form-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Agrupación de Label + Input */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px; /* Separación entre campos */
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--text-main);
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    margin-left: 5px; /* Alineación óptica */
+}
+
+/* Estilo de los campos de texto */
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 16px;
+    background-color: #f8fafc; /* Gris ultra claro y premium */
+    border: 1px solid #e2e8f0; /* Borde sutil */
+    border-radius: 12px; /* Bordes suaves estilo iOS */
+    font-size: 1rem;
+    color: var(--text-main);
+    font-family: inherit;
+    transition: all 0.3s ease;
+    outline: none;
+    box-sizing: border-box; /* Evita que el padding rompa el ancho */
+}
+
+/* Ajuste específico para que el textarea no se pueda encoger demasiado */
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Efecto al pinchar dentro del campo (Focus) - ¡El toque mágico! */
+.contact-form input:focus, 
+.contact-form textarea:focus {
+    background-color: var(--white);
+    border-color: var(--primary-blue);
+    /* Crea un anillo azul difuminado alrededor del campo activo */
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.15); 
+}
+
+/* Botón de Enviar */
+.contact-form button {
+    width: 100%; /* Botón ancho, muy moderno */
+    padding: 16px;
+    font-size: 1.1rem;
+    border: none;
+    background: var(--primary-blue);
+    color: var(--white);
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.contact-form button:hover {
+    background: var(--dark-blue);
+    transform: translateY(-2px); /* Se eleva al pasar el ratón */
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.25); /* Sombra azul al elevarse */
+}
+
+/* Ajustes para pantallas pequeñas (Móviles) */
+@media (max-width: 600px) {
+    .contact-form {
+        padding: 25px;
+        margin-top: 20px;
+        border-radius: 16px;
+    }
+}
+
+/* Políticas */
+.footer-legal {
+    background-color: transparent;
+    text-align: center;
+    padding: 30px 15px; /* Un poco más de respiro arriba y abajo */
+    margin-top: auto; /* Lo empuja hacia abajo del todo */
+    border-top: 1px solid rgba(0,0,0,0.05); /* Una línea separadora muy sutil */
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.footer-legal a, #cookie-settings-btn {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 5px;
+}
+
+.footer-legal a:hover, #cookie-settings-btn:hover {
+    text-decoration: underline;
+}
+
+/* Modal general */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+}
+
+/* Contenido del modal */
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    position: relative;
+}
+
+.modal-text {
+    max-height: 70vh;
+    overflow-y: auto;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* Botón cerrar */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #999;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #333;
+}
+
+.modal-text h2,
+.modal-text h3 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    color: #222;
+}
+
+.modal-text p {
+    margin-bottom: 1em;
+    color: #444;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.modal-text ul {
+    margin: 0 0 1.5em 1.5em;
+    color: #444;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.modal-text ul li {
+    margin-bottom: 0.5em;
+}
+
+#cookie-banner {
+    display: none;
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 18px 22px;
+    max-width: 520px;
+    width: 90%;
+    z-index: 10000;
+    font-size: 14px;
+    color: #333;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+#cookie-banner .cookie-text {
+    flex: 1 1 60%;
+    min-width: 220px;
+}
+
+#cookie-banner .cookie-text p {
+    margin: 0;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.cookie-buttons {
+    flex: 0 1 auto;
+    display: flex;
+    gap: 10px;
+}
+
+#cookie-banner button {
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+
+#accept-cookies {
+    background-color: #007bff;
+    color: white;
+}
+
+#accept-cookies:hover {
+    background-color: #0056b3;
+}
+
+#reject-cookies {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+#reject-cookies:hover {
+    background-color: #dcdcdc;
+}
+
+#modal-preferencias .modal-text label {
+    display: block;
+    margin: 12px 0 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 15px;
+    color: #222;
+}
+
+#modal-preferencias .modal-text input[type="checkbox"] {
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.botones {
+    display: flex;
+    justify-content: center;
+}
+
+#modal-preferencias button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#modal-preferencias button:first-of-type {
+    background-color: #007bff;
+    color: white;
+}
+
+#modal-preferencias button:first-of-type:hover {
+    background-color: #0056b3;
+}
+
+#modal-preferencias button:last-of-type {
+    background-color: #444;
+    margin-left: 10px;
+}
+
+#modal-preferencias button:last-of-type:hover {
+    background-color: #aaa;
+}
