@@ -494,6 +494,65 @@ header p {
     color: var(--text-muted);
 }
 
+/* =========================================
+   BARRA DE BÚSQUEDA DEL BLOG
+========================================== */
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    position: relative;
+    padding: 0 20px;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 16px 20px 16px 50px; /* Mucho espacio a la izquierda para la lupa */
+    border-radius: 24px; /* Bordes muy redondos */
+    border: 1px solid #e2e8f0;
+    background-color: var(--white);
+    font-size: 1.05rem;
+    color: var(--text-main);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    transition: all 0.3s ease;
+    outline: none;
+    font-family: inherit;
+}
+
+/* Efecto al pinchar para escribir */
+#searchInput:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.15); /* Halo azul Apple */
+}
+
+.search-icon {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a0aec0;
+    width: 22px;
+    height: 22px;
+    pointer-events: none; /* Para que si haces clic en la lupa, escribas igual */
+}
+
+.no-results-message {
+    grid-column: 1 / -1; /* Hace que ocupe todo el ancho de la pantalla */
+    text-align: center;
+    padding: 40px;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    background: white;
+    border-radius: 16px;
+    border: 1px dashed #cbd5e1;
+}
+
+@media (max-width: 768px) {
+    .search-container { margin-bottom: 30px; }
+    #searchInput { font-size: 1rem; padding: 14px 15px 14px 45px; }
+    .search-icon { left: 35px; width: 20px; }
+}
+
 .footer-legal a, #cookie-settings-btn {
     color: #007bff;
     text-decoration: none;

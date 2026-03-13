@@ -57,6 +57,15 @@
             <p>Guías prácticas, noticias y consejos sobre Incoterms y Comercio Internacional.</p>
         </header>
 
+        <!-- BUSCADOR DEL BLOG (Estilo Apple) -->
+        <div class="search-container">
+            <!-- Icono de lupa en SVG (muy ligero y nítido) -->
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input type="text" id="searchInput" placeholder="Buscar artículos por título o palabra clave...">
+        </div>
+
         <!-- Grid de Tarjetas (Estilo Apple / Minimalista) -->
         <section class="blog-grid">
             
@@ -139,6 +148,10 @@
                     </a>
                 </div>
             </article>
+            <!-- Mensaje de sin resultados (Oculto por defecto) -->
+            <div id="no-results-msg" class="no-results-message" style="display: none;">
+                No se han encontrado artículos con esa palabra.
+            </div>
         </section>
     </main>
 
@@ -448,6 +461,41 @@
             </div>
         </div>
     </div>
+
+    <!-- SCRIPT DEL BUSCADOR EN TIEMPO REAL -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const blogCards = document.querySelectorAll('.blog-card');
+            const noResultsMsg = document.getElementById('no-results-msg');
+
+            searchInput.addEventListener('input', function() {
+                // Convertimos lo que escribe el usuario a minúsculas
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                let hasVisibleCards = false;
+
+                blogCards.forEach(function(card) {
+                    // Buscamos el H2 (título) dentro de la tarjeta y lo pasamos a minúsculas
+                    const title = card.querySelector('h2').textContent.toLowerCase();
+                    
+                    // Si el título incluye la palabra buscada...
+                    if (title.includes(searchTerm)) {
+                        card.style.display = 'flex'; // La mostramos
+                        hasVisibleCards = true;      // Avisamos de que hay resultados
+                    } else {
+                        card.style.display = 'none'; // La ocultamos
+                    }
+                });
+
+                // Si no hay ninguna tarjeta visible, mostramos el mensaje de "No encontrado"
+                if (hasVisibleCards) {
+                    noResultsMsg.style.display = 'none';
+                } else {
+                    noResultsMsg.style.display = 'block';
+                }
+            });
+        });
+    </script>
 
     <script src="/medios/medios.js"></script>
 
