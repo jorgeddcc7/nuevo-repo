@@ -368,7 +368,7 @@ button:hover {
 /* ===== CONTENEDOR GENERAL ===== */
 .packs-container {
     background: linear-gradient(180deg, #eef4fe 0%, #446eb6 100%);
-    padding: 60px 40px;
+    padding: 50px 30px; /* Reducido un poco para no ocupar tanta pantalla */
     border-radius: 20px;
     margin: 40px auto;
     max-width: 1200px;
@@ -378,37 +378,37 @@ button:hover {
 /* ===== TÍTULO E INTRO ===== */
 .packs-title {
     text-align: center;
-    font-size: 30px;
+    font-size: 28px; /* Un poco más pequeño */
     font-weight: 700;
     color: #0056b3;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .packs-intro {
     text-align: center;
-    font-size: 17px;
+    font-size: 16px;
     max-width: 850px;
-    margin: 0 auto 20px;
-    color: #444;
-    line-height: 1.7;
+    margin: 0 auto 30px auto;
+    color: #333;
+    line-height: 1.6;
 }
 
-/* ===== GRID DE PACKS ===== */
-.packs-container {
+/* ===== NUEVO: GRID DE PACKS (HORIZONTAL EN PC) ===== */
+.packs-grid {
     display: grid;
-    gap: 30px;
+    grid-template-columns: repeat(3, 1fr); /* Crea 3 columnas exactamente iguales */
+    gap: 25px; /* Espacio entre las tarjetas */
 }
 
 /* ===== TARJETAS ===== */
 .pack {
     background: #ffffff;
-    padding: 35px 28px;
+    padding: 30px 25px; /* Algo más compacto */
     border-radius: 18px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-direction: column; /* Fundamental para que los botones bajen */
     border: 1px solid rgba(0, 123, 255, 0.08);
 }
 
@@ -419,93 +419,81 @@ button:hover {
 
 /* ===== CABECERA DEL PACK ===== */
 .pack h3 {
-    font-size: 24px;
+    font-size: 22px; /* Más compacto */
     color: #2c3e50;
-    margin-bottom: 15px;
-    font-weight: 600;
-}
-
-.pack .precio {
-    color: #007bff;
-    font-size: 22px;
-    font-weight: bold;
+    margin-bottom: 12px;
+    font-weight: 700;
+    text-align: center;
 }
 
 /* ===== DESCRIPCIÓN ===== */
 .pack-descripcion {
     margin-bottom: 20px;
     color: #555;
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 15px;
+    line-height: 1.5;
+    text-align: center;
 }
 
 /* ===== LISTA ===== */
 .pack-lista {
     list-style: none;
     padding-left: 0;
-    color: #333;
-    font-size: 15px;
-    line-height: 1.7;
-    margin-bottom: 25px;
+    color: #444;
+    font-size: 14px; /* Letra más pequeña para que encaje bien en columnas */
+    line-height: 1.6;
+    margin-bottom: 30px;
 }
 
 .pack-lista li {
-    margin-bottom: 14px;
-    padding-left: 30px;
-    position: relative;
-}
-
-.pack-lista li::before {
-    content: none;
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: #007bff;
-    font-size: 17px;
-    font-weight: bold;
+    margin-bottom: 12px;
 }
 
 /* ===== BOTONES ===== */
-.boton-pack {
+.pack-botones {
+    margin-top: auto; /* EMPUJA LOS BOTONES AL FONDO DE LA TARJETA SIEMPRE */
     display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: auto;
+    flex-direction: column;
+    gap: 12px; /* Separación entre el botón español e inglés */
+}
+
+.boton-pack {
     background: linear-gradient(135deg, #007bff, #0056b3);
     color: #fff;
     font-weight: 600;
     text-decoration: none;
-    padding: 14px 26px;
-    border-radius: 12px;
+    padding: 12px 20px;
+    border-radius: 10px;
     transition: all 0.3s ease;
     text-align: center;
-    font-size: 17px;
+    font-size: 15px;
     box-shadow: 0 6px 16px rgba(0, 91, 187, 0.2);
 }
 
 .boton-pack:hover {
     background: linear-gradient(135deg, #0056b3, #004494);
-    transform: scale(1.05);
+    transform: scale(1.03);
     box-shadow: 0 10px 20px rgba(0, 91, 187, 0.25);
+    color: white;
 }
 
 .boton-ingles {
-    margin-top: 10px;
     background: linear-gradient(135deg, #007bff, #0056b3); 
-    box-shadow: 0 6px 16px rgba(40, 167, 69, 0.2);
+    box-shadow: 0 6px 16px rgba(0, 91, 187, 0.1);
+    opacity: 0.95; /* Lo hace un pelín más discreto que el principal */
 }
 
-.boton-ingles:hover {
-    background: linear-gradient(135deg, #0056b3, #004494);
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(40, 167, 69, 0.25);
+/* ===== RESPONSIVE (MÓVILES Y TABLETS) ===== */
+@media (max-width: 992px) {
+    .packs-grid {
+        grid-template-columns: 1fr; /* Pasa a 1 sola columna (vertical) en móviles */
+    }
+    .packs-container {
+        padding: 40px 20px;
+    }
 }
 
 /* ===== Media queries optimizadas para links y container ===== */
-
-
-
 @media (max-width: 500px) {
         .packs-container {
         grid-template-columns: 1fr; 
