@@ -368,62 +368,128 @@ button:hover {
 /* ===== CONTENEDOR GENERAL ===== */
 .packs-container {
     background: linear-gradient(180deg, #eef4fe 0%, #446eb6 100%);
-    padding: 50px 30px; /* Reducido un poco para no ocupar tanta pantalla */
-    border-radius: 20px;
+    padding: 55px 30px;
+    border-radius: 22px;
     margin: 40px auto;
     max-width: 1200px;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
 }
 
-/* ===== TÍTULO E INTRO ===== */
+/* ===== TÍTULOS ===== */
 .packs-title {
     text-align: center;
-    font-size: 28px; /* Un poco más pequeño */
-    font-weight: 700;
+    font-size: 30px;
+    font-weight: 800;
     color: #0056b3;
     margin-bottom: 15px;
+    line-height: 1.2;
 }
 
 .packs-intro {
     text-align: center;
-    font-size: 16px;
-    max-width: 850px;
-    margin: 0 auto 30px auto;
-    color: #333;
+    font-size: 17px;
+    max-width: 880px;
+    margin: 0 auto 12px auto;
+    color: #1f2d3d;
+    line-height: 1.7;
+}
+
+.packs-subintro {
+    text-align: center;
+    font-size: 15px;
+    max-width: 800px;
+    margin: 0 auto 35px auto;
+    color: #4d5b6a;
     line-height: 1.6;
 }
 
-/* ===== NUEVO: GRID DE PACKS (HORIZONTAL EN PC) ===== */
+/* ===== GRID ===== */
 .packs-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Crea 3 columnas exactamente iguales */
-    gap: 25px; /* Espacio entre las tarjetas */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    align-items: stretch;
 }
 
 /* ===== TARJETAS ===== */
 .pack {
     background: #ffffff;
-    padding: 30px 25px; /* Algo más compacto */
-    border-radius: 18px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    padding: 28px 24px;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
-    flex-direction: column; /* Fundamental para que los botones bajen */
-    border: 1px solid rgba(0, 123, 255, 0.08);
+    flex-direction: column;
+    border: 1px solid rgba(0, 123, 255, 0.10);
+    position: relative;
 }
 
 .pack:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.09);
+}
+
+/* ===== PACK DESTACADO ===== */
+.pack-destacado {
+    border: 2px solid #f5b301;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.10);
+    transform: scale(1.02);
+    background: linear-gradient(180deg, #ffffff 0%, #fffaf0 100%);
+}
+
+.pack-destacado:hover {
+    transform: scale(1.03) translateY(-6px);
+    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.12);
+}
+
+.pack-badge {
+    position: absolute;
+    top: -12px;
+    right: 18px;
+    background: linear-gradient(135deg, #ffcc33, #f5a623);
+    color: #5a3b00;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 999px;
+    box-shadow: 0 8px 18px rgba(245, 166, 35, 0.25);
 }
 
 /* ===== CABECERA DEL PACK ===== */
-.pack h3 {
-    font-size: 22px; /* Más compacto */
-    color: #2c3e50;
-    margin-bottom: 12px;
-    font-weight: 700;
+.pack-header {
     text-align: center;
+    margin-bottom: 16px;
+}
+
+.pack h3 {
+    font-size: 23px;
+    color: #1f2d3d;
+    margin-bottom: 8px;
+    font-weight: 800;
+}
+
+.pack-price {
+    font-size: 34px;
+    font-weight: 800;
+    color: #0056b3;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.pack-destacado .pack-price {
+    color: #d48806;
+}
+
+.pack-beneficio {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2f5d9f;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.pack-destacado .pack-beneficio {
+    color: #8a5a00;
 }
 
 /* ===== DESCRIPCIÓN ===== */
@@ -431,7 +497,7 @@ button:hover {
     margin-bottom: 20px;
     color: #555;
     font-size: 15px;
-    line-height: 1.5;
+    line-height: 1.6;
     text-align: center;
 }
 
@@ -440,9 +506,9 @@ button:hover {
     list-style: none;
     padding-left: 0;
     color: #444;
-    font-size: 14px; /* Letra más pequeña para que encaje bien en columnas */
-    line-height: 1.6;
-    margin-bottom: 30px;
+    font-size: 14px;
+    line-height: 1.65;
+    margin-bottom: 28px;
 }
 
 .pack-lista li {
@@ -451,36 +517,170 @@ button:hover {
 
 /* ===== BOTONES ===== */
 .pack-botones {
-    margin-top: auto; /* EMPUJA LOS BOTONES AL FONDO DE LA TARJETA SIEMPRE */
+    margin-top: auto;
     display: flex;
     flex-direction: column;
-    gap: 12px; /* Separación entre el botón español e inglés */
+    gap: 12px;
 }
 
 .boton-pack {
     background: linear-gradient(135deg, #007bff, #0056b3);
     color: #fff;
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
-    padding: 12px 20px;
-    border-radius: 10px;
+    padding: 13px 20px;
+    border-radius: 12px;
     transition: all 0.3s ease;
     text-align: center;
     font-size: 15px;
-    box-shadow: 0 6px 16px rgba(0, 91, 187, 0.2);
+    box-shadow: 0 8px 18px rgba(0, 91, 187, 0.20);
 }
 
 .boton-pack:hover {
     background: linear-gradient(135deg, #0056b3, #004494);
-    transform: scale(1.03);
-    box-shadow: 0 10px 20px rgba(0, 91, 187, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(0, 91, 187, 0.25);
     color: white;
 }
 
-.boton-ingles {
-    background: linear-gradient(135deg, #007bff, #0056b3); 
-    box-shadow: 0 6px 16px rgba(0, 91, 187, 0.1);
-    opacity: 0.95; /* Lo hace un pelín más discreto que el principal */
+.boton-ingles,
+.boton-pack-secundario {
+    background: #eef4ff;
+    color: #0056b3;
+    box-shadow: none;
+    border: 1px solid rgba(0, 86, 179, 0.15);
+}
+
+.boton-ingles:hover,
+.boton-pack-secundario:hover {
+    background: #dde9ff;
+    color: #004494;
+    box-shadow: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+    .packs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pack-destacado {
+        transform: none;
+    }
+
+    .pack-destacado:hover {
+        transform: translateY(-6px);
+    }
+
+    .packs-title {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 576px) {
+    .packs-container {
+        padding: 40px 18px;
+    }
+
+    .packs-title {
+        font-size: 24px;
+    }
+
+    .packs-intro {
+        font-size: 15px;
+    }
+
+    .packs-subintro {
+        font-size: 14px;
+    }
+
+    .pack {
+        padding: 24px 18px;
+    }
+
+    .pack h3 {
+        font-size: 21px;
+    }
+
+    .pack-price {
+        font-size: 30px;
+    }
+}
+
+.promo-lateral {
+    position: fixed;
+    right: 22px;
+    top: 180px;
+    width: 220px;
+    background: linear-gradient(180deg, #ffffff 0%, #fffaf0 100%);
+    border: 1px solid rgba(245, 166, 35, 0.35);
+    border-radius: 16px;
+    padding: 18px 16px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.10);
+    z-index: 50;
+}
+
+.promo-badge {
+    display: inline-block;
+    margin-bottom: 10px;
+    background: rgba(245, 166, 35, 0.14);
+    color: #b06b00;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 999px;
+}
+
+.promo-lateral h4 {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+    color: #1f2d3d;
+}
+
+.promo-lateral p {
+    margin: 0 0 14px 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #4b5b6a;
+}
+
+.promo-precio {
+    font-size: 28px;
+    font-weight: 800;
+    color: #d48806;
+    margin-bottom: 14px;
+}
+
+.promo-btn {
+    display: block;
+    text-align: center;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 11px 14px;
+    border-radius: 10px;
+}
+
+.promo-btn:hover {
+    color: #fff;
+    background: linear-gradient(135deg, #0056b3, #004494);
+}
+
+@media (max-width: 1400px) {
+    .promo-lateral {
+        display: none;
+    }
+}
+
+.promo-blog {
+    left: 22px;
+    border: 1px solid rgba(97, 218, 251, 0.25);
+}
+
+.promo-badge-blog {
+    background: rgba(97, 218, 251, 0.14);
+    color: #0b6e88;
 }
 
 /* ===== RESPONSIVE (MÓVILES Y TABLETS) ===== */
