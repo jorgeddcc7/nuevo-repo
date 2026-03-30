@@ -73,26 +73,37 @@
     </div>
     <main class="container">
         <div class="container2">
-            <nav class="tool-nav">
-                <a href="distancias.html"  target="_blank">Estimador tiempo de entrega</a>
-                <a href="divisas.html" target="_blank">Conversor de divisas</a>
-                <a href="blog/blog.html" class="nav-blog-link" target="_blank">Blog Comercio</a>
-                <a href="docs/docs1.html"  target="_blank">Generador de Documentos</a>
-                <a href="tests/test.html"  target="_blank">Tests de comercio</a>
-                <a href="peso.html"  target="_blank">Volumen y Peso Dimensional</a>
-                <a href="medios/medios.html"  target="_blank">Medios de Pago</a>
+            <nav class="tool-nav" aria-label="Herramientas de comercio internacional">
+                <a href="distancias.html" target="_blank" rel="noopener noreferrer">Estimador tiempo de entrega</a>
+                <a href="medios/medios.html" target="_blank" rel="noopener noreferrer">Medios de pago</a>
+                <a href="blog/blog.html" class="nav-blog-link" target="_blank" rel="noopener noreferrer">Blog Comercio</a>
+            
+                <div class="tools-dropdown">
+                    <button class="tools-toggle" id="toolsToggle" type="button" aria-expanded="false">
+                        <span>Más herramientas</span>
+                        <span class="tools-arrow">▼</span>
+                    </button>
+                
+                    <div class="tools-menu" id="toolsMenu">
+                        <a href="divisas.html" target="_blank" rel="noopener noreferrer">Conversor de divisas</a>
+                        <a href="docs/docs1.html" target="_blank" rel="noopener noreferrer">Generador de documentos</a>
+                        <a href="tests/test.html" target="_blank" rel="noopener noreferrer">Tests de comercio</a>
+                        <a href="peso.html" target="_blank" rel="noopener noreferrer">Volumen y peso dimensional</a>
+                    </div>
+                </div>
             </nav>
-            <header>
-                <h1>Calculadora de Incoterms 2020 para Exportación</h1>
+            <header class="hero">
+                <span class="hero-badge">Incoterms 2020 · Exportación e importación</span>
+                <h1>Calculadora de Incoterms 2020: costes, riesgos y responsabilidades</h1>
                 <p>
-                    Calcula de forma precisa los costes logísticos, responsabilidades y riesgos en operaciones de comercio internacional, comparar Incoterms, ver acuerdos comerciales, estimar aranceles y entender qué asume el exportador y el importador en cada operación.
+                    Compara Incoterms, calcula costes logísticos, documentación necesaria y entiende qué asume cada parte en una operación de exportación o importación.
                 </p>
             </header>
 
             <!-- Formulario de cálculo -->
             <section id="formulario">
-                <h2>Datos de la operación de comercio internacional</h2>
-                <p>Introduce los datos de tu operación internacional y selecciona el Incoterm correspondiente.</p>
+                <h2>Introduce los datos de tu operación</h2>
+                <p>Completa los campos principales para calcular costes, responsabilidades y riesgos según el Incoterm seleccionado.</p>
 
                 <!-- Ubicaciones -->
                 <div class="input-group">

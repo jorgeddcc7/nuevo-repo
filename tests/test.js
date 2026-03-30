@@ -1,5 +1,5 @@
 const SECCIONES = [
-  { id: "comercio", name: "Comercio Internacional (general)", exams: 10 },
+  { id: "comercio", name: "Comercio Internacional", exams: 10 },
   { id: "incoterms", name: "Incoterms", exams: 4 },
   { id: "logistica", name: "Logística", exams: 4 },
   { id: "gestion-adm", name: "Gestión Administrativa", exams: 4 },
@@ -8,15 +8,13 @@ const SECCIONES = [
 ];
 
 function getLevel(num, sectionId) {
-  // Comercio Internacional y Casos Prácticos
   if (sectionId === "comercio" || sectionId === "casos-practicos") {
-    if ([1,2].includes(num)) return "Fácil";
-    if ([3,4,5].includes(num)) return "Medio";
-    if ([6,7,8].includes(num)) return "Difícil";
-    return "Experto"; // 9,10
+    if ([1, 2].includes(num)) return "Fácil";
+    if ([3, 4, 5].includes(num)) return "Medio";
+    if ([6, 7, 8].includes(num)) return "Difícil";
+    return "Experto";
   }
 
-  // Para secciones de 4 exámenes
   if (num === 1) return "Fácil";
   if (num === 2) return "Medio";
   if (num === 3) return "Difícil";
@@ -26,6 +24,8 @@ function getLevel(num, sectionId) {
 const sectionsGrid = document.getElementById("sections-grid");
 const examsPanel = document.getElementById("exams-panel");
 const examsGrid = document.getElementById("exams-grid");
+const examsTitle = document.getElementById("exams-title");
+
 let currentSection = null;
 
 /* ====== TARJETAS DE SECCIÓN ====== */
@@ -35,24 +35,49 @@ SECCIONES.forEach(sec => {
 
   let desc = "";
   if (sec.id === "comercio") {
-    desc = "10 exámenes · Niveles: Fácil → Experto";
+    desc = "10 exámenes · Niveles de fácil a experto";
   } else if (sec.id === "casos-practicos") {
-    desc = "10 casos prácticos";
+    desc = "10 exámenes basados en situaciones reales";
   } else {
-    desc = "4 exámenes · Niveles: Fácil → Experto";
+    desc = "4 exámenes · Niveles de fácil a experto";
   }
 
   card.innerHTML = `
     <h3>${sec.name}</h3>
     <p class="small-desc">${desc}</p>
-    <div style="display:flex; gap:10px; margin-top:10px;">
-      <button class="boton-calcular start-btn" data-section="${sec.id}">
-        Seleccionar
-      </button>
+    <div style="display:flex; gap:10px; margin-top:14px;">
+      <button class="start-btn" data-section="${sec.id}">Seleccionar</button>
     </div>
   `;
+
   sectionsGrid.appendChild(card);
 });
+
+function showExams(sectionId) {
+  const sec = SECCIONES.find(s => s.id === sectionId);
+  if (!sec) return;
+
+  examsTitle.textContent = `Exámenes disponibles · ${sec.name}`;
+  examsGrid.innerHTML = "";
+
+  for (let i = 1; i <= sec.exams; i++) {
+    const level = getLevel(i, sec.id);
+
+    const examCard = document.createElement("div");
+    examCard.className = "exam-card";
+    examCard.innerHTML = `
+      <h3>Examen ${i}</h3>
+      <p class="small-desc">Nivel: ${level}</p>
+      <div style="margin-top:14px;">
+        <button class="exam-btn" data-exam="${i}">Empezar examen</button>
+      </div>
+    `;
+    examsGrid.appendChild(examCard);
+  }
+
+  sectionsGrid.style.display = "none";
+  examsPanel.style.display = "block";
+}
 
 /* ====== EVENTOS ====== */
 document.addEventListener("click", (ev) => {

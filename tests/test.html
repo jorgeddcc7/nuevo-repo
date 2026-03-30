@@ -5,15 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Tests de Incoterms y Comercio Internacional | Pon a prueba tus conocimientos</title>
-
   <meta name="description" content="Realiza tests gratuitos de Incoterms y comercio internacional. Pon a prueba tus conocimientos en exportación, importación, logística y contratos internacionales con tests interactivos.">
-
   <meta name="robots" content="index, follow">
   <meta name="author" content="Calcula Incoterms">
 
   <link rel="stylesheet" href="test.css" />
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Tests de Incoterms y Comercio Internacional">
   <meta property="og:description" content="Tests interactivos para evaluar tus conocimientos sobre Incoterms, exportación e importación. Ideal para estudiantes y profesionales del comercio internacional.">
@@ -21,7 +18,6 @@
   <meta property="og:url" content="https://calculaincoterms.es/test.html">
   <meta property="og:site_name" content="Calcula Incoterms">
 
-  <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -36,7 +32,6 @@
   }
   </script>
 
-  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-9G78K6JBFB"></script>
   <script>
       window.dataLayer = window.dataLayer || [];
@@ -45,43 +40,66 @@
       gtag('config', 'G-9G78K6JBFB');
   </script>
 
-  <!-- Google Ads -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6775666300374227" crossorigin="anonymous"></script>
-
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6775666300374227" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <a class="link__divisas" href="/divisas.html" target="_blank">Conversor </a>
-  <a class="link__distancia" href="/distancias.html" target="_blank">Distancia </a>
-  <a class="link__facturas" href="/docs/docs1.html" target="_blank">Documentos </a>
-  <a class="link__peso" href="/peso.html" target="_blank">Volumen y Peso Dimensional</a>
-  <a href="https://calculaincoterms.es" class="link__incoterms" target="_blank">Calculadora de INCOTERMS</a>
-  <a href="/medios/medios.html" class="link__pago" target="_blank">Medios de Pago</a>
+  <main class="page-shell">
+    <div class="container2" id="main-container">
 
-  <main class="container2" id="main-container">
-    <header>
-      <h1>Tests de Incoterms y Comercio Internacional</h1>
-      <p class="descripcion">
-        Evalúa tus conocimientos sobre Incoterms, exportación, importación y comercio internacional mediante tests interactivos por niveles: básico, medio, avanzado y experto.      
-      </p>
-    </header>
+      <nav class="tool-nav" aria-label="Herramientas de comercio internacional">
+        <a href="https://calculaincoterms.es" target="_blank" rel="noopener noreferrer">Calculadora de Incoterms</a>
+        <a href="/medios/medios.html" target="_blank" rel="noopener noreferrer">Medios de pago</a>
+        <a href="/blog/blog.html" class="nav-blog-link" target="_blank" rel="noopener noreferrer">Blog Comercio</a>
 
-    <section class="seccion-calculo" aria-labelledby="sel-secciones">
-      <h2 id="sel-secciones">Selecciona una sección de examen</h2>
-      <div id="sections-grid" class="sections-grid"></div>
+        <div class="tools-dropdown">
+          <button class="tools-toggle" id="toolsToggle" type="button" aria-expanded="false">
+            <span>Más herramientas</span>
+            <span class="tools-arrow">▼</span>
+          </button>
 
-      <div id="exams-panel" style="display:none; margin-top:20px;">
-        <h3 id="exams-title">Exámenes disponibles</h3>
-        <div id="exams-grid" class="exams-grid"></div>
-        <div style="text-align:center; margin-top:12px;">
-          <button id="back-btn" class="boton-calcular">Volver a secciones</button>
+          <div class="tools-menu" id="toolsMenu">
+            <a href="/divisas.html" target="_blank" rel="noopener noreferrer">Conversor de divisas</a>
+            <a href="/distancias.html" target="_blank" rel="noopener noreferrer">Estimador tiempo de entrega</a>
+            <a href="/docs/docs1.html" target="_blank" rel="noopener noreferrer">Generador de documentos</a>
+            <a href="/peso.html" target="_blank" rel="noopener noreferrer">Volumen y peso dimensional</a>
+          </div>
         </div>
-      </div>
-    </section>
+      </nav>
 
-    <footer style="text-align:center; margin-top:18px; color:#666; font-size:13px;">
-      <small>CalculaIncoterms — Tests y exámenes de comercio internacional e Incoterms</small>
-    </footer>
+      <header class="hero">
+        <span class="hero-badge">Tests interactivos · Comercio internacional</span>
+        <h1>Pon a prueba tus conocimientos en Incoterms y comercio internacional</h1>
+        <p class="descripcion">
+          Evalúa tu nivel con tests por secciones y dificultad. Ideal para estudiantes, profesionales de exportación, importación, logística y administración comercial.
+        </p>
+
+        <div class="hero-features">
+          <div class="feature">Niveles de fácil a experto</div>
+          <div class="feature">Incoterms, logística y transporte</div>
+        </div>
+      </header>
+
+      <section class="seccion-calculo" aria-labelledby="sel-secciones">
+        <h2 id="sel-secciones">Selecciona una sección de examen</h2>
+        <p class="section-intro">
+          Elige un área y accede a los exámenes disponibles según tu nivel.
+        </p>
+
+        <div id="sections-grid" class="sections-grid"></div>
+
+        <div id="exams-panel" class="exams-panel" style="display:none;">
+          <h3 id="exams-title">Exámenes disponibles</h3>
+          <div id="exams-grid" class="exams-grid"></div>
+          <div class="actions-center">
+            <button id="back-btn" class="boton-secundario">Volver a secciones</button>
+          </div>
+        </div>
+      </section>
+
+      <footer class="page-footer">
+        <small>CalculaIncoterms — Tests y exámenes de comercio internacional e Incoterms</small>
+      </footer>
 
     <div class="footer-legal">
         <a href="#" onclick="openModal('privacidad', event)">Política de Privacidad</a> |
