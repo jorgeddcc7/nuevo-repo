@@ -1045,3 +1045,33 @@ function closeModal(id) {
         console.log('Google Analytics activado');
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const toolsToggle = document.getElementById("toolsToggle");
+    const toolsMenu = document.getElementById("toolsMenu");
+
+    if (!toolsToggle || !toolsMenu) return;
+
+    toolsToggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+        const isOpen = toolsMenu.classList.contains("open");
+        toolsMenu.classList.toggle("open", !isOpen);
+        toolsToggle.setAttribute("aria-expanded", String(!isOpen));
+    });
+
+    toolsMenu.addEventListener("click", function (e) {
+        e.stopPropagation();
+    });
+
+    document.addEventListener("click", function () {
+        toolsMenu.classList.remove("open");
+        toolsToggle.setAttribute("aria-expanded", "false");
+    });
+
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+            toolsMenu.classList.remove("open");
+            toolsToggle.setAttribute("aria-expanded", "false");
+        }
+    });
+});

@@ -64,149 +64,180 @@
             <button id="accept-cookies">Aceptar</button>
         </div>
     </div>
-    <a href="index.html" class="link__calculadora" target="_blank">Calculadora de INCOTERMS</a>
-    <a href="divisas.html" class="link__divisas" target="_blank">Conversor de divisas</a>
-    <a href="docs/docs1.html" class="link__facturas" target="_blank">Generador de Documentos</a>
-    <a href="tests/test.html" class="link__tests" target="_blank">Tests de comercio</a>
-    <a class="link__peso" href="peso.html" target="_blank">Volumen y Peso Dimensional</a>
-    <a class="link__pago" href="medios/medios.html" target="_blank">Medios de Pago</a>
 
-    <div class="page-container">
-        <!-- Contenido principal -->
+    <div class="page-shell">
+      <div class="page-container">
+
+        <nav class="tool-nav" aria-label="Herramientas de comercio internacional">
+          <a href="https://calculaincoterms.es" target="_blank" rel="noopener noreferrer">Calculadora de Incoterms</a>
+          <a href="/medios/medios.html" target="_blank" rel="noopener noreferrer">Medios de pago</a>
+          <a href="/blog/blog.html" class="nav-blog-link" target="_blank" rel="noopener noreferrer">Blog Comercio</a>
+
+          <div class="tools-dropdown">
+            <button class="tools-toggle" id="toolsToggle" type="button" aria-expanded="false">
+              <span>Más herramientas</span>
+              <span class="tools-arrow">▼</span>
+            </button>
+
+            <div class="tools-menu" id="toolsMenu">
+              <a href="/divisas.html" target="_blank" rel="noopener noreferrer">Conversor de divisas</a>
+              <a href="/docs/docs1.html" target="_blank" rel="noopener noreferrer">Generador de documentos</a>
+              <a href="/tests/test.html" target="_blank" rel="noopener noreferrer">Tests de comercio</a>
+              <a href="/peso.html" target="_blank" rel="noopener noreferrer">Volumen y peso dimensional</a>
+            </div>
+          </div>
+        </nav>
+
         <div id="tiempo-entrega" class="seccion-calculo">
-            <h1>Estimador de tiempos de entrega internacional</h1>  
-            <section class="descripcion">
-                <h2>¿Cómo funciona?</h2>
-                <p>Esta herramienta te ayuda a calcular el tiempo estimado de entrega de productos entre diferentes países. Solo tienes que seleccionar el país de origen, el país de destino y el modo de transporte. ¡Así podrás planificar mejor tus envíos!</p>
-            </section>          
-            <table>
-                <tr>
-                    <td><label for="origen">País de origen:</label></td>
-                    <td>
-                        <select id="origen">
-                            <option value="Alemania">Alemania</option>
-                            <option value="Arabia Saudita">Arabia Saudita</option>
-                            <option value="Argentina">Argentina</option>
-                            <option value="Australia">Australia</option>
-                            <option value="Bélgica">Bélgica</option>
-                            <option value="Brasil">Brasil</option>
-                            <option value="Canadá">Canadá</option>
-                            <option value="Chile">Chile</option>
-                            <option value="China">China</option>
-                            <option value="Colombia">Colombia</option>
-                            <option value="Corea del Sur">Corea del Sur</option>
-                            <option value="Dinamarca">Dinamarca</option>
-                            <option value="Egipto">Egipto</option>
-                            <option value="Emiratos Árabes Unidos">Emiratos Árabes Unidos</option>
-                            <option value="España">España</option>
-                            <option value="Estados Unidos">Estados Unidos</option>
-                            <option value="Filipinas">Filipinas</option>
-                            <option value="Francia">Francia</option>
-                            <option value="Hong Kong">Hong Kong</option>
-                            <option value="India">India</option>
-                            <option value="Indonesia">Indonesia</option>
-                            <option value="Irlanda">Irlanda</option>
-                            <option value="Israel">Israel</option>
-                            <option value="Italia">Italia</option>
-                            <option value="Japón">Japón</option>
-                            <option value="Kazajistán">Kazajistán</option>
-                            <option value="Malasia">Malasia</option>
-                            <option value="México">México</option>
-                            <option value="Noruega">Noruega</option>
-                            <option value="Nueva Zelanda">Nueva Zelanda</option>
-                            <option value="Países Bajos">Países Bajos</option>
-                            <option value="Perú">Perú</option>
-                            <option value="Qatar">Qatar</option>
-                            <option value="Reino Unido">Reino Unido</option>
-                            <option value="Singapur">Singapur</option>
-                            <option value="Sudáfrica">Sudáfrica</option>
-                            <option value="Suecia">Suecia</option>
-                            <option value="Suiza">Suiza</option>
-                            <option value="Taiwán">Taiwán</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="destino">País de destino:</label></td>
-                    <td>
-                        <select id="destino">
-                            <option value="Alemania">Alemania</option>
-                            <option value="Arabia Saudita">Arabia Saudita</option>
-                            <option value="Argentina">Argentina</option>
-                            <option value="Australia">Australia</option>
-                            <option value="Bélgica">Bélgica</option>
-                            <option value="Brasil">Brasil</option>
-                            <option value="Canadá">Canadá</option>
-                            <option value="Chile">Chile</option>
-                            <option value="China">China</option>
-                            <option value="Colombia">Colombia</option>
-                            <option value="Corea del Sur">Corea del Sur</option>
-                            <option value="Dinamarca">Dinamarca</option>
-                            <option value="Egipto">Egipto</option>
-                            <option value="Emiratos Árabes Unidos">Emiratos Árabes Unidos</option>
-                            <option value="España">España</option>
-                            <option value="Estados Unidos">Estados Unidos</option>
-                            <option value="Filipinas">Filipinas</option>
-                            <option value="Francia">Francia</option>
-                            <option value="Hong Kong">Hong Kong</option>
-                            <option value="India">India</option>
-                            <option value="Indonesia">Indonesia</option>
-                            <option value="Irlanda">Irlanda</option>
-                            <option value="Israel">Israel</option>
-                            <option value="Italia">Italia</option>
-                            <option value="Japón">Japón</option>
-                            <option value="Kazajistán">Kazajistán</option>
-                            <option value="Malasia">Malasia</option>
-                            <option value="México">México</option>
-                            <option value="Noruega">Noruega</option>
-                            <option value="Nueva Zelanda">Nueva Zelanda</option>
-                            <option value="Países Bajos">Países Bajos</option>
-                            <option value="Perú">Perú</option>
-                            <option value="Qatar">Qatar</option>
-                            <option value="Reino Unido">Reino Unido</option>
-                            <option value="Singapur">Singapur</option>
-                            <option value="Sudáfrica">Sudáfrica</option>
-                            <option value="Suecia">Suecia</option>
-                            <option value="Suiza">Suiza</option>
-                            <option value="Taiwán">Taiwán</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="transporte">Modo de transporte:</label></td>
-                    <td>
-                        <select id="transporte">
-                            <option value="terrestre">Terrestre</option>
-                            <option value="maritimo">Marítimo</option>
-                            <option value="aereo">Aéreo</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-            <button id="calcular-tiempo" class="boton-calcular">Calcular</button>
+          <header class="hero">
+            <span class="hero-badge">Logística internacional · Estimación rápida</span>
+            <h1>Estimador de tiempos de entrega internacional</h1>
+            <p>
+              Calcula una estimación orientativa del tiempo de tránsito entre países según el origen, el destino y el modo de transporte.
+            </p>
+          </header>
+
+          <section class="descripcion">
+            <h2>¿Cómo funciona?</h2>
+            <p>
+              Selecciona el país de origen, el país de destino y el modo de transporte. La herramienta calcula una estimación de días de entrega para ayudarte a planificar mejor tus envíos internacionales.
+            </p>
+          </section>
+
+          <section class="form-card" aria-labelledby="datos-envio">
+            <h2 id="datos-envio">Introduce los datos del envío</h2>
+
+            <div class="form-grid">
+              <div class="input-group">
+                <label for="origen">País de origen</label>
+                <select id="origen">
+                  <option value="Alemania">Alemania</option>
+                  <option value="Arabia Saudita">Arabia Saudita</option>
+                  <option value="Argentina">Argentina</option>
+                  <option value="Australia">Australia</option>
+                  <option value="Bélgica">Bélgica</option>
+                  <option value="Brasil">Brasil</option>
+                  <option value="Canadá">Canadá</option>
+                  <option value="Chile">Chile</option>
+                  <option value="China">China</option>
+                  <option value="Colombia">Colombia</option>
+                  <option value="Corea del Sur">Corea del Sur</option>
+                  <option value="Dinamarca">Dinamarca</option>
+                  <option value="Egipto">Egipto</option>
+                  <option value="Emiratos Árabes Unidos">Emiratos Árabes Unidos</option>
+                  <option value="España">España</option>
+                  <option value="Estados Unidos">Estados Unidos</option>
+                  <option value="Filipinas">Filipinas</option>
+                  <option value="Francia">Francia</option>
+                  <option value="Hong Kong">Hong Kong</option>
+                  <option value="India">India</option>
+                  <option value="Indonesia">Indonesia</option>
+                  <option value="Irlanda">Irlanda</option>
+                  <option value="Israel">Israel</option>
+                  <option value="Italia">Italia</option>
+                  <option value="Japón">Japón</option>
+                  <option value="Kazajistán">Kazajistán</option>
+                  <option value="Malasia">Malasia</option>
+                  <option value="México">México</option>
+                  <option value="Noruega">Noruega</option>
+                  <option value="Nueva Zelanda">Nueva Zelanda</option>
+                  <option value="Países Bajos">Países Bajos</option>
+                  <option value="Perú">Perú</option>
+                  <option value="Qatar">Qatar</option>
+                  <option value="Reino Unido">Reino Unido</option>
+                  <option value="Singapur">Singapur</option>
+                  <option value="Sudáfrica">Sudáfrica</option>
+                  <option value="Suecia">Suecia</option>
+                  <option value="Suiza">Suiza</option>
+                  <option value="Taiwán">Taiwán</option>
+                </select>
+              </div>
+
+              <div class="input-group">
+                <label for="destino">País de destino</label>
+                <select id="destino">
+                  <option value="Alemania">Alemania</option>
+                  <option value="Arabia Saudita">Arabia Saudita</option>
+                  <option value="Argentina">Argentina</option>
+                  <option value="Australia">Australia</option>
+                  <option value="Bélgica">Bélgica</option>
+                  <option value="Brasil">Brasil</option>
+                  <option value="Canadá">Canadá</option>
+                  <option value="Chile">Chile</option>
+                  <option value="China">China</option>
+                  <option value="Colombia">Colombia</option>
+                  <option value="Corea del Sur">Corea del Sur</option>
+                  <option value="Dinamarca">Dinamarca</option>
+                  <option value="Egipto">Egipto</option>
+                  <option value="Emiratos Árabes Unidos">Emiratos Árabes Unidos</option>
+                  <option value="España">España</option>
+                  <option value="Estados Unidos">Estados Unidos</option>
+                  <option value="Filipinas">Filipinas</option>
+                  <option value="Francia">Francia</option>
+                  <option value="Hong Kong">Hong Kong</option>
+                  <option value="India">India</option>
+                  <option value="Indonesia">Indonesia</option>
+                  <option value="Irlanda">Irlanda</option>
+                  <option value="Israel">Israel</option>
+                  <option value="Italia">Italia</option>
+                  <option value="Japón">Japón</option>
+                  <option value="Kazajistán">Kazajistán</option>
+                  <option value="Malasia">Malasia</option>
+                  <option value="México">México</option>
+                  <option value="Noruega">Noruega</option>
+                  <option value="Nueva Zelanda">Nueva Zelanda</option>
+                  <option value="Países Bajos">Países Bajos</option>
+                  <option value="Perú">Perú</option>
+                  <option value="Qatar">Qatar</option>
+                  <option value="Reino Unido">Reino Unido</option>
+                  <option value="Singapur">Singapur</option>
+                  <option value="Sudáfrica">Sudáfrica</option>
+                  <option value="Suecia">Suecia</option>
+                  <option value="Suiza">Suiza</option>
+                  <option value="Taiwán">Taiwán</option>
+                </select>
+              </div>
+
+              <div class="input-group input-group-full">
+                <label for="transporte">Modo de transporte</label>
+                <select id="transporte">
+                  <option value="terrestre">Terrestre</option>
+                  <option value="maritimo">Marítimo</option>
+                  <option value="aereo">Aéreo</option>
+                </select>
+              </div>
+            </div>
+
+            <button id="calcular-tiempo" class="boton-calcular">Calcular tiempo estimado</button>
             <p id="resultado-tiempo"></p>
-            <section id="contenido-seo-tiempo" class="contenido-seo">
-                <h2>Planifica tus envíos internacionales con precisión</h2>
-                <p>
-                    Con esta herramienta puedes estimar los tiempos de entrega de tus envíos entre más de 40 países
-                    utilizando transporte terrestre, marítimo o aéreo. Ideal para exportadores, importadores y profesionales de logística
-                    que desean planificar rutas y fechas de llegada con antelación.
-                </p>
-            
+          </section>
+
+          <section id="contenido-seo-tiempo" class="contenido-seo">
+            <h2>Planifica tus envíos internacionales con mayor precisión</h2>
+            <p>
+              Con esta herramienta puedes estimar los tiempos de entrega de tus envíos entre más de 40 países utilizando transporte terrestre, marítimo o aéreo. Es una solución útil para exportadores, importadores y profesionales de logística que necesitan planificar rutas y fechas de llegada con más antelación.
+            </p>
+
+            <div class="seo-grid">
+              <article class="seo-card">
                 <h3>Países y modos de transporte disponibles</h3>
                 <p>
-                    Selecciona el país de origen y destino y el tipo de transporte. La herramienta calcula una estimación de días
-                    promedio basada en rutas habituales y tiempos de tránsito internacionales.
+                  Selecciona el país de origen, el destino y el tipo de transporte. La herramienta calcula una estimación orientativa basada en rutas habituales y tiempos medios de tránsito internacional.
                 </p>
-            
-                <h3>Beneficios de usar nuestro estimador</h3>
+              </article>
+
+              <article class="seo-card">
+                <h3>Beneficios de usar este estimador</h3>
                 <ul>
-                    <li>Planificación logística más eficiente</li>
-                    <li>Reducción de retrasos y sorpresas en envíos internacionales</li>
-                    <li>Optimización de costes de transporte y almacenamiento</li>
+                  <li>Planificación logística más eficiente</li>
+                  <li>Menos retrasos e imprevistos en envíos internacionales</li>
+                  <li>Mejor organización de compras, ventas y almacenamiento</li>
                 </ul>
-            </section>
+              </article>
+            </div>
+          </section>
         </div>
+      </div>
     </div>
 
     <section id="recursos-utiles" class="contenedor-recursos">
