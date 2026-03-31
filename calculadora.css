@@ -159,6 +159,78 @@ body {
     transform: none;
 }
 
+/* Recursos destacado premium */
+.tool-nav a.nav-recursos-link {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background: linear-gradient(135deg, #f0cf83 0%, #d8a94b 45%, #b9821f 100%);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    font-weight: 700;
+    box-shadow:
+        0 6px 18px rgba(185, 127, 8, 0.22),
+        0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+}
+
+.tool-nav a.nav-recursos-link::before {
+    content: "";
+    position: absolute;
+    top: -30%;
+    left: -120%;
+    width: 55%;
+    height: 180%;
+    background: linear-gradient(
+        120deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.10) 35%,
+        rgba(255,255,255,0.42) 50%,
+        rgba(255,255,255,0.10) 65%,
+        rgba(255,255,255,0) 100%
+    );
+    transform: rotate(18deg);
+    animation: recursosShine 4.8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.tool-nav a.nav-recursos-link::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(240, 207, 131, 0.26) 0%, rgba(240, 207, 131, 0) 72%);
+    z-index: -1;
+    opacity: 0.9;
+}
+
+.tool-nav a.nav-recursos-link:hover {
+    background: linear-gradient(135deg, #f3d691 0%, #deaf4d 45%, #c48a17 100%);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow:
+        0 10px 24px rgba(185, 127, 8, 0.28),
+        0 0 22px rgba(240, 207, 131, 0.18);
+}
+
+@keyframes recursosShine {
+    0% {
+        left: -120%;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    45% {
+        left: 130%;
+        opacity: 1;
+    }
+    100% {
+        left: 130%;
+        opacity: 0;
+    }
+}
+
 @keyframes fadeSlideIn {
     from {
         opacity: 0;
@@ -797,82 +869,6 @@ button:hover {
     }
 }
 
-.promo-lateral {
-    position: fixed;
-    right: 22px;
-    top: 180px;
-    width: 220px;
-    background: linear-gradient(180deg, #ffffff 0%, #fffaf0 100%);
-    border: 1px solid rgba(245, 166, 35, 0.35);
-    border-radius: 16px;
-    padding: 18px 16px;
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.10);
-    z-index: 50;
-}
-
-.promo-badge {
-    display: inline-block;
-    margin-bottom: 10px;
-    background: rgba(245, 166, 35, 0.14);
-    color: #b06b00;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 6px 10px;
-    border-radius: 999px;
-}
-
-.promo-lateral h4 {
-    margin: 0 0 8px 0;
-    font-size: 20px;
-    color: #1f2d3d;
-}
-
-.promo-lateral p {
-    margin: 0 0 14px 0;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #4b5b6a;
-}
-
-.promo-precio {
-    font-size: 28px;
-    font-weight: 800;
-    color: #d48806;
-    margin-bottom: 14px;
-}
-
-.promo-btn {
-    display: block;
-    text-align: center;
-    background: linear-gradient(135deg, #007bff, #0056b3);
-    color: #fff;
-    text-decoration: none;
-    font-weight: 700;
-    padding: 11px 14px;
-    border-radius: 10px;
-}
-
-.promo-btn:hover {
-    color: #fff;
-    background: linear-gradient(135deg, #0056b3, #004494);
-}
-
-@media (max-width: 1400px) {
-    .promo-lateral {
-        display: none;
-    }
-}
-
-.promo-blog {
-    left: 22px;
-    border: 1px solid rgba(97, 218, 251, 0.25);
-}
-
-.promo-badge-blog {
-    background: rgba(97, 218, 251, 0.14);
-    color: #0b6e88;
-}
-
 /* ===== RESPONSIVE (MÓVILES Y TABLETS) ===== */
 @media (max-width: 992px) {
     .packs-grid {
@@ -1171,210 +1167,329 @@ button:hover {
     }
 }
 
-/* Políticas */
+/* =========================
+   FOOTER LEGAL
+========================= */
 .footer-legal {
     width: 100%;
-    background-color: transparent;
+    background: transparent;
     text-align: center;
-    padding: 15px;
+    padding: 22px 16px 28px;
     z-index: 10;
 }
 
-.footer-legal a, #cookie-settings-btn {
-    color: #007bff;
+.footer-legal a,
+#cookie-settings-btn {
+    color: #3b5f86;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 0.95rem;
     font-weight: 600;
-    margin: 0 5px;
+    margin: 0 8px;
+    transition: color 0.25s ease, opacity 0.25s ease;
+    cursor: pointer;
 }
 
-.footer-legal a:hover, #cookie-settings-btn:hover {
-    text-decoration: underline;
+.footer-legal a:hover,
+#cookie-settings-btn:hover {
+    color: #0b63ce;
+    opacity: 1;
 }
 
-/* Modal general */
+.footer-legal a:not(:last-child)::after,
+.footer-legal #cookie-settings-btn::after {
+    content: "";
+}
+
+/* =========================
+   MODAL GENERAL
+========================= */
 .modal {
     display: none;
     position: fixed;
-    z-index: 100;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
+    z-index: 1000;
     overflow: auto;
-    background-color: rgba(0,0,0,0.7);
+    background: rgba(15, 23, 42, 0.52);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 24px 16px;
 }
 
-/* Contenido del modal */
+/* =========================
+   CONTENIDO MODAL
+========================= */
 .modal-content {
-    background-color: #fff;
-    margin: 5% auto;
-    padding: 20px;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 800px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(247,250,255,0.96) 100%);
+    margin: 4vh auto;
+    padding: 28px 26px;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 860px;
     position: relative;
+    border: 1px solid rgba(158, 188, 236, 0.28);
+    box-shadow: 0 24px 70px rgba(17, 43, 88, 0.18);
 }
 
 .modal-text {
     max-height: 70vh;
     overflow-y: auto;
-    font-size: 14px;
-    color: #333;
-    line-height: 1.5;
+    font-size: 15px;
+    color: #42556d;
+    line-height: 1.75;
+    padding-right: 6px;
 }
 
-/* Botón cerrar */
+/* Scroll bonito */
+.modal-text::-webkit-scrollbar {
+    width: 10px;
+}
+
+.modal-text::-webkit-scrollbar-track {
+    background: #edf4ff;
+    border-radius: 999px;
+}
+
+.modal-text::-webkit-scrollbar-thumb {
+    background: #c7dbfa;
+    border-radius: 999px;
+}
+
+.modal-text::-webkit-scrollbar-thumb:hover {
+    background: #a9c7f3;
+}
+
+/* =========================
+   BOTÓN CERRAR
+========================= */
 .close {
     position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #999;
+    top: 16px;
+    right: 18px;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #6b7d94;
     cursor: pointer;
+    border-radius: 50%;
+    background: #f2f7ff;
+    border: 1px solid rgba(158, 188, 236, 0.24);
+    transition: all 0.25s ease;
 }
 
 .close:hover {
-    color: #333;
+    color: #0b63ce;
+    background: #e9f2ff;
+    transform: rotate(90deg);
 }
 
+/* =========================
+   TIPOGRAFÍA MODAL
+========================= */
 .modal-text h2,
 .modal-text h3 {
     margin-top: 1.5em;
-    margin-bottom: 0.5em;
-    color: #222;
+    margin-bottom: 0.6em;
+    color: #12385f;
+    line-height: 1.25;
+}
+
+.modal-text h2 {
+    font-size: 1.55rem;
+    font-weight: 800;
+}
+
+.modal-text h3 {
+    font-size: 1.12rem;
+    font-weight: 700;
 }
 
 .modal-text p {
     margin-bottom: 1em;
-    color: #444;
-    line-height: 1.6;
-    font-size: 15px;
+    color: #4f6278;
+    line-height: 1.75;
+    font-size: 0.98rem;
 }
 
 .modal-text ul {
-    margin: 0 0 1.5em 1.5em;
-    color: #444;
-    font-size: 15px;
-    line-height: 1.6;
+    margin: 0 0 1.5em 1.25em;
+    color: #4f6278;
+    font-size: 0.98rem;
+    line-height: 1.75;
 }
 
 .modal-text ul li {
-    margin-bottom: 0.5em;
+    margin-bottom: 0.55em;
 }
 
+/* =========================
+   COOKIE BANNER
+========================= */
 #cookie-banner {
     display: none;
     position: fixed;
-    bottom: 25px;
+    bottom: 24px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #fff;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-    padding: 18px 22px;
-    max-width: 520px;
-    width: 90%;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(158, 188, 236, 0.30);
+    box-shadow: 0 20px 50px rgba(17, 43, 88, 0.16);
+    border-radius: 22px;
+    padding: 18px 20px;
+    max-width: 760px;
+    width: min(92%, 760px);
     z-index: 10000;
-    font-size: 14px;
-    color: #333;
+    color: #30455f;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
+    gap: 18px;
 }
 
 #cookie-banner .cookie-text {
-    flex: 1 1 60%;
-    min-width: 220px;
+    flex: 1 1 340px;
+    min-width: 240px;
 }
 
 #cookie-banner .cookie-text p {
     margin: 0;
-    line-height: 1.5;
+    line-height: 1.65;
     font-weight: 500;
+    font-size: 0.95rem;
+    color: #4b5f76;
 }
 
 .cookie-buttons {
     flex: 0 1 auto;
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
-#cookie-banner button {
-    padding: 6px 14px;
-    font-size: 14px;
-    font-weight: 600;
-    border-radius: 6px;
-    border: none;
+/* =========================
+   BOTONES COOKIES
+========================= */
+#cookie-banner button,
+#modal-preferencias button {
+    padding: 10px 16px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    border-radius: 999px;
+    border: 1px solid transparent;
     cursor: pointer;
-    transition: background-color 0.25s ease;
+    transition: all 0.25s ease;
 }
 
-#accept-cookies {
-    background-color: #007bff;
+#accept-cookies,
+#modal-preferencias button:first-of-type {
+    background: linear-gradient(135deg, #0b63ce, #0056b3);
     color: white;
+    box-shadow: 0 10px 22px rgba(11, 99, 206, 0.18);
 }
 
-#accept-cookies:hover {
-    background-color: #0056b3;
+#accept-cookies:hover,
+#modal-preferencias button:first-of-type:hover {
+    background: linear-gradient(135deg, #0958b8, #004792);
+    transform: translateY(-1px);
 }
 
 #reject-cookies {
-    background-color: #f0f0f0;
-    color: #333;
+    background: #f3f7fd;
+    color: #294864;
+    border: 1px solid rgba(158, 188, 236, 0.28);
 }
 
 #reject-cookies:hover {
-    background-color: #dcdcdc;
+    background: #eaf2ff;
+    color: #0b63ce;
+    transform: translateY(-1px);
 }
 
+/* =========================
+   PREFERENCIAS
+========================= */
 #modal-preferencias .modal-text label {
     display: block;
-    margin: 12px 0 8px;
-    font-weight: 600;
+    margin: 14px 0 10px;
+    font-weight: 700;
     cursor: pointer;
-    font-size: 15px;
-    color: #222;
+    font-size: 0.98rem;
+    color: #12385f;
+    line-height: 1.5;
 }
 
 #modal-preferencias .modal-text input[type="checkbox"] {
     margin-right: 8px;
     cursor: pointer;
+    accent-color: #0b63ce;
+    transform: scale(1.08);
 }
 
 .botones {
     display: flex;
     justify-content: center;
-}
-
-#modal-preferencias button {
-    padding: 8px 16px;
-    border-radius: 6px;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-#modal-preferencias button:first-of-type {
-    background-color: #007bff;
-    color: white;
-}
-
-#modal-preferencias button:first-of-type:hover {
-    background-color: #0056b3;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
 }
 
 #modal-preferencias button:last-of-type {
-    background-color: #444;
-    margin-left: 10px;
+    background: #eef5ff;
+    color: #294864;
+    border: 1px solid rgba(158, 188, 236, 0.28);
+    margin-left: 0;
 }
 
 #modal-preferencias button:last-of-type:hover {
-    background-color: #aaa;
+    background: #e2edff;
+    color: #0b63ce;
+    transform: translateY(-1px);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+    .footer-legal {
+        padding: 20px 14px 26px;
+    }
+
+    .footer-legal a,
+    #cookie-settings-btn {
+        display: inline-block;
+        margin: 4px 8px;
+        font-size: 0.92rem;
+    }
+
+    .modal-content {
+        padding: 22px 18px;
+        border-radius: 20px;
+    }
+
+    .modal-text {
+        max-height: 68vh;
+    }
+
+    #cookie-banner {
+        bottom: 14px;
+        width: calc(100% - 20px);
+        padding: 16px;
+        border-radius: 18px;
+    }
+
+    .cookie-buttons {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    #cookie-banner button,
+    #modal-preferencias button {
+        width: 100%;
+    }
 }
 
