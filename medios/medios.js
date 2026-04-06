@@ -97,3 +97,63 @@ function closeModal(id) {
         console.log('Google Analytics activado');
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const blogCards = document.querySelectorAll('.blog-card');
+            const noResultsMsg = document.getElementById('no-results-msg');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+
+            let currentCategory = 'all'; // Por defecto muestra todo
+
+            // Función maestra que filtra por texto y por categoría a la vez
+            function filterArticles() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                let hasVisibleCards = false;
+
+                blogCards.forEach(function(card) {
+                    const title = card.querySelector('h2').textContent.toLowerCase();
+                    // Extraemos la categoría exacta de la tarjeta (quitando espacios extra)
+                    const category = card.querySelector('.category-tag').textContent.trim();
+
+                    // Comprobamos si coincide el texto
+                    const matchesSearch = title.includes(searchTerm);
+                    // Comprobamos si coincide la categoría (o si es "all")
+                    const matchesCategory = (currentCategory === 'all' || category === currentCategory);
+
+                    // Si cumple AMBAS condiciones, se muestra
+                    if (matchesSearch && matchesCategory) {
+                        card.style.display = 'flex';
+                        hasVisibleCards = true;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Mostrar/Ocultar mensaje de "No hay resultados"
+                if (hasVisibleCards) {
+                    noResultsMsg.style.display = 'none';
+                } else {
+                    noResultsMsg.style.display = 'block';
+                }
+            }
+
+            // Cuando el usuario ESCRIBE en el buscador
+            searchInput.addEventListener('input', filterArticles);
+
+            // Cuando el usuario PINCHA en una categoría
+            filterBtns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    // 1. Quitar la clase "active" a todos los botones
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // 2. Poner la clase "active" solo al botón pinchado
+                    this.classList.add('active');
+                    
+                    // 3. Guardar qué categoría se ha pinchado
+                    currentCategory = this.getAttribute('data-filter');
+                    
+                    // 4. Volver a filtrar las tarjetas
+                    filterArticles();
+                });
+            });
+        });
