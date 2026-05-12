@@ -35,6 +35,231 @@ function obtenerTransferenciaResponsabilidad(incoterm, puertoSalida, lugarExport
   }
 }
 
+function analizarOperacionLogistica({
+  incoterm,
+  tipoTransporte,
+  precioTotal,
+  transporteInternacional,
+  aduanaImportacion,
+  seguro,
+  perfilOperacion,
+  precioVenta
+}) {
+
+  let riesgo = 1;
+  let complejidad = 1;
+  let competitividad = 1;
+
+  // 🔹 Complejidad por Incoterm
+  const factoresIncoterm = {
+    EXW: { riesgo: 0.8, complejidad: 0.7 },
+    FCA: { riesgo: 0.9, complejidad: 0.8 },
+    FAS: { riesgo: 1.0, complejidad: 1.0 },
+    FOB: { riesgo: 1.1, complejidad: 1.1 },
+    CFR: { riesgo: 1.2, complejidad: 1.2 },
+    CIF: { riesgo: 1.3, complejidad: 1.3 },
+    CPT: { riesgo: 1.2, complejidad: 1.2 },
+    CIP: { riesgo: 1.4, complejidad: 1.4 },
+    DAP: { riesgo: 1.6, complejidad: 1.6 },
+    DPU: { riesgo: 1.7, complejidad: 1.7 },
+    DDP: { riesgo: 2.0, complejidad: 2.0 }
+  };
+
+  riesgo *= factoresIncoterm[incoterm]?.riesgo || 1;
+  complejidad *= factoresIncoterm[incoterm]?.complejidad || 1;
+
+  // 🔹 Transporte
+  const factoresTransporte = {
+    maritimo: 1.0,
+    terrestre: 1.1,
+    ferroviario: 1.1,
+    multimodal: 1.3,
+    aereo: 1.5
+  };
+
+  riesgo *= factoresTransporte[tipoTransporte] || 1;
+
+  // 🔹 Perfil comercial
+  switch (perfilOperacion) {
+
+    // 🔹 Operaciones muy agresivas comercialmente
+    // Transitarios captando cliente
+    case 'competitivo':
+
+      competitividad = 0.75;
+      break;
+
+    // 🔹 Operación estándar de mercado
+    case 'estandar':
+
+      competitividad = 1;
+      break;
+
+    // 🔹 Servicio premium / especializado
+    case 'premium':
+
+      competitividad = 1.35;
+      riesgo *= 1.05;
+      break;
+
+    // 🔹 Operaciones urgentes / alta prioridad
+    case 'urgente':
+
+      competitividad = 1.65;
+      riesgo *= 1.25;
+      complejidad *= 1.15;
+      break;
+
+    default:
+
+      competitividad = 1;
+  }
+
+  // 🔹 Base de margen
+  let margenBase = 0.06;
+
+  // 🔹 Fórmula premium
+  let porcentajeMargen =
+    margenBase *
+    riesgo *
+    complejidad *
+    competitividad;
+
+  // 🔹 Limitar extremos
+  porcentajeMargen = Math.max(0.03, porcentajeMargen);
+  porcentajeMargen = Math.min(0.18, porcentajeMargen);
+
+  const existePrecioVenta =
+    precioVenta && precioVenta > 0;
+
+  let beneficioEstimado = 0;
+  let precioSugerido = 0;
+
+  let margenReal = 0;
+  let rentabilidadReal = 0;
+
+  if (existePrecioVenta) {
+
+    margenReal =
+      precioVenta - precioTotal;
+
+    rentabilidadReal =
+      (margenReal / precioTotal) * 100;
+
+  } else {
+
+    beneficioEstimado =
+      precioTotal * porcentajeMargen;
+
+    precioSugerido =
+      precioTotal + beneficioEstimado;
+
+  }
+
+  // 🔹 Nivel riesgo
+  let nivelRiesgo = 'Bajo';
+
+  if (riesgo >= 1.8) {
+    nivelRiesgo = 'Muy alto';
+  } else if (riesgo >= 1.4) {
+    nivelRiesgo = 'Alto';
+  } else if (riesgo >= 1.1) {
+    nivelRiesgo = 'Moderado';
+  }
+
+  // 🔹 Nivel complejidad
+  let nivelComplejidad = 'Baja';
+
+  if (complejidad >= 1.8) {
+    nivelComplejidad = 'Muy alta';
+  } else if (complejidad >= 1.4) {
+    nivelComplejidad = 'Alta';
+  } else if (complejidad >= 1.1) {
+    nivelComplejidad = 'Media';
+  }
+
+  // 🔹 Recomendación inteligente
+  let recomendacion = '';
+  
+  if (existePrecioVenta) {
+  
+    if (rentabilidadReal >= 60) {
+    
+      recomendacion =
+        'La operación presenta una rentabilidad comercial muy elevada respecto al riesgo y complejidad logística asumidos.';
+    
+    }
+  
+    else if (rentabilidadReal >= 35) {
+    
+      recomendacion =
+        'La operación mantiene una rentabilidad equilibrada y consistente para el nivel operativo requerido.';
+    
+    }
+  
+    else if (rentabilidadReal >= 15) {
+    
+      recomendacion =
+        'La operación presenta un margen ajustado. Se recomienda revisar costes logísticos y estrategia comercial.';
+    
+    }
+  
+    else {
+    
+      recomendacion =
+        'La rentabilidad es reducida para el nivel de riesgo y complejidad asumidos en esta operación.';
+    
+    }
+  
+  } else {
+  
+    switch (perfilOperacion) {
+    
+      case 'competitivo':
+    
+        recomendacion =
+          'Cotización orientada a captación comercial mediante precios competitivos y menor margen operativo.';
+    
+        break;
+    
+      case 'premium':
+    
+        recomendacion =
+          'Cotización premium con mayor cobertura operativa, margen comercial superior y enfoque en servicio.';
+    
+        break;
+    
+      case 'urgente':
+    
+        recomendacion =
+          'Operación prioritaria con riesgo operativo elevado y necesidad de recargo logístico adicional.';
+    
+        break;
+    
+      default:
+    
+        recomendacion =
+          'Cotización equilibrada entre competitividad comercial y rentabilidad logística.';
+    }
+  
+  }
+
+  return {
+    modoAnalisis:
+      existePrecioVenta
+        ? 'analisis'
+        : 'cotizacion',
+    porcentajeMargen,
+    beneficioEstimado,
+    precioSugerido,
+    margenReal,
+    rentabilidadReal,
+    nivelRiesgo,
+    nivelComplejidad,
+    recomendacion
+  };
+}
+
 function calcularPrecio(incotermCustom = null, esComparacion = false) {
   // 🔹 Recoger valores generales
   const lugarExportacion = document.getElementById('lugar-exportacion').value.trim();
@@ -57,6 +282,9 @@ function calcularPrecio(incotermCustom = null, esComparacion = false) {
   const otrosCostes = parseFloat(document.getElementById('otros-costes').value) || 0;
 
   const incoterm = incotermCustom || document.getElementById('incoterm-select').value;
+
+  const activarTransitario =
+  document.getElementById('activar-transitario');
 
   // 🔹 Cálculo del precio total
   let precioTotal = precioFabrica;
@@ -102,6 +330,20 @@ function calcularPrecio(incotermCustom = null, esComparacion = false) {
   // 🔹 Transferencia de responsabilidad
   const transferenciaResponsabilidad = obtenerTransferenciaResponsabilidad(incoterm, puertoSalida, lugarExportacion, lugarImportacion);
 
+  const perfilOperacion =
+    document.getElementById('perfil-operacion')?.value || 'estandar';
+
+  const analisisLogistico = analizarOperacionLogistica({
+    incoterm,
+    tipoTransporte,
+    precioTotal,
+    transporteInternacional,
+    aduanaImportacion,
+    seguro,
+    perfilOperacion,
+    precioVenta
+  });
+
   // 🔹 Construcción del resumen HTML
   let resumenHTML = `
     <h3>${esComparacion ? 'Comparación con ' + incoterm : 'Resumen de la operación'}</h3>
@@ -123,6 +365,148 @@ function calcularPrecio(incotermCustom = null, esComparacion = false) {
   });
 
   resumenHTML += `<li><strong>Transferencia de responsabilidad (riesgo):</strong> ${transferenciaResponsabilidad}</li></ul>`;
+
+  if (activarTransitario && activarTransitario.checked) {
+
+    const riesgoClase =
+      analisisLogistico.nivelRiesgo === 'Bajo'
+        ? 'metric-risk-low'
+        : analisisLogistico.nivelRiesgo === 'Moderado'
+        ? 'metric-risk-medium'
+        : 'metric-risk-high';
+
+    resumenHTML += `
+
+      <section class="analisis-logistico-box">
+
+        <h3>
+          Análisis Comercial Logístico
+        </h3>
+
+        <div class="metric-grid">
+
+          ${
+            analisisLogistico.modoAnalisis === 'cotizacion'
+            ?
+          
+            `
+          
+            <div class="metric-card">
+          
+              <span class="metric-title">
+                Margen neto recomendado
+              </span>
+          
+              <span class="metric-value">
+                ${(analisisLogistico.porcentajeMargen * 100).toFixed(1)}%
+              </span>
+          
+            </div>
+          
+            <div class="metric-card">
+          
+              <span class="metric-title">
+                Beneficio operativo estimado
+              </span>
+          
+              <span class="metric-value">
+                ${analisisLogistico.beneficioEstimado.toFixed(2)} ${simbolo}
+              </span>
+          
+            </div>
+          
+            <div class="metric-card">
+          
+              <span class="metric-title">
+                Precio sugerido
+              </span>
+          
+              <span class="metric-value">
+                ${analisisLogistico.precioSugerido.toFixed(2)} ${simbolo}
+              </span>
+          
+            </div>
+          
+            `
+          
+            :
+          
+            `
+          
+            <div class="metric-card">
+          
+              <span class="metric-title">
+                Precio de venta
+              </span>
+          
+              <span class="metric-value">
+                ${precioVenta.toFixed(2)} ${simbolo}
+              </span>
+          
+            </div>
+          
+            <div class="metric-card">
+          
+              <span class="metric-title">
+                Margen comercial real
+              </span>
+          
+              <span class="metric-value">
+                ${analisisLogistico.margenReal.toFixed(2)} ${simbolo}
+              </span>
+          
+            </div>
+          
+            <div class="metric-card">
+          
+              <span class="metric-title">
+                Margen neto real
+              </span>
+          
+              <span class="metric-value">
+                ${analisisLogistico.rentabilidadReal.toFixed(1)}%
+              </span>
+          
+            </div>
+          
+            `
+          }
+        
+          <div class="metric-card">
+        
+            <span class="metric-title">
+              Riesgo operativo
+            </span>
+        
+            <span class="metric-value ${riesgoClase}">
+              ${analisisLogistico.nivelRiesgo}
+            </span>
+        
+          </div>
+        
+          <div class="metric-card">
+        
+            <span class="metric-title">
+              Complejidad logística
+            </span>
+        
+            <span class="metric-value">
+              ${analisisLogistico.nivelComplejidad}
+            </span>
+        
+          </div>
+        
+        </div>
+
+        <div class="recomendacion-logistica">
+
+          ${analisisLogistico.recomendacion}
+
+        </div>
+
+      </section>
+    `;
+  }
 
   // Documentación
   resumenHTML += `
@@ -352,4 +736,22 @@ function mostrarAranceles(paisOrigen, paisDestino) {
     seccion.style.display = "block";
     contenedor.innerHTML = `<em>No se aplican aranceles significativos entre ${paisOrigen} y ${paisDestino}, ya sea por la existencia de acuerdos comerciales o por falta de información detallada disponible.</em>`;
   }
+}
+
+const activarTransitario =
+  document.getElementById('activar-transitario');
+
+const configuracionTransitario =
+  document.getElementById('configuracion-transitario');
+
+if (activarTransitario) {
+
+  activarTransitario.addEventListener('change', () => {
+
+    configuracionTransitario.style.display =
+      activarTransitario.checked
+        ? 'block'
+        : 'none';
+
+  });
 }

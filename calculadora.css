@@ -1493,3 +1493,276 @@ button:hover {
     }
 }
 
+/* =========================
+   TRANSITARIO PRO MODULE
+========================= */
+
+.transitario-module {
+
+    margin-top: 30px;
+    padding: 22px;
+
+    background: linear-gradient(
+        145deg,
+        #1f2f48,
+        #24344d
+    );
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(97, 218, 251, 0.15);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.25);
+
+}
+
+.transitario-top {
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+}
+
+.transitario-top h3 {
+
+    margin: 0;
+    color: #61dafb;
+
+    font-size: 1.2rem;
+
+}
+
+.transitario-subtitle {
+
+    margin-top: 6px;
+    color: #c8d4e3;
+    font-size: 0.92rem;
+
+}
+
+.transitario-content {
+
+    margin-top: 22px;
+    display: none;
+
+    animation: fadeIn 0.3s ease;
+
+}
+
+.perfil-explicacion {
+
+    margin-top: 18px;
+
+    display: grid;
+    gap: 12px;
+
+}
+
+.perfil-explicacion div {
+
+    background: rgba(255,255,255,0.04);
+
+    border-left: 3px solid #61dafb;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    color: #dbe7f3;
+
+    line-height: 1.5;
+
+    font-size: 0.92rem;
+
+}
+
+/* SWITCH */
+
+.switch {
+
+    position: relative;
+    display: inline-block;
+
+    width: 58px;
+    height: 30px;
+
+}
+
+.switch input {
+
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+}
+
+.slider {
+
+    position: absolute;
+    cursor: pointer;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: #3c4f6d;
+
+    transition: .4s;
+
+    border-radius: 40px;
+
+}
+
+.slider:before {
+
+    position: absolute;
+    content: "";
+
+    height: 22px;
+    width: 22px;
+
+    left: 4px;
+    bottom: 4px;
+
+    background-color: white;
+
+    transition: .4s;
+
+    border-radius: 50%;
+
+}
+
+input:checked + .slider {
+
+    background-color: #61dafb;
+
+}
+
+input:checked + .slider:before {
+
+    transform: translateX(28px);
+
+}
+
+/* RESULTADO PREMIUM */
+
+.analisis-logistico-box {
+
+    margin-top: 22px;
+
+    padding: 22px;
+
+    border-radius: 18px;
+
+    background: linear-gradient(
+        145deg,
+        #1c2c44,
+        #243852
+    );
+
+    border: 1px solid rgba(97,218,251,0.15);
+
+}
+
+.analisis-logistico-box h3 {
+
+    color: #61dafb;
+    margin-bottom: 18px;
+
+}
+
+.metric-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 18px;
+
+}
+
+.metric-card {
+
+    background: rgba(255,255,255,0.04);
+
+    padding: 18px;
+
+    border-radius: 14px;
+
+}
+
+.metric-card span {
+
+    display: block;
+
+}
+
+.metric-title {
+
+    color: #9fb3c8;
+    font-size: 0.9rem;
+
+    margin-bottom: 8px;
+
+}
+
+.metric-value {
+
+    color: white;
+
+    font-size: 1.4rem;
+    font-weight: 700;
+
+}
+
+.metric-risk-low {
+    color: #49d17d;
+}
+
+.metric-risk-medium {
+    color: #f7c948;
+}
+
+.metric-risk-high {
+    color: #ff7b72;
+}
+
+.recomendacion-logistica {
+
+    margin-top: 20px;
+
+    padding: 16px;
+
+    border-radius: 12px;
+
+    background: rgba(97,218,251,0.08);
+
+    color: #d8e6ff;
+
+    line-height: 1.6;
+
+    border-left: 4px solid #61dafb;
+
+}
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+.perfil-label {
+    color: #fff;
+}
