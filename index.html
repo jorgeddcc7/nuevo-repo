@@ -308,10 +308,41 @@
                 </div>
 
                 <!-- Costes -->
+                <div class="dual-input-row">
+                
+                    <div class="input-group">
+                        <label for="precio-unitario">
+                            Precio unitario
+                        </label>
+                        <input
+                            type="number"
+                            id="precio-unitario"
+                            placeholder="Ej. 12.50"
+                            min="0"
+                            step="any"
+                        />
+                    </div>
+                
+                    <div class="input-group">
+                        <label for="unidades-totales">
+                            Unidades totales
+                        </label>
+                        <input
+                            type="number"
+                            id="unidades-totales"
+                            placeholder="Ej. 15000"
+                            min="0"
+                            step="1"
+                        />
+                    </div>
+                
+                </div>
+
                 <div class="input-group">
-                    <label for="precio-fabrica">Precio en fábrica – Incoterm EXW:</label>
+                    <label for="precio-fabrica">Precio en fábrica – Incoterm EXW (automático o manual):</label>
                     <input type="number" id="precio-fabrica" placeholder="Ej. 500" required />
                 </div>
+
                 <div class="input-group">
                     <label for="precio-venta">Precio de venta (opcional):</label>
                     <input type="number" id="precio-venta" placeholder="Ej. 650" />
@@ -1272,11 +1303,70 @@
     }
     </script>
 
+    <div id="popup-cogton-overlay" class="popup-overlay">
+
+        <div class="popup-cogton">
+
+            <div class="popup-glow"></div>
+
+            <button
+                id="cerrar-popup-cogton"
+                class="cerrar-popup"
+            >
+                ×
+            </button>
+
+            <div class="popup-top">
+
+                <div class="popup-badge">
+                    POSIBLE AHORRO
+                </div>
+
+            </div>
+
+            <h3>
+                Optimización detectada
+            </h3>
+
+            <p class="popup-texto">
+                Esta operación podría reducir costes de material y embalaje mediante optimización logística.
+            </p>
+
+            <div class="popup-metricas">
+
+                <div class="popup-metrica">
+                    <span class="popup-numero">-18%</span>
+                    <span class="popup-label">
+                        Coste potencial
+                    </span>
+                </div>
+
+                <div class="popup-metrica">
+                    <span class="popup-numero">+15-30%</span>
+                    <span class="popup-label">
+                        Rentabilidad
+                    </span>
+                </div>
+
+            </div>
+
+            <button id="btn-popup-cogton">
+                Solicitar análisis gratuito
+            </button>
+
+            <button id="continuar-resultado">
+                Continuar al resultado
+            </button>
+
+        </div>
+
+    </div>
     
     <script src="pro/ubicacionesTransporte.js"></script>
     <script src="pro/acuerdos.js"></script>
     <script src="pro/incotermslogic.js"></script>
     <script src="pro/calculadorapro.js"></script>
     <script src="calculadora.js"></script>
+
 </body>
 </html>

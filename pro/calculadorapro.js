@@ -646,13 +646,61 @@ function validarCamposObligatorios() {
   return true;
 }
 
+function detectarLeadCogton() {
+
+  const unidades =
+    parseFloat(
+      document.getElementById(
+        'unidades-totales'
+      )?.value
+    ) || 0;
+
+  const precioFabrica =
+    parseFloat(
+      document.getElementById(
+        'precio-fabrica'
+      )?.value
+    ) || 0;
+
+  return (
+    (
+      unidades >= 10000 &&
+      precioFabrica >= 10000
+    )
+    ||
+    precioFabrica >= 75000
+  );
+
+}
+
 // 🔹 Eventos
-document.getElementById('calcular').addEventListener('click', async () => {
-  if (validarCamposObligatorios()) {
-    await calcularPrecio();
-  } else {
-    document.getElementById('resumen-datos').innerHTML = ''; // limpia el resumen si falta algo
+document.getElementById('calcular')
+.addEventListener('click', async () => {
+
+  if (!validarCamposObligatorios()) {
+
+    document.getElementById(
+      'resumen-datos'
+    ).innerHTML = '';
+
+    return;
   }
+
+  const leadDetectado =
+    detectarLeadCogton();
+
+  if (leadDetectado) {
+
+    abrirPopupCogton();
+
+    /*
+      AQUÍ irá el popup
+    */
+
+  }
+
+  await calcularPrecio();
+
 });
 
 document.getElementById('divisa').addEventListener('change', actualizarDivisa);
@@ -755,3 +803,120 @@ if (activarTransitario) {
 
   });
 }
+
+const precioUnitarioInput =
+  document.getElementById('precio-unitario');
+
+const unidadesTotalesInput =
+  document.getElementById('unidades-totales');
+
+const precioFabricaInput =
+  document.getElementById('precio-fabrica');
+
+function actualizarPrecioFabrica() {
+
+  if (
+    !precioUnitarioInput ||
+    !unidadesTotalesInput ||
+    !precioFabricaInput
+  ) return;
+
+  const precioUnitario =
+    parseFloat(precioUnitarioInput.value) || 0;
+
+  const unidades =
+    parseFloat(unidadesTotalesInput.value) || 0;
+
+  if (precioUnitario > 0 && unidades > 0) {
+
+    precioFabricaInput.value =
+      (precioUnitario * unidades).toFixed(2);
+
+  }
+
+}
+
+if (precioUnitarioInput && unidadesTotalesInput) {
+
+  precioUnitarioInput.addEventListener(
+    'input',
+    actualizarPrecioFabrica
+  );
+
+  unidadesTotalesInput.addEventListener(
+    'input',
+    actualizarPrecioFabrica
+  );
+
+}
+
+const popupCogton =
+  document.getElementById(
+    'popup-cogton-overlay'
+  );
+
+const cerrarPopupCogton =
+  document.getElementById(
+    'cerrar-popup-cogton'
+  );
+
+const continuarResultado =
+  document.getElementById(
+    'continuar-resultado'
+  );
+
+const btnPopupCogton =
+  document.getElementById(
+    'btn-popup-cogton'
+  );
+
+function abrirPopupCogton() {
+
+  if (!popupCogton) return;
+
+  popupCogton.style.display = 'flex';
+  popupCogton.style.opacity = '1';
+  popupCogton.style.visibility = 'visible';
+
+}
+
+function cerrarPopup() {
+
+  popupCogton.style.display = 'none';
+
+}
+
+cerrarPopupCogton.addEventListener(
+  'click',
+  cerrarPopup
+);
+
+continuarResultado.addEventListener(
+  'click',
+  cerrarPopup
+);
+
+popupCogton.addEventListener(
+  'click',
+  (e) => {
+
+    if (e.target === popupCogton) {
+
+      cerrarPopup();
+
+    }
+
+  }
+);
+
+btnPopupCogton.addEventListener(
+  'click',
+  () => {
+
+    window.open(
+      'https://outlook.office.com/bookwithme/user/9fccf5e24ce0485f8034950285a15e56@cogton.com/meetingtype/PsBumkuznEil_mLusF2fUw2?anonymous&ismsaljsauthenabled&ep=mlink',
+      '_blank'
+    );
+
+  }
+);
