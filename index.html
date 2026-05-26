@@ -359,7 +359,7 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="transporte-internacional">Transporte internacional:</label>
+                    <label for="transporte-internacional">Transporte internacional (Flete):</label>
                     <input type="number" id="transporte-internacional" name="transporte_internacional" placeholder="Ej. 100" min="0" step="any" />
                 </div>
 
@@ -374,13 +374,15 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="carga">Carga:</label>
-                    <input type="number" id="carga" name="carga" placeholder="Ej. 25" min="0" step="any" />
+                    <label for="carga">Carga en origen:</label>
+                    <input type="number" id="carga" name="carga" placeholder="Ej. 30" min="0" step="any" />
+                    <small style="color: var(--muted); font-size: 0.8rem; display: block; margin-top: 4px;">Poner 0 si la estiba va incluida en el flete principal.</small>
                 </div>
 
                 <div class="input-group">
-                    <label for="descarga">Descarga:</label>
-                    <input type="number" id="descarga" name="descarga" placeholder="Ej. 25" min="0" step="any" />
+                    <label for="descarga">Descarga final en destino:</label>
+                    <input type="number" id="descarga" name="descarga" placeholder="Ej. 30" min="0" step="any" />
+                    <small style="color: var(--muted); font-size: 0.8rem; display: block; margin-top: 4px;">Poner 0 en la mayoría de Incoterms. Solo se desglosa aquí si vendes en DPU.</small>
                 </div>
 
                 <div class="input-group">
@@ -1414,15 +1416,15 @@
                 let precioTotal = precioFabrica;
                 switch (incoterm) {
                     case 'FCA': precioTotal += costes.transporteLocal + costes.aduanaExportacion; break;
-                    case 'CPT': precioTotal += costes.transporteLocal + costes.transporteInternacional + costes.aduanaExportacion; break;
-                    case 'CIP': precioTotal += costes.transporteLocal + costes.transporteInternacional + costes.seguro + costes.aduanaExportacion; break;
+                    case 'CPT': precioTotal += costes.transporteLocal + costes.transporteInternacional + costes.carga + costes.aduanaExportacion; break;
+                    case 'CIP': precioTotal += costes.transporteLocal + costes.transporteInternacional + costes.carga + costes.seguro + costes.aduanaExportacion; break;
                     case 'DAP': precioTotal += costes.transporteLocal + costes.transporteInternacional + costes.carga + costes.aduanaExportacion; break;
                     case 'DPU': precioTotal += costes.transporteLocal + costes.transporteInternacional + costes.descarga + costes.aduanaExportacion + costes.carga; break;
-                    case 'DDP': precioTotal += costes.transporteLocal + costes.transporteInternacional + costes.descarga + costes.aduanaExportacion + costes.aduanaImportacion + costes.otrosCostes; break;
+                    case 'DDP': precioTotal += costes.transporteLocal + costes.transporteInternacional + costes.descarga + costes.carga + costes.aduanaExportacion + costes.aduanaImportacion + costes.otrosCostes; break;
                     case 'FOB': precioTotal += costes.transporteLocal + costes.carga + costes.aduanaExportacion; break;
                     case 'FAS': precioTotal += costes.transporteLocal + costes.aduanaExportacion; break;
-                    case 'CFR': precioTotal += costes.transporteLocal + costes.transporteInternacional + costes.aduanaExportacion; break;
-                    case 'CIF': precioTotal += costes.transporteLocal + costes.transporteInternacional + costes.seguro + costes.aduanaExportacion; break;
+                    case 'CFR': precioTotal += costes.transporteLocal + costes.transporteInternacional + costes.carga + costes.aduanaExportacion; break;
+                    case 'CIF': precioTotal += costes.transporteLocal + costes.transporteInternacional + costes.carga + costes.seguro + costes.aduanaExportacion; break;
                 }
 
                 // Invocar tus funciones globales heredadas de calculadorapro.js

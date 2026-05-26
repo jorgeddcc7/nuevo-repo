@@ -292,15 +292,15 @@ function calcularPrecio(incotermCustom = null, esComparacion = false) {
   switch (incoterm) {
     case 'EXW': break;
     case 'FCA': precioTotal += transporteLocal + aduanaExportacion; break;
-    case 'CPT': precioTotal += transporteLocal + transporteInternacional + aduanaExportacion; break;
-    case 'CIP': precioTotal += transporteLocal + transporteInternacional + seguro + aduanaExportacion; break;
+    case 'CPT': precioTotal += transporteLocal + transporteInternacional + aduanaExportacion + carga; break;
+    case 'CIP': precioTotal += transporteLocal + transporteInternacional + seguro + aduanaExportacion + carga; break;
     case 'DAP': precioTotal += transporteLocal + transporteInternacional + carga + aduanaExportacion; break;
     case 'DPU': precioTotal += transporteLocal + transporteInternacional + descarga + aduanaExportacion + carga; break;
-    case 'DDP': precioTotal += transporteLocal + transporteInternacional + descarga + aduanaExportacion + aduanaImportacion + otrosCostes; break;
+    case 'DDP': precioTotal += transporteLocal + transporteInternacional + carga + descarga + aduanaExportacion + aduanaImportacion + otrosCostes; break;
     case 'FOB': precioTotal += transporteLocal + carga + aduanaExportacion; break;
     case 'FAS': precioTotal += transporteLocal + aduanaExportacion; break;
-    case 'CFR': precioTotal += transporteLocal + transporteInternacional + aduanaExportacion; break;
-    case 'CIF': precioTotal += transporteLocal + transporteInternacional + seguro + aduanaExportacion; break;
+    case 'CFR': precioTotal += transporteLocal + transporteInternacional + aduanaExportacion + carga; break;
+    case 'CIF': precioTotal += transporteLocal + transporteInternacional + seguro + aduanaExportacion + carga; break;
   }
 
   // 🔹 Preparar desglose de costes
