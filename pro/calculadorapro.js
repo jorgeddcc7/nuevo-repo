@@ -915,3 +915,225 @@ btnPopupCogton.addEventListener(
     );
   }
 );
+
+// ==========================================
+// FUNCIÓN PARA GENERAR Y DESCARGAR EL PDF
+// ==========================================
+function descargarPDFSimulacion() {
+  // 1. Recoger las variables de los inputs
+  const lugarExportacion = document.getElementById('lugar-exportacion').value || 'No especificado';
+  const lugarImportacion = document.getElementById('lugar-importacion').value || 'No especificado';
+  const tipoTransporteSelect = document.getElementById('tipo-transporte').value;
+  const divisa = document.getElementById('divisa').value;
+  const simbolos = { EUR: '€', USD: '$' };
+  const simbolo = simbolos[divisa] || '€';
+  
+  const incoterm = document.getElementById('incoterm-select').value;
+  const precioFabrica = parseFloat(document.getElementById('precio-fabrica').value) || 0;
+  const precioVenta = parseFloat(document.getElementById('precio-venta').value) || 0;
+  
+  const costes = {
+    precioFabrica,
+    transporteLocal: parseFloat(document.getElementById('transporte-local').value) || 0,
+    seguro: parseFloat(document.getElementById('seguro').value) || 0,
+    transporteInternacional: parseFloat(document.getElementById('transporte-internacional').value) || 0,
+    aduanaExportacion: parseFloat(document.getElementById('aduana-exportacion').value) || 0,
+    aduanaImportacion: parseFloat(document.getElementById('aduana-importacion').value) || 0,
+    carga: parseFloat(document.getElementById('carga').value) || 0,
+    descarga: parseFloat(document.getElementById('descarga').value) || 0,
+    otrosCostes: parseFloat(document.getElementById('otros-costes').value) || 0
+  };
+
+  // 2. Calcular precio total según tu lógica de negocio
+  let precioTotal = precioFabrica;
+  switch (incoterm) {
+    case 'FCA': precioTotal += costes.transporteLocal + costes.aduanaExportacion; break;
+    case 'CPT': precioTotal += costes.transporteLocal + costes.transporteInternacional + costes.aduanaExportacion; break;
+    case 'CIP': precioTotal += costes.transporteLocal + costes.transporteInternacional + costes.seguro + costes.aduanaExportacion; break;
+    case 'DAP': precioTotal += costes.transporteLocal + costes.transporteInternacional + costes.carga + costes.aduanaExportacion; break;
+    case 'DPU': precioTotal += costes.transporteLocal + costes.transporteInternacional + costes.descarga + costes.aduanaExportacion + costes.carga; break;
+    case 'DDP': precioTotal += costes.transporteLocal + costes.transporteInternacional + costes.descarga + costes.aduanaExportacion + costes.aduanaImportacion + costes.otrosCostes; break;
+    case 'FOB': precioTotal += costes.transporteLocal + costes.carga + costes.aduanaExportacion; break;
+    case 'FAS': precioTotal += costes.transporteLocal + costes.aduanaExportacion; break;
+    case 'CFR': precioTotal += costes.transporteLocal + costes.transporteInternacional + costes.aduanaExportacion; break;
+    case 'CIF': precioTotal += costes.transporteLocal + costes.transporteInternacional + costes.seguro + costes.aduanaExportacion; break;
+  }
+
+  // Obtener responsabilidades utilizando tu función nativa
+  const desgloseResponsabilidades = obtenerDesgloseResponsabilidades(incoterm, costes);
+
+  // Calcular la rentabilidad mediante tu función nativa
+  const perfilOperacion = document.getElementById('perfil-operacion')?.value || 'estandar';
+  const analisisLogistico = analizarOperacionLogistica({
+    incoterm,
+    tipoTransporte: tipoTransporteSelect,
+    precioTotal,
+    transporteInternacional: costes.transporteInternacional,
+    aduanaImportacion: costes.aduanaImportacion,
+    seguro: costes.seguro,
+    perfilOperacion,
+    precioVenta
+  });
+
+  // 3. Crear el contenedor temporal e INYECTARLO en el cuerpo del documento (Solución al PDF en blanco)
+  const elementoTemporal = document.createElement('div');
+  elementoTemporal.id = 'pdf-render-temp';
+  
+  // Estos estilos aseguran que se renderice perfectamente en un fondo claro sin romper tu web oscura visible
+  elementoTemporal.style.position = 'absolute';
+  elementoTemporal.style.left = '-9999px';
+  elementoTemporal.style.top = '0';
+  elementoTemporal.style.width = '700px'; // Forzar un ancho fijo adecuado para tamaño A4
+  elementoTemporal.style.padding = '30px';
+  elementoTemporal.style.fontFamily = 'Arial, sans-serif';
+  elementoTemporal.style.color = '#333333';
+  elementoTemporal.style.backgroundColor = '#ffffff';
+
+  // Maquetación estructurada del PDF limpio
+  let contenidoPDF = `
+    <div style="border-bottom: 2px solid #1f2f48; padding-bottom: 15px; margin-bottom: 25px;">
+        <h1 style="color: #1f2f48; margin: 0; font-size: 24px;">Simulación de Exportación Logística</h1>
+        <p style="color: #666; margin: 5px 0 0 0; font-size: 13px;">Generado desde Calcula Incoterms</p>
+    </div>
+
+    <h2 style="color: #1f2f48; font-size: 16px; margin-bottom: 10px;">1. Datos Generales de la Operación</h2>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px; font-size: 13px;">
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; background-color: #f9f9f9; width: 45%;"><strong>País Origen (Exportación):</strong></td>
+            <td style="padding: 8px; border: 1px solid #ddd;">${lugarExportacion}</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; background-color: #f9f9f9;"><strong>País Destino (Importación):</strong></td>
+            <td style="padding: 8px; border: 1px solid #ddd;">${lugarImportacion}</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; background-color: #f9f9f9;"><strong>Incoterm Seleccionado:</strong></td>
+            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold; color: #0056b3;">${incoterm}</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; background-color: #f9f9f9;"><strong>Precio Total Calculado:</strong></td>
+            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold; font-size: 14px;">${precioTotal.toFixed(2)} ${simbolo}</td>
+        </tr>
+    </table>
+
+    <h2 style="color: #1f2f48; font-size: 16px; margin-bottom: 10px;">2. Distribución de Costes y Responsabilidades</h2>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px; font-size: 12px;">
+        <thead>
+            <tr style="background-color: #1f2f48; color: white;">
+                <th style="padding: 8px; text-align: left; border: 1px solid #1f2f48;">Concepto del Coste</th>
+                <th style="padding: 8px; text-align: right; border: 1px solid #1f2f48;">Importe</th>
+                <th style="padding: 8px; text-align: center; border: 1px solid #1f2f48;">Responsable del Pago</th>
+            </tr>
+        </thead>
+        <tbody>
+  `;
+
+  // Mapear los datos de quién paga qué filtrando datos no numéricos
+  desgloseResponsabilidades.forEach(({ nombre, valor, responsable }) => {
+    const nombreFormateado = nombre.charAt(0).toUpperCase() + nombre.slice(1);
+    const esVendedor = responsable.toLowerCase().includes('vendedor');
+    const badgeColor = esVendedor ? '#e1f5fe' : '#e8f5e9';
+    const badgeTextColor = esVendedor ? '#0288d1' : '#388e3c';
+
+    contenidoPDF += `
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">${nombreFormateado}</td>
+            <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">${valor.toFixed(2)} ${simbolo}</td>
+            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">
+                <span style="background-color: ${badgeColor}; color: ${badgeTextColor}; padding: 3px 8px; border-radius: 4px; font-weight: bold; font-size: 11px;">
+                    ${responsable.toUpperCase()}
+                </span>
+            </td>
+        </tr>
+    `;
+  });
+
+  contenidoPDF += `
+        </tbody>
+    </table>
+    
+    <h2 style="color: #1f2f48; font-size: 16px; margin-bottom: 10px;">3. Rendimiento Comercial y Rentabilidad</h2>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 13px;">
+  `;
+
+  // Insertar sección inteligente de rentabilidad basada en la lógica de tu simulador
+  if (analisisLogistico.modoAnalisis === 'analisis') {
+    contenidoPDF += `
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; background-color: #f9f9f9; width: 45%;"><strong>Precio de Venta Establecido:</strong></td>
+            <td style="padding: 8px; border: 1px solid #ddd;">${precioVenta.toFixed(2)} ${simbolo}</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; background-color: #f9f9f9;"><strong>Margen Comercial Real:</strong></td>
+            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold; color: #2e7d32;">${analisisLogistico.margenReal.toFixed(2)} ${simbolo}</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; background-color: #f9f9f9;"><strong>Rentabilidad Neta Comercial:</strong></td>
+            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold; color: #2e7d32; font-size: 14px;">${analisisLogistico.rentabilidadReal.toFixed(1)}%</td>
+        </tr>
+    `;
+  } else {
+    contenidoPDF += `
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; background-color: #f9f9f9; width: 45%;"><strong>Margen Operativo Sugerido:</strong></td>
+            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold; color: #0056b3;">${(analisisLogistico.porcentajeMargen * 100).toFixed(1)}%</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; background-color: #f9f9f9;"><strong>Beneficio Operativo Estimado:</strong></td>
+            <td style="padding: 8px; border: 1px solid #ddd; color: #2e7d32; font-weight: bold;">${analisisLogistico.beneficioEstimado.toFixed(2)} ${simbolo}</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; background-color: #f9f9f9;"><strong>Precio de Venta Recomendado:</strong></td>
+            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold; font-size: 14px;">${analisisLogistico.precioSugerido.toFixed(2)} ${simbolo}</td>
+        </tr>
+    `;
+  }
+
+  contenidoPDF += `
+    </table>
+    <div style="background-color: #f1f3f5; border-left: 4px solid #1f2f48; padding: 15px; margin-top: 20px; font-size: 12px; line-height: 1.5; color: #495057; border-radius: 4px;">
+        <strong>Conclusión Estratégica:</strong> ${analisisLogistico.recomendacion}
+    </div>
+  `;
+
+  elementoTemporal.innerHTML = contenidoPDF;
+  
+  // Adjuntar físicamente al DOM para que html2pdf pueda leer las dimensiones y renderizar
+  document.body.appendChild(elementoTemporal);
+
+  // 4. Configuración avanzada de html2pdf
+  const opciones = {
+    margin:       15,
+    filename:     `simulacion_incoterm_${incoterm}.pdf`,
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2, useCORS: true, logging: false },
+    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  // 5. Ejecutar la descarga y limpiar inmediatamente el DOM al terminar
+  html2pdf().set(opciones).from(elementoTemporal).save().then(() => {
+    // Eliminar el elemento temporal una vez generado el PDF
+    if (document.getElementById('pdf-render-temp')) {
+        document.body.removeChild(elementoTemporal);
+    }
+  }).catch((err) => {
+    console.error("Error generando el PDF:", err);
+    // Asegurar limpieza incluso en caso de error
+    if (document.getElementById('pdf-render-temp')) {
+        document.body.removeChild(elementoTemporal);
+    }
+  });
+}
+
+// 6. Listener del botón "Calcular" nativo para mostrar la opción de descargar resultados
+document.getElementById('calcular').addEventListener('click', function() {
+  setTimeout(() => {
+    const contenedorDescarga = document.getElementById('contenedor-descarga-pdf');
+    if (contenedorDescarga) {
+      contenedorDescarga.style.display = 'block';
+    }
+  }, 200);
+});
+
+// 7. Evento para disparar la descarga
+document.getElementById('btn-descargar-pdf').addEventListener('click', descargarPDFSimulacion);
