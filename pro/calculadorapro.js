@@ -910,7 +910,7 @@ btnPopupCogton.addEventListener(
   () => {
 
     window.open(
-      'https://outlook.office.com/bookwithme/user/9fccf5e24ce0485f8034950285a15e56@cogton.com/meetingtype/PsBumkuznEil_mLusF2fUw2?anonymous&ismsaljsauthenabled&ep=mlink',
+      'https://bit.ly/export-optimization',
       '_blank'
     );
   }
