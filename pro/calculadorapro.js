@@ -878,6 +878,10 @@ function abrirPopupCogton() {
   popupCogton.style.opacity = '1';
   popupCogton.style.visibility = 'visible';
 
+  if (typeof gtag === 'function') {
+    gtag('event', 'popup_analisis_abierto');
+  }
+
 }
 
 function cerrarPopup() {
@@ -908,6 +912,10 @@ popupCogton.addEventListener(
 btnPopupCogton.addEventListener(
   'click',
   () => {
+
+    if (typeof gtag === 'function') {
+      gtag('event', 'clic_solicitar_analisis');
+    }
 
     window.open(
       'https://bit.ly/export-optimization',
