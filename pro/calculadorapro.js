@@ -690,16 +690,11 @@ document.getElementById('calcular')
     detectarLeadCogton();
 
   if (leadDetectado) {
-
     abrirPopupCogton();
-
-    /*
-      AQUÍ irá el popup
-    */
-
+    return; // ← CLAVE: para aquí, no calcula todavía
   }
 
-  await calcularPrecio();
+  await calcularPrecio()
 
 });
 
@@ -850,76 +845,72 @@ if (precioUnitarioInput && unidadesTotalesInput) {
 
 }
 
-const popupCogton =
-  document.getElementById(
-    'popup-cogton-overlay'
-  );
+/* ============================================================
+   POPUP COGTON — sustituye el bloque del popup en tu JS
+   (desde "const popupCogton = ..." hasta el final del archivo)
+   ============================================================ */
 
-const cerrarPopupCogton =
-  document.getElementById(
-    'cerrar-popup-cogton'
-  );
-
-const continuarResultado =
-  document.getElementById(
-    'continuar-resultado'
-  );
-
-const btnPopupCogton =
-  document.getElementById(
-    'btn-popup-cogton'
-  );
+const popupCogton = document.getElementById('popup-cogton-overlay');
+const cerrarPopupCogton = document.getElementById('cerrar-popup-cogton');
+const continuarResultado = document.getElementById('continuar-resultado');
+const btnPopupCogton = document.getElementById('btn-popup-cogton');
 
 function abrirPopupCogton() {
 
-  if (!popupCogton) return;
+    if (!popupCogton) return;
 
-  popupCogton.style.display = 'flex';
-  popupCogton.style.opacity = '1';
-  popupCogton.style.visibility = 'visible';
+    // Leer el precio de fábrica introducido por el usuario
+    const precioFabrica = parseFloat(document.getElementById('precio-fabrica').value) || 0;
+    const precioFormateado = precioFabrica.toLocaleString('es-ES') + '€';
 
-  if (typeof gtag === 'function') {
-    gtag('event', 'popup_analisis_abierto');
-  }
+    // Insertar el número dinámicamente en el título
+    const tituloPrecio = document.getElementById('popup-precio-usuario');
+    if (tituloPrecio) {
+        tituloPrecio.textContent = precioFormateado;
+    }
 
+    // Calcular rango de ahorro estimado (15%-30%)
+    const ahorroMin = Math.round(precioFabrica * 0.15).toLocaleString('es-ES');
+    const ahorroMax = Math.round(precioFabrica * 0.30).toLocaleString('es-ES');
+
+    const rangoAhorro = document.getElementById('popup-rango-ahorro');
+    if (rangoAhorro) {
+        rangoAhorro.textContent = ahorroMin + '€ y ' + ahorroMax + '€ al año';
+    }
+
+    // Mostrar popup
+    popupCogton.style.display = 'flex';
+    popupCogton.style.opacity = '1';
+    popupCogton.style.visibility = 'visible';
+
+    if (typeof gtag === 'function') {
+        gtag('event', 'popup_analisis_abierto');
+    }
 }
 
 function cerrarPopup() {
-
-  popupCogton.style.display = 'none';
-
+    popupCogton.style.display = 'none';
 }
 
-cerrarPopupCogton.addEventListener(
-  'click',
-  cerrarPopup
-);
+cerrarPopupCogton.addEventListener('click', cerrarPopup);
 
-continuarResultado.addEventListener(
-  'click',
-  cerrarPopup
-);
+continuarResultado.addEventListener('click', () => {
+    cerrarPopup();
+    calcularPrecio(); // ← calcula al continuar
+});
 
-popupCogton.addEventListener(
-  'click',
-  (e) => {
+popupCogton.addEventListener('click', (e) => {
     if (e.target === popupCogton) {
-      cerrarPopup();
+        cerrarPopup();
     }
-  }
-);
+});
 
-btnPopupCogton.addEventListener(
-  'click',
-  () => {
+btnPopupCogton.addEventListener('click', () => {
 
     if (typeof gtag === 'function') {
-      gtag('event', 'clic_solicitar_analisis');
+        gtag('event', 'clic_solicitar_analisis');
     }
 
-    window.open(
-      'https://bit.ly/export-optimization',
-      '_blank'
-    );
-  }
-);
+    window.open('https://www.cogton.com/export-optimization', '_blank');
+
+});

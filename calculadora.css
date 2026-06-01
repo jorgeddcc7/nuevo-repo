@@ -1785,6 +1785,10 @@ input:checked + .slider:before {
 
 }
 
+/* ============================================================
+   POPUP COGTON — añade esto al final de tu calculadora.css
+   ============================================================ */
+
 .popup-overlay {
     position: fixed;
     inset: 0;
@@ -1801,12 +1805,7 @@ input:checked + .slider:before {
     position: relative;
     width: 100%;
     max-width: 520px;
-    background:
-        linear-gradient(
-            145deg,
-            rgba(15,23,42,0.96),
-            rgba(30,41,59,0.98)
-        );
+    background: linear-gradient(145deg, rgba(15,23,42,0.97), rgba(30,41,59,0.99));
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 28px;
     padding: 38px;
@@ -1821,107 +1820,114 @@ input:checked + .slider:before {
     position: absolute;
     width: 240px;
     height: 240px;
-    background: rgba(96,165,250,0.18);
+    background: rgba(37,99,235,0.15);
     border-radius: 50%;
     filter: blur(60px);
     top: -120px;
     right: -80px;
+    pointer-events: none;
 }
 
 .popup-top {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
 }
 
 .popup-badge {
     background: rgba(96,165,250,0.14);
     border: 1px solid rgba(96,165,250,0.28);
     color: #93c5fd;
-    padding: 8px 14px;
+    padding: 7px 14px;
     border-radius: 999px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .popup-cogton h3 {
-    color: white;
-    font-size: 34px;
-    line-height: 1.1;
-    margin-bottom: 18px;
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 16px;
+}
+
+.popup-cogton h3 span#popup-precio-usuario {
+    color: #60a5fa;
 }
 
 .popup-texto {
-    color: #cbd5e1;
+    color: #94a3b8;
     line-height: 1.7;
-    font-size: 16px;
-    margin-bottom: 28px;
+    font-size: 15px;
+    margin-bottom: 26px;
+}
+
+.popup-texto strong {
+    color: #e2e8f0;
 }
 
 .popup-metricas {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 14px;
-    margin-bottom: 30px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
 }
 
 .popup-metrica {
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 18px;
+    border-radius: 16px;
     padding: 18px;
     text-align: center;
 }
 
 .popup-numero {
     display: block;
-    color: white;
-    font-size: 28px;
-    font-weight: 800;
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 700;
     margin-bottom: 6px;
 }
 
 .popup-label {
-    color: #94a3b8;
-    font-size: 13px;
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.4;
 }
 
 #btn-popup-cogton {
     width: 100%;
     border: none;
-    background:
-        linear-gradient(
-            135deg,
-            #2563eb,
-            #3b82f6
-        );
-    color: white;
-    padding: 18px;
-    border-radius: 18px;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: #ffffff;
+    padding: 17px;
+    border-radius: 16px;
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
-    transition: 0.25s;
+    transition: transform 0.2s, box-shadow 0.2s;
     margin-bottom: 12px;
 }
 
 #btn-popup-cogton:hover {
     transform: translateY(-2px);
-    box-shadow:
-        0 10px 30px rgba(37,99,235,0.35);
+    box-shadow: 0 10px 30px rgba(37,99,235,0.35);
 }
 
 #continuar-resultado {
     width: 100%;
     background: transparent;
     border: 1px solid rgba(255,255,255,0.08);
-    color: #cbd5e1;
-    padding: 15px;
-    border-radius: 16px;
+    color: #94a3b8;
+    padding: 14px;
+    border-radius: 14px;
+    font-size: 14px;
     cursor: pointer;
-    transition: 0.25s;
+    transition: background 0.2s;
 }
 
 #continuar-resultado:hover {
@@ -1932,19 +1938,26 @@ input:checked + .slider:before {
     position: absolute;
     top: 18px;
     right: 18px;
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     border: none;
     border-radius: 50%;
-    background: rgba(76, 87, 246, 0.5);
-    color: white;
-    font-size: 22px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #94a3b8;
+    font-size: 20px;
     cursor: pointer;
     z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
+    line-height: 1;
+    transition: background 0.2s;
+}
+
+.cerrar-popup:hover {
+    background: rgba(255,255,255,0.12);
 }
 
 @keyframes popupEntrada {
@@ -1957,4 +1970,3 @@ input:checked + .slider:before {
         transform: translateY(0) scale(1);
     }
 }
-
