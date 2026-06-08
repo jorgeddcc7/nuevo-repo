@@ -621,6 +621,60 @@ function calcularPrecio(incotermCustom = null, esComparacion = false) {
     document.getElementById('resultado-comparacion').style.display = 'block';
   } else {
     document.getElementById('resumen-datos').innerHTML = resumenHTML;
+  const recursoContextual = (() => {
+      const usoPrecioVenta = precioVenta && precioVenta > 0;
+      const incotermComplejo = ['DDP', 'CIF', 'DPU'].includes(incoterm);
+
+      // REGLA 1: Prioridad máxima. Si es complejo, va el Pack Avanzado (Checklist)
+      if (incotermComplejo) {
+        return {
+          texto: 'Con ' + incoterm + ' el exportador asume responsabilidades documentales complejas. El Checklist documental por Incoterm reduce errores en aduana.',
+          recurso: 'Checklist de documentación por Incoterm (PDF)',
+          pack: 'Pack Avanzado · 16€',
+          url: 'https://payhip.com/b/lisHL'
+        };
+      } 
+      // REGLA 2: Si no es complejo, pero introduce precio de venta, va el Pack Profesional (Márgenes)
+      else if (usoPrecioVenta) {
+        return {
+          texto: 'Estás calculando rentabilidad. El Simulador de márgenes por Incoterm te permite comparar escenarios y afinar tu precio de venta en Excel.',
+          recurso: 'Simulador de márgenes (Excel)',
+          pack: 'Pack Profesional · 12€',
+          url: 'https://payhip.com/b/mKip4'
+        };
+      } 
+      // REGLA 3: Por defecto para el resto de casos (Costes logísticos)
+      else {
+        return {
+          texto: 'Organiza y controla todos los costes de esta operación con la Plantilla de cálculo de costes logísticos, adaptada a cualquier Incoterm.',
+          recurso: 'Plantilla de costes logísticos (Excel)',
+          pack: 'Pack Profesional · 12€',
+          url: 'https://payhip.com/b/mKip4'
+        };
+      }
+    })();
+
+    const bloqueRecurso = document.createElement('div');
+    bloqueRecurso.style.cssText = `
+      margin: 24px 0 8px;
+      padding: 16px 20px;
+      background-color: #1f2f48;
+      border-left: 3px solid #61dafb;
+      border-radius: 8px;
+      color: #e1e6f0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    `;
+    bloqueRecurso.innerHTML = `
+      <p style="margin: 0 0 10px; color: #aac8e8;">${recursoContextual.texto}</p>
+      <a href="${recursoContextual.url}" target="_blank" rel="noopener noreferrer"
+         style="display:inline-block; background-color:#61dafb; color:#0a1628; padding:8px 16px;
+                border-radius:6px; font-weight:bold; font-size:0.85rem; text-decoration:none;">
+        Ver ${recursoContextual.recurso} — ${recursoContextual.pack}
+      </a>
+    `;
+
+    document.getElementById('resumen-datos').appendChild(bloqueRecurso);
     renderizarGraficoCostes(desglose);
     mostrarAranceles(paisOrigen, paisDestino);
     document.getElementById('comparar-incoterm-section').style.display = 'block';
