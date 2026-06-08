@@ -1,0 +1,303 @@
+/* --- VARIABLES DE DISEÑO (Colores corporativos) --- */
+:root {
+    --azul-principal: #0056b3;
+    --azul-oscuro: #003d82;
+    --blanco: #ffffff;
+    --gris-claro: #f8f9fa;
+    --gris-texto: #333333;
+    --borde-tabla: #e0e0e0;
+    --color-vendedor: #d9534f; /* Rojo para obligaciones del vendedor */
+    --color-comprador: #5cb85c; /* Verde para obligaciones del comprador */
+}
+
+/* --- ESTILOS GENERALES --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7;
+    color: var(--gris-texto);
+    background-color: var(--blanco);
+}
+
+.container-incoterm {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* --- HERO SECTION (Encabezado principal) --- */
+.hero-incoterm {
+    background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-principal) 100%);
+    color: var(--blanco);
+    padding: 60px 30px;
+    text-align: center;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.hero-incoterm h1 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.hero-incoterm p {
+    font-size: 1.25rem;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+    opacity: 0.94;
+}
+
+/* --- BOTÓN CTA PRINCIPAL --- */
+.cta-incoterm-btn {
+    display: inline-block;
+    background-color: var(--blanco);
+    color: var(--azul-oscuro);
+    padding: 16px 36px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cta-incoterm-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    background-color: var(--gris-claro);
+}
+
+/* --- TITULARES DE SECCIÓN --- */
+.titulo-seccion {
+    color: var(--azul-oscuro);
+    border-left: 5px solid var(--azul-principal);
+    padding-left: 15px;
+    margin: 45px 0 20px 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+/* --- ESTRUCTURA EN DOS COLUMNAS (Pros y Contras) --- */
+.grid-beneficios {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin: 35px 0;
+}
+
+@media (max-width: 768px) {
+    .grid-beneficios {
+        grid-template-columns: 1fr;
+    }
+}
+
+.tarjeta-beneficio {
+    background-color: var(--gris-claro);
+    padding: 30px;
+    border-radius: 8px;
+    border-top: 4px solid var(--azul-principal);
+}
+
+.tarjeta-beneficio h3 {
+    color: var(--azul-oscuro);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.tarjeta-beneficio ul {
+    list-style-position: inside;
+    padding-left: 5px;
+}
+
+.tarjeta-beneficio li {
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+}
+
+/* --- LÍNEA DE FLUJO LOGÍSTICO (Infografía Textual) --- */
+.flujo-contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--azul-oscuro);
+    color: var(--blanco);
+    padding: 25px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 30px 0;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.flujo-paso {
+    flex: 1;
+    min-width: 120px;
+    padding: 12px 8px;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.flujo-paso.vendedor-activo {
+    background-color: var(--color-vendedor);
+    font-weight: bold;
+}
+
+.flujo-paso.comprador-activo {
+    background-color: var(--color-comprador);
+    font-weight: bold;
+}
+
+.flujo-flecha {
+    font-size: 1.4rem;
+    color: var(--azul-principal);
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .flujo-contenedor {
+        flex-direction: column;
+    }
+    .flujo-flecha {
+        transform: rotate(90deg);
+        margin: 5px 0;
+    }
+}
+
+/* --- TABLA DE RESPONSABILIDADES --- */
+.tabla-contenedor {
+    overflow-x: auto;
+    margin: 30px 0 45px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-radius: 8px;
+}
+
+.tabla-incoterm {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--blanco);
+}
+
+.tabla-incoterm th, .tabla-incoterm td {
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--borde-tabla);
+    font-size: 1.05rem;
+}
+
+.tabla-incoterm th {
+    background-color: var(--azul-oscuro);
+    color: var(--blanco);
+    font-weight: 600;
+}
+
+.tabla-incoterm tr:nth-child(even) {
+    background-color: var(--gris-claro);
+}
+
+.badge-vendedor {
+    color: var(--color-vendedor);
+    font-weight: bold;
+}
+
+.badge-comprador {
+    color: var(--color-comprador);
+    font-weight: bold;
+}
+
+/* --- BANNER CTA DE CIERRE --- */
+.banner-cta-final {
+    background-color: var(--gris-claro);
+    border: 2px dashed var(--azul-principal);
+    padding: 40px;
+    text-align: center;
+    border-radius: 12px;
+    margin-top: 60px;
+}
+
+.banner-cta-final h3 {
+    color: var(--azul-oscuro);
+    font-size: 1.7rem;
+    margin-bottom: 15px;
+}
+
+.banner-cta-final p {
+    max-width: 750px;
+    margin: 0 auto 25px auto;
+}
+
+.btn-final-calcular {
+    display: inline-block;
+    background-color: var(--azul-principal);
+    color: var(--blanco);
+    padding: 15px 35px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-final-calcular:hover {
+    background-color: var(--azul-oscuro);
+}
+
+/* --- MENÚ DE NAVEGACIÓN ENTRE INCOTERMS --- */
+.seccion-navegacion-incoterms {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid var(--borde-tabla);
+}
+
+.seccion-navegacion-incoterms h3 {
+    color: var(--azul-oscuro);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.grid-navegacion-incoterms {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.enlace-incoterm-nav {
+    display: block;
+    text-align: center;
+    padding: 12px 10px;
+    background-color: var(--gris-claro);
+    color: var(--azul-principal);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 86, 179, 0.1);
+    transition: all 0.2s ease;
+}
+
+.enlace-incoterm-nav:hover {
+    background-color: var(--azul-principal);
+    color: var(--blanco);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 51, 130, 0.15);
+}
+
+.enlace-incoterm-nav.activo {
+    background-color: var(--azul-oscuro);
+    color: var(--blanco);
+    cursor: default;
+    pointer-events: none; /* Desactiva el link en la página actual */
+}
