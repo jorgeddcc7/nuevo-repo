@@ -1621,5 +1621,16 @@
     });
     </script>
 
+    <script>
+    (function() {
+        const param = new URLSearchParams(window.location.search).get('incoterm');
+        if (!param) return;
+        const incoterm = param.toUpperCase();
+        const select = document.getElementById('incoterm-select');
+        if (select && select.querySelector('option[value="' + incoterm + '"]')) {
+            select.value = incoterm;
+        }
+    })();
+    </script>
 </body>
 </html>

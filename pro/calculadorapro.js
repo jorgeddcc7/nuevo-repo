@@ -344,6 +344,22 @@ function calcularPrecio(incotermCustom = null, esComparacion = false) {
     precioVenta
   });
 
+  const urlsIncoterm = {
+    EXW: 'exw.html', FCA: 'fca.html', CPT: 'cpt.html', CIP: 'cip.html',
+    DAP: 'dap.html', DPU: 'dpu.html', DDP: 'ddp.html',
+    FOB: 'fob.html', FAS: 'fas.html', CFR: 'cfr.html', CIF: 'cif.html'
+  };
+
+  const enlaceGuia = (!esComparacion && urlsIncoterm[incoterm])
+    ? `<p style="margin: 0 0 14px; font-size:0.85rem; color:#aac8e8;">
+           ¿Dudas sobre este Incoterm?
+           <a href="/incoterms/${urlsIncoterm[incoterm]}" target="_blank"
+              style="color:#61dafb; text-decoration:underline;">
+               Lee la guía completa de ${incoterm} →
+           </a>
+       </p>`
+    : '';
+
   // 🔹 Construcción del resumen HTML
   let resumenHTML = `
     <h3>${esComparacion ? 'Comparación con ' + incoterm : 'Resumen de la operación'}</h3>

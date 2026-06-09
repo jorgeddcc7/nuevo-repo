@@ -376,7 +376,6 @@ function mostrarRecomendacionesIncoterm(transporte) {
     recomendacionDiv.innerHTML = html;
 }
 
-// 🔹 Función para filtrar Incoterms disponibles según transporte
 function actualizarIncotermsDisponibles(transporte) {
     const incotermSelect = document.getElementById("incoterm-select");
     if (!incotermSelect) return;
@@ -385,11 +384,9 @@ function actualizarIncotermsDisponibles(transporte) {
     let incotermsFiltrados = [...todosIncoterms];
 
     if (["aereo", "terrestre", "ferroviario", "multimodal"].includes(transporte)) {
-        // Quitar los Incoterms que no son válidos para transporte aéreo
         incotermsFiltrados = incotermsFiltrados.filter(i => !["FAS","FOB","CFR","CIF"].includes(i));
     }
 
-    // Guardar el incoterm previamente seleccionado si sigue disponible
     const seleccionActual = incotermSelect.value;
     incotermSelect.innerHTML = "";
     incotermsFiltrados.forEach(inc => {
@@ -399,9 +396,11 @@ function actualizarIncotermsDisponibles(transporte) {
         incotermSelect.appendChild(option);
     });
 
-    // Restaurar selección anterior si todavía existe, sino seleccionar el primero
-    if (incotermsFiltrados.includes(seleccionActual)) {
-        incotermSelect.value = seleccionActual;
+    const paramURL = new URLSearchParams(window.location.search).get('incoterm');
+    const incotermPrioritario = paramURL ? paramURL.toUpperCase() : seleccionActual;
+
+    if (incotermsFiltrados.includes(incotermPrioritario)) {
+        incotermSelect.value = incotermPrioritario;
     } else {
         incotermSelect.value = incotermsFiltrados[0];
     }
@@ -427,3 +426,25 @@ document.getElementById("lugar-importacion").addEventListener("change", () => {
     actualizarPuertosAereopuertos(document.getElementById("lugar-importacion").value, document.getElementById("tipo-transporte").value, "llegada");
 });
 
+// Preseleccionar Incoterm desde URL al cargar la página
+(function() {
+    const paramURL = new URLSearchParams(window.location.search).get('incoterm');
+    if (!paramURL) return;
+    
+    const incoterm = paramURL.toUpperCase();
+    
+    // Esperar a que todos los scripts terminen de cargar
+    window.addEventListener('load', function() {
+        const select = document.getElementById('incoterm-select');
+        if (!select) return;
+        
+        // Intentar varias veces por si algo lo sobreescribe
+        [0, 100, 300].forEach(delay => {
+            setTimeout(() => {
+                if (select.querySelector(`option[value="${incoterm}"]`)) {
+                    select.value = incoterm;
+                }
+            }, delay);
+        });
+    });
+})();
