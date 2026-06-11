@@ -981,6 +981,6 @@ btnPopupCogton.addEventListener('click', () => {
         gtag('event', 'clic_solicitar_analisis');
     }
 
-    window.open('www.cogton.com/package-export-cost-reduction', '_blank');
+    window.open('https://cogton.com/exporter-test', '_blank');
 
 });
