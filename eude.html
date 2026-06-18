@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca de Prompts TradeTech 4.0</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body style="background-color: #f4f7fc; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; color: #333333; -webkit-font-smoothing: antialiased;">
+
+    <style>
+        @keyframes shine {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        .text-shine {
+            background: linear-gradient(to right, #a61e45 20%, #ff8da1 40%, #ff8da1 60%, #a61e45 80%);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 4s linear infinite;
+            display: inline-block;
+        }
+    </style>
+
+    <nav style="background-color: #ffffff; padding: 15px 30px; box-shadow: 0 4px 20px rgba(0, 86, 179, 0.04); display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(166, 30, 69, 0.08);">
+        <a href="https://calculaincoterms.es" target="_blank" style="color: #0056b3; font-weight: 600; text-decoration: none; font-size: 14px; display: flex; align-items: center; transition: color 0.2s;" onmouseover="this.style.color='#a61e45'" onmouseout="this.style.color='#0056b3'">
+            ← Página Principal (calculaincoterms.es)
+        </a>
+        <a href="https://trade.ec.europa.eu/access-to-markets/en/home" target="_blank" style="color: #0056b3; font-weight: 600; text-decoration: none; font-size: 14px; background-color: rgba(166, 30, 69, 0.09); padding: 8px 16px; border-radius: 50px; transition: all 0.2s;" onmouseover="this.style.backgroundColor='rgba(166, 30, 69, 0.16)'; this.style.color='#a61e45';" onmouseout="this.style.backgroundColor='rgba(166, 30, 69, 0.09)'; this.style.color='#0056b3';">
+            Access2Markets ↗
+        </a>
+    </nav>
+
+    <div class="prompts-container" style="max-width: 850px; margin: 50px auto; padding: 0 20px; box-sizing: border-box;">
+        
+        <h1 style="text-align: center; color: #0056b3; margin-bottom: 45px; font-size: 32px; font-weight: 700; letter-spacing: -0.5px;">
+            Biblioteca de Prompts <span class="text-shine">TradeTech 4.0</span>
+        </h1>
+
+        <div class="prompt-card" style="background-color: #ffffff; border: 1px solid rgba(166, 30, 69, 0.1); border-radius: 14px; padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 25px rgba(0, 86, 179, 0.03);">
+            <div class="prompt-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(166, 30, 69, 0.08); padding-bottom: 12px; margin-bottom: 18px;">
+                <div style="display: flex; align-items: center;">
+                    <span style="background-color: #a61e45; color: #ffffff; padding: 4px 12px; border-radius: 50px; font-weight: 600; font-size: 11px; margin-right: 12px; letter-spacing: 0.5px;">PROMPT 1</span>
+                    <strong style="color: #0056b3; font-size: 16px; font-weight: 600;">Investigación de mercado con fuentes</strong>
+                </div>
+                <div style="color: #666666; font-size: 13px;">
+                    Herramienta: <span style="color: #007bff; font-weight: 600;">Perplexity</span>
+                </div>
+            </div>
+            <textarea id="prompt-text-1" readonly style="width: 100%; height: 160px; padding: 14px; border: 1px solid rgba(166, 30, 69, 0.12); border-radius: 10px; background-color: rgba(255, 248, 250, 0.92); color: #444444; font-family: 'Poppins', sans-serif; font-size: 13.5px; line-height: 1.6; resize: none; box-sizing: border-box; margin-bottom: 16px; outline: none;">Actúa como consultor de exportación especializado en análisis de riesgos.
+Investiga la viabilidad de exportar [PRODUCTO] a [PAÍS].
+Prioriza información de 2025-2026 y usa solo fuentes oficiales o institucionales si no hay datos recientes.
+Necesito:
+- Principales competidores visibles en el mercado
+- Barreras técnicas o regulatorias relevantes
+- Riesgos regulatorios o cambios recientes
+Si un dato no está actualizado en 2026, indica la última fecha confirmada.
+Cita las fuentes. No especules.</textarea>
+            <div style="text-align: right;">
+                <button onclick="navigator.clipboard.writeText(document.getElementById('prompt-text-1').value)" style="background-color: #007bff; color: #ffffff; border: none; padding: 10px 24px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);" onmouseover="this.style.backgroundColor='#0056b3'; this.style.transform='translateY(-1px)';" onmouseout="this.style.backgroundColor='#007bff'; this.style.transform='translateY(0)';">Copiar Prompt</button>
+            </div>
+        </div>
+
+        <div class="prompt-card" style="background-color: #ffffff; border: 1px solid rgba(166, 30, 69, 0.1); border-radius: 14px; padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 25px rgba(0, 86, 179, 0.03);">
+            <div class="prompt-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(166, 30, 69, 0.08); padding-bottom: 12px; margin-bottom: 18px;">
+                <div style="display: flex; align-items: center;">
+                    <span style="background-color: #a61e45; color: #ffffff; padding: 4px 12px; border-radius: 50px; font-weight: 600; font-size: 11px; margin-right: 12px; letter-spacing: 0.5px;">PROMPT 2</span>
+                    <strong style="color: #0056b3; font-size: 16px; font-weight: 600;">Del informe al DAFO accionable</strong>
+                </div>
+                <div style="color: #666666; font-size: 13px;">
+                    Herramienta: <span style="color: #007bff; font-weight: 600;">ChatGPT</span>
+                </div>
+            </div>
+            <textarea id="prompt-text-2" readonly style="width: 100%; height: 250px; padding: 14px; border: 1px solid rgba(166, 30, 69, 0.12); border-radius: 10px; background-color: rgba(255, 248, 250, 0.92); color: #444444; font-family: 'Poppins', sans-serif; font-size: 13.5px; line-height: 1.6; resize: none; box-sizing: border-box; margin-bottom: 16px; outline: none;">Actúa como mi Director de Estrategia Internacional con mentalidad de comité de inversión.
+Acabo de recibir un informe de inteligencia de mercado (pegado abajo). No quiero un resumen: quiero que lo conviertas en decisiones accionables.
+
+Reglas:
+- Usa SOLO la información del informe
+- No inventes datos; si falta algo, indícalo como "dato a confirmar"
+- Prioriza: si todo es importante, nada lo es
+- Habla claro: si el mercado no es buena idea, dilo
+
+Responde en 4 apartados:
+1. DAFO crítico (no genérico): Identifica UNA amenaza externa que pueda hacer fracasar la entrada. Explica por qué es la más peligrosa (impacto real, no teórico). Define UNA palanca de entrada realista condicionada a "si se cumple X". Si falta info clave de la empresa, dilo explícitamente.
+2. Decisión de entrada (no listado): Elige SOLO un canal prioritario (Distribuidor / Agente / e-commerce B2B). Justifica por qué minimiza riesgo regulatorio y operativo. Explica por qué DESCARTAS los otros dos (esto es clave).
+3. Plan de validación (7 días, bajo coste): 3 acciones concretas que pueda ejecutar esta semana. Cada acción debe tener: objetivo claro, qué validas exactamente y señal de éxito/fracaso.
+4. Go / No-Go condicionado: Define el dato más crítico que determina si entrar o no. Explica por qué ese dato cambia toda la decisión. Indica dónde validarlo (fuente oficial o actor de mercado).
+
+DATOS DE MERCADO:
+[PEGAR AQUÍ RESULTADOS DE PERPLEXITY]</textarea>
+            <div style="text-align: right;">
+                <button onclick="navigator.clipboard.writeText(document.getElementById('prompt-text-2').value)" style="background-color: #007bff; color: #ffffff; border: none; padding: 10px 24px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);" onmouseover="this.style.backgroundColor='#0056b3'; this.style.transform='translateY(-1px)';" onmouseout="this.style.backgroundColor='#007bff'; this.style.transform='translateY(0)';">Copiar Prompt</button>
+            </div>
+        </div>
+
+        <div class="custom-gpt-resource" style="margin: 35px 0; background-color: rgba(166, 30, 69, 0.09); border-left: 4px solid #a61e45; padding: 16px 20px; border-radius: 0 12px 12px 0; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(166, 30, 69, 0.02);">
+            <div>
+                <span style="font-size: 12px; color: #a61e45; font-weight: 700; letter-spacing: 0.5px; display: block; margin-bottom: 2px; text-transform: uppercase;">Recurso Integrado</span>
+                <span style="font-size: 14px; color: #0056b3; font-weight: 600;">Asistente de IA (Custom GPT)</span>
+            </div>
+            <a href="https://chatgpt.com/g/g-H9RxrYXgz-hs-code-assistant-help-with-classification" target="_blank" style="font-size: 13px; color: #ffffff; background-color: #a61e45; padding: 8px 18px; border-radius: 50px; font-weight: 500; text-decoration: none; transition: background 0.2s; box-shadow: 0 4px 10px rgba(166, 30, 69, 0.2);" onmouseover="this.style.backgroundColor='#8f183b'" onmouseout="this.style.backgroundColor='#a61e45'">
+                Acceder al HS Code Assistant ↗
+            </a>
+        </div>
+
+        <div class="prompt-card" style="background-color: #ffffff; border: 1px solid rgba(166, 30, 69, 0.1); border-radius: 14px; padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 25px rgba(0, 86, 179, 0.03);">
+            <div class="prompt-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(166, 30, 69, 0.08); padding-bottom: 12px; margin-bottom: 18px;">
+                <div style="display: flex; align-items: center;">
+                    <span style="background-color: #a61e45; color: #ffffff; padding: 4px 12px; border-radius: 50px; font-weight: 600; font-size: 11px; margin-right: 12px; letter-spacing: 0.5px;">PROMPT 3</span>
+                    <strong style="color: #0056b3; font-size: 16px; font-weight: 600;">Descripción profesional para factura y packing list</strong>
+                </div>
+                <div style="color: #666666; font-size: 13px;">
+                    Herramienta: <span style="color: #007bff; font-weight: 600;">ChatGPT</span>
+                </div>
+            </div>
+            <textarea id="prompt-text-3" readonly style="width: 100%; height: 200px; padding: 14px; border: 1px solid rgba(166, 30, 69, 0.12); border-radius: 10px; background-color: rgba(255, 248, 250, 0.92); color: #444444; font-family: 'Poppins', sans-serif; font-size: 13.5px; line-height: 1.6; resize: none; box-sizing: border-box; margin-bottom: 16px; outline: none;">Actúa como un experto en gestión aduanera y documentación internacional.
+Necesito que redactes la descripción detallada de mi mercancía para incluirla en la Factura Comercial y el Packing List. La descripción debe ser técnica, profesional y diseñada para evitar inspecciones innecesarias por falta de claridad.
+
+Para ello, utiliza y combina estos dos bloques de información:
+- Base Legal (Access2Markets): [PEGAR AQUÍ LA DESCRIPCIÓN DE LA PARTIDA ARANCELARIA]
+- Detalles Comerciales: [AÑADIR AQUÍ: MARCA, MODELO, COMPOSICIÓN O USO ESPECÍFICO]
+
+Estructura de la respuesta:
+- Descripción para Factura: genera un párrafo único que fusione la terminología técnica del Código HS con los detalles comerciales (marca/modelo/referencia).
+- Justificación: explica brevemente por qué has incluido ciertos términos clave para que coincidan con lo que el aduanero espera ver para este código.</textarea>
+            <div style="text-align: right;">
+                <button onclick="navigator.clipboard.writeText(document.getElementById('prompt-text-3').value)" style="background-color: #007bff; color: #ffffff; border: none; padding: 10px 24px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);" onmouseover="this.style.backgroundColor='#0056b3'; this.style.transform='translateY(-1px)';" onmouseout="this.style.backgroundColor='#007bff'; this.style.transform='translateY(0)';">Copiar Prompt</button>
+            </div>
+        </div>
+
+        <div class="prompt-card" style="background-color: #ffffff; border: 1px solid rgba(166, 30, 69, 0.1); border-radius: 14px; padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 25px rgba(0, 86, 179, 0.03);">
+            <div class="prompt-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(166, 30, 69, 0.08); padding-bottom: 12px; margin-bottom: 18px;">
+                <div style="display: flex; align-items: center;">
+                    <span style="background-color: #a61e45; color: #ffffff; padding: 4px 12px; border-radius: 50px; font-weight: 600; font-size: 11px; margin-right: 12px; letter-spacing: 0.5px;">PROMPT 4</span>
+                    <strong style="color: #0056b3; font-size: 16px; font-weight: 600;">Impacto del arancel real en el margen</strong>
+                </div>
+                <div style="color: #666666; font-size: 13px;">
+                    Herramienta: <span style="color: #007bff; font-weight: 600;">ChatGPT / Gemini</span>
+                </div>
+            </div>
+            <textarea id="prompt-text-4" readonly style="width: 100%; height: 180px; padding: 14px; border: 1px solid rgba(166, 30, 69, 0.12); border-radius: 10px; background-color: rgba(255, 248, 250, 0.92); color: #444444; font-family: 'Poppins', sans-serif; font-size: 13.5px; line-height: 1.6; resize: none; box-sizing: border-box; margin-bottom: 16px; outline: none;">Actúa como analista de costes en comercio internacional.
+Tengo una simulación de exportación con estos datos:
+- Precio de venta internacional: [VALOR]
+- Valor CIF estimado: [VALOR]
+- Margen esperado: [X] %
+- Arancel real (Access2Markets): [VALOR O %]
+
+Tu tarea:
+1. Recalcular el margen neto real tras aplicar el arancel correcto.
+2. Indicar en cuántos puntos porcentuales cambia el margen.
+3. Si el margen cae por debajo del objetivo, calcular cuánto debería aumentar el precio de venta para recuperar ese margen.</textarea>
+            <div style="text-align: right;">
+                <button onclick="navigator.clipboard.writeText(document.getElementById('prompt-text-4').value)" style="background-color: #007bff; color: #ffffff; border: none; padding: 10px 24px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);" onmouseover="this.style.backgroundColor='#0056b3'; this.style.transform='translateY(-1px)';" onmouseout="this.style.backgroundColor='#007bff'; this.style.transform='translateY(0)';">Copiar Prompt</button>
+            </div>
+        </div>
+
+        <div class="prompt-card" style="background-color: #ffffff; border: 1px solid rgba(166, 30, 69, 0.1); border-radius: 14px; padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 25px rgba(0, 86, 179, 0.03);">
+            <div class="prompt-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(166, 30, 69, 0.08); padding-bottom: 12px; margin-bottom: 18px;">
+                <div style="display: flex; align-items: center;">
+                    <span style="background-color: #a61e45; color: #ffffff; padding: 4px 12px; border-radius: 50px; font-weight: 600; font-size: 11px; margin-right: 12px; letter-spacing: 0.5px;">PROMPT 5</span>
+                    <strong style="color: #0056b3; font-size: 16px; font-weight: 600;">Borrador de factura proforma</strong>
+                </div>
+                <div style="color: #666666; font-size: 13px;">
+                    Herramienta: <span style="color: #007bff; font-weight: 600;">Claude</span>
+                </div>
+            </div>
+            <textarea id="prompt-text-5" readonly style="width: 100%; height: 160px; padding: 14px; border: 1px solid rgba(166, 30, 69, 0.12); border-radius: 10px; background-color: rgba(255, 248, 250, 0.92); color: #444444; font-family: 'Poppins', sans-serif; font-size: 13.5px; line-height: 1.6; resize: none; box-sizing: border-box; margin-bottom: 16px; outline: none;">Usa estos datos para generar el texto de una Factura Proforma profesional:
+- Producto: [Descripción técnica - Fase 2]
+- HS Code: [Código Arancelario]
+- Incoterm: [Incoterm y lugar - Fase 3]
+- Precio Total: [Resultado Fase 3]
+- Origen: [País]
+
+Redáctalo en [idioma] y organiza la información en formato claro con los campos habituales de una factura proforma internacional.</textarea>
+            <div style="text-align: right;">
+                <button onclick="navigator.clipboard.writeText(document.getElementById('prompt-text-5').value)" style="background-color: #007bff; color: #ffffff; border: none; padding: 10px 24px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);" onmouseover="this.style.backgroundColor='#0056b3'; this.style.transform='translateY(-1px)';" onmouseout="this.style.backgroundColor='#007bff'; this.style.transform='translateY(0)';">Copiar Prompt</button>
+            </div>
+        </div>
+
+        <div class="prompt-card" style="background-color: #ffffff; border: 1px solid rgba(166, 30, 69, 0.1); border-radius: 14px; padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 25px rgba(0, 86, 179, 0.03);">
+            <div class="prompt-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(166, 30, 69, 0.08); padding-bottom: 12px; margin-bottom: 18px;">
+                <div style="display: flex; align-items: center;">
+                    <span style="background-color: #a61e45; color: #ffffff; padding: 4px 12px; border-radius: 50px; font-weight: 600; font-size: 11px; margin-right: 12px; letter-spacing: 0.5px;">PROMPT 6</span>
+                    <strong style="color: #0056b3; font-size: 16px; font-weight: 600;">Comunicación adaptada al mercado</strong>
+                </div>
+                <div style="color: #666666; font-size: 13px;">
+                    Herramienta: <span style="color: #007bff; font-weight: 600;">ChatGPT / Gemini</span>
+                </div>
+            </div>
+            <textarea id="prompt-text-6" readonly style="width: 100%; height: 140px; padding: 14px; border: 1px solid rgba(166, 30, 69, 0.12); border-radius: 10px; background-color: rgba(255, 248, 250, 0.92); color: #444444; font-family: 'Poppins', sans-serif; font-size: 13.5px; line-height: 1.6; resize: none; box-sizing: border-box; margin-bottom: 16px; outline: none;">Actúa como consultor de comunicación internacional B2B.
+Reescribe esta frase para que transmita compromiso, claridad y profesionalidad para un cliente [NACIONALIDAD], manteniendo realismo y sin prometer lo imposible.
+
+Frase original:
+[PEGAR AQUÍ EL TEXTO A REESCRIBIR]</textarea>
+            <div style="text-align: right;">
+                <button onclick="navigator.clipboard.writeText(document.getElementById('prompt-text-6').value)" style="background-color: #007bff; color: #ffffff; border: none; padding: 10px 24px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);" onmouseover="this.style.backgroundColor='#0056b3'; this.style.transform='translateY(-1px)';" onmouseout="this.style.backgroundColor='#007bff'; this.style.transform='translateY(0)';">Copiar Prompt</button>
+            </div>
+        </div>
+
+        <div class="prompt-card" style="background-color: #ffffff; border: 1px solid rgba(166, 30, 69, 0.1); border-radius: 14px; padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 25px rgba(0, 86, 179, 0.03);">
+            <div class="prompt-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(166, 30, 69, 0.08); padding-bottom: 12px; margin-bottom: 18px;">
+                <div style="display: flex; align-items: center;">
+                    <span style="background-color: #a61e45; color: #ffffff; padding: 4px 12px; border-radius: 50px; font-weight: 600; font-size: 11px; margin-right: 12px; letter-spacing: 0.5px;">PROMPT 7</span>
+                    <strong style="color: #0056b3; font-size: 16px; font-weight: 600;">Traducción del historial de tracking</strong>
+                </div>
+                <div style="color: #666666; font-size: 13px;">
+                    Herramienta: <span style="color: #007bff; font-weight: 600;">ChatGPT</span>
+                </div>
+            </div>
+            <textarea id="prompt-text-7" readonly style="width: 100%; height: 140px; padding: 14px; border: 1px solid rgba(166, 30, 69, 0.12); border-radius: 10px; background-color: rgba(255, 248, 250, 0.92); color: #444444; font-family: 'Poppins', sans-serif; font-size: 13.5px; line-height: 1.6; resize: none; box-sizing: border-box; margin-bottom: 16px; outline: none;">Aquí tienes el historial de tracking de mi envío:
+[PEGAR AQUÍ LOS HITOS: ej. 20/03 Loaded, 25/03 Transshipment…]
+
+Traduce estos estados a lenguaje claro, dime si hay algún retraso crítico, qué impacto real tiene en la fecha de entrega final, y si en este momento debería avisar al cliente o todavía estoy dentro de lo razonable.</textarea>
+            <div style="text-align: right;">
+                <button onclick="navigator.clipboard.writeText(document.getElementById('prompt-text-7').value)" style="background-color: #007bff; color: #ffffff; border: none; padding: 10px 24px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);" onmouseover="this.style.backgroundColor='#0056b3'; this.style.transform='translateY(-1px)';" onmouseout="this.style.backgroundColor='#007bff'; this.style.transform='translateY(0)';">Copiar Prompt</button>
+            </div>
+        </div>
+
+        <div class="prompt-card" style="background-color: #ffffff; border: 1px solid rgba(166, 30, 69, 0.1); border-radius: 14px; padding: 25px; margin-bottom: 40px; box-shadow: 0 10px 25px rgba(0, 86, 179, 0.03);">
+            <div class="prompt-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(166, 30, 69, 0.08); padding-bottom: 12px; margin-bottom: 18px;">
+                <div style="display: flex; align-items: center;">
+                    <span style="background-color: #a61e45; color: #ffffff; padding: 4px 12px; border-radius: 50px; font-weight: 600; font-size: 11px; margin-right: 12px; letter-spacing: 0.5px;">PROMPT 8</span>
+                    <strong style="color: #0056b3; font-size: 16px; font-weight: 600;">Análisis post-operación y decisión de mejora</strong>
+                </div>
+                <div style="color: #666666; font-size: 13px;">
+                    Herramienta: <span style="color: #007bff; font-weight: 600;">ChatGPT</span>
+                </div>
+            </div>
+            <textarea id="prompt-text-8" readonly style="width: 100%; height: 210px; padding: 14px; border: 1px solid rgba(166, 30, 69, 0.12); border-radius: 10px; background-color: rgba(255, 248, 250, 0.92); color: #444444; font-family: 'Poppins', sans-serif; font-size: 13.5px; line-height: 1.6; resize: none; box-sizing: border-box; margin-bottom: 16px; outline: none;">Actúa como consultor de operaciones de comercio internacional.
+Analiza esta operation de exportación:
+- Mercado de destino: [país]
+- Incoterm utilizado: [ej: FOB]
+- Margen previsto: [ej: 15%]
+- Margen real: [ej: 9%]
+- Incidencias: [ej: retraso de 10 días, arancel mayor al esperado, recargo logístico no previsto]
+
+Respóndeme en tres puntos concretos:
+1. ¿Esta operación es saludable, en riesgo o no rentable? Una línea.
+2. ¿Qué variable tocarías primero para mejorar la siguiente operación y por qué? Justifica en dos frases.
+3. Dame una pregunta que debería hacerme antes de cerrar la próxima operación similar.</textarea>
+            <div style="text-align: right;">
+                <button onclick="navigator.clipboard.writeText(document.getElementById('prompt-text-8').value)" style="background-color: #007bff; color: #ffffff; border: none; padding: 10px 24px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);" onmouseover="this.style.backgroundColor='#0056b3'; this.style.transform='translateY(-1px)';" onmouseout="this.style.backgroundColor='#007bff'; this.style.transform='translateY(0)';">Copiar Prompt</button>
+            </div>
+        </div>
+
+        <div class="practice-section" style="margin-top: 50px; margin-bottom: 40px; border-top: 2px solid rgba(166, 30, 69, 0.14); padding-top: 30px;">
+            <h2 style="color: #0056b3; font-size: 22px; font-weight: 700; margin-bottom: 25px; text-align: center;">Material para practicar por vuestra cuenta</h2>
+            
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                
+                <div style="flex: 1; min-width: 280px; background-color: #ffffff; border: 1px solid rgba(166, 30, 69, 0.1); border-radius: 14px; padding: 22px; box-shadow: 0 10px 25px rgba(0, 86, 179, 0.02); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div style="display: flex; align-items: center; margin-bottom: 14px;">
+                            <span style="background-color: rgba(166, 30, 69, 0.16); color: #a61e45; padding: 3px 10px; border-radius: 50px; font-weight: 600; font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase;">Práctica 1</span>
+                        </div>
+                        <h3 style="color: #0056b3; font-size: 16px; font-weight: 600; margin: 0 0 10px 0;">Auditoría de desviación de costes</h3>
+                        <p style="font-size: 13px; color: #555555; line-height: 1.6; margin: 0 0 15px 0;">Compara tu simulación con la factura real del transitario concepto por concepto. Tienes el sistema de análisis listo aquí abajo.</p>
+                    </div>
+                    <a href="#seccion-auditoria" style="font-size: 13px; color: #ffffff; background-color: #a61e45; padding: 8px 14px; border-radius: 50px; text-align: center; font-weight: 500; text-decoration: none; transition: background 0.2s;" onmouseover="this.style.backgroundColor='#8f183b'" onmouseout="this.style.backgroundColor='#a61e45'">
+                        Ver Prompt de Auditoría ↓
+                    </a>
+                </div>
+
+                <div style="flex: 1; min-width: 280px; background-color: #ffffff; border: 1px solid rgba(166, 30, 69, 0.1); border-radius: 14px; padding: 22px; box-shadow: 0 10px 25px rgba(0, 86, 179, 0.02); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div style="display: flex; align-items: center; margin-bottom: 14px;">
+                            <span style="background-color: #a61e45; color: #ffffff; padding: 3px 10px; border-radius: 50px; font-weight: 600; font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase;">Reto Especial</span>
+                        </div>
+                        <h3 style="color: #0056b3; font-size: 16px; font-weight: 600; margin: 0 0 10px 0;">Contrato de compraventa internacional</h3>
+                        <p style="font-size: 13px; color: #555555; line-height: 1.6; margin: 0 0 15px 0;">Genera un contrato estructurado (aunque sea ficticio) pero esta vez <strong>sin prompt preparado</strong>. Constrúyelo desde cero decidiendo las cláusulas.</p>
+                    </div>
+                    <span style="font-size: 12px; color: #0056b3; font-weight: 600; font-style: italic; background-color: rgba(0, 86, 179, 0.05); padding: 6px 12px; border-radius: 6px; text-align: center;">Recomendado: Usar Claude</span>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div id="seccion-auditoria" class="prompt-card" style="background-color: #ffffff; border: 1px solid rgba(166, 30, 69, 0.1); border-radius: 14px; padding: 25px; margin-top: 20px; margin-bottom: 50px; box-shadow: 0 10px 25px rgba(0, 86, 179, 0.03); scroll-margin-top: 30px;">
+            <div class="prompt-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(166, 30, 69, 0.08); padding-bottom: 12px; margin-bottom: 18px;">
+                <div style="display: flex; align-items: center;">
+                    <span style="background-color: #a61e45; color: #ffffff; padding: 4px 12px; border-radius: 50px; font-weight: 600; font-size: 11px; margin-right: 12px; letter-spacing: 0.5px;">PROMPT 9</span>
+                    <strong style="color: #0056b3; font-size: 16px; font-weight: 600;">Herramienta de Auditoría de Costes (Práctica 1)</strong>
+                </div>
+                <div style="color: #666666; font-size: 13px;">
+                    Herramienta: <span style="color: #007bff; font-weight: 600;">ChatGPT / Claude / Gemini</span>
+                </div>
+            </div>
+            <textarea id="prompt-text-9" readonly style="width: 100%; height: 230px; padding: 14px; border: 1px solid rgba(166, 30, 69, 0.12); border-radius: 10px; background-color: rgba(255, 248, 250, 0.92); color: #444444; font-family: 'Poppins', sans-serif; font-size: 13.5px; line-height: 1.6; resize: none; box-sizing: border-box; margin-bottom: 16px; outline: none;">Actúa como un auditor de costes logísticos internacionales con perfil controlador (controller).
+Voy a adjuntar dos documentos:
+1. Mi simulación inicial de costes estimados.
+2. La factura real definitiva del transitario/operador logístico.
+
+Tu tarea es cruzar ambos documentos y realizar un análisis de desviaciones estricto. Sigue estas reglas:
+- Mapeo inteligente: Los conceptos pueden tener nombres distintos (ej. "flete" vs "Ocean Freight" o "gasto de aduana" vs "despacho"). Agrupa los costes equivalentes para poder compararlos de forma justa.
+- Moneda: Si hay conceptos en divisas distintas, conviértelos usando el tipo de cambio que aparezca en la factura real.
+
+Estructura tu respuesta exactamente en estos 4 puntos:
+1. Matriz de diferencias por categoría: Presenta una tabla comparativa dividida en las categorías estándar: Flete internacional, Recargos (THC, combustible, etc.), Despacho/Aduanas, Documentación (BL, certificados) y Transporte local. Para cada categoría muestra: [Coste Estimado | Coste Real | Desviación (€) | Desviación (%)].
+2. Costes imprevistos u ocultos: Lista de forma aislada aquellos conceptos facturados que NO existían ni tenían ningún equivalente en la simulación inicial (sorpresas de última hora).
+3. Desviación agregada: Calcula el impacto total acumulado de la desviación tanto en euros (€) como en porcentaje (%) sobre el total previsto.
+4. Impacto en el Margen Comercial: Si mi margen neto estimado original era de un [X]%, calcula en cuántos puntos porcentuales exactos se ha reducido debido a esta desviación aduanera/logística.</textarea>
+            <div style="text-align: right;">
+                <button onclick="navigator.clipboard.writeText(document.getElementById('prompt-text-9').value)" style="background-color: #007bff; color: #ffffff; border: none; padding: 10px 24px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);" onmouseover="this.style.backgroundColor='#0056b3'; this.style.transform='translateY(-1px)';" onmouseout="this.style.backgroundColor='#007bff'; this.style.transform='translateY(0)';">Copiar Prompt</button>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
