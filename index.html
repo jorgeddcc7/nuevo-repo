@@ -1385,27 +1385,44 @@
 
     <script>
     document.addEventListener("DOMContentLoaded", function() {
-
+    
         function descargarPDFSimulacion() {
             try {
-                const { jsPDF } = window.jspdf;
-                if (!jsPDF) {
-                    alert("Las librerías del sistema de PDFs se están cargando. Inténtalo de nuevo en un segundo.");
+                // 1. Verificación segura de jsPDF y su plugin de tablas
+                if (!window.jspdf || !window.jspdf.jsPDF) {
+                    alert("La librería jsPDF no se ha cargado correctamente. Por favor, recarga la página.");
                     return;
                 }
-
-                // 1. Extraer los datos reales del formulario
+                
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF({
+                    orientation: 'portrait',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+            
+                if (typeof doc.autoTable !== 'function') {
+                    alert("El sistema de tablas (autoTable) no está disponible. Asegúrate de incluir el plugin.");
+                    return;
+                }
+            
+                // 2. Verificación de funciones heredadas de calculadorapro.js
+                if (typeof obtenerDesgloseResponsabilidades !== 'function' || typeof analizarOperacionLogistica !== 'function') {
+                    alert("Error interno: No se han podido cargar los motores de cálculo logístico.");
+                    return;
+                }
+            
+                // 3. Extraer los datos reales del formulario de forma segura
                 const lugarExportacion = document.getElementById('lugar-exportacion')?.value.trim() || 'No especificado';
                 const lugarImportacion = document.getElementById('lugar-importacion')?.value.trim() || 'No especificado';
                 const divisa = document.getElementById('divisa')?.value || 'EUR';
                 const incoterm = document.getElementById('incoterm-select')?.value || 'EXW';
                 const precioFabrica = parseFloat(document.getElementById('precio-fabrica')?.value) || 0;
                 const precioVenta = parseFloat(document.getElementById('precio-venta')?.value) || 0;
-
+            
                 const simbolos = { EUR: '€', USD: '$' };
                 const simbolo = simbolos[divisa] || '€';
-
-                // 2. Obtener los costes individuales para el cálculo del total exacto
+            
                 const costes = {
                     precioFabrica,
                     transporteLocal: parseFloat(document.getElementById('transporte-local')?.value) || 0,
@@ -1417,7 +1434,7 @@
                     descarga: parseFloat(document.getElementById('descarga')?.value) || 0,
                     otrosCostes: parseFloat(document.getElementById('otros-costes')?.value) || 0
                 };
-
+            
                 let precioTotal = precioFabrica;
                 switch (incoterm) {
                     case 'FCA': precioTotal += costes.transporteLocal + costes.aduanaExportacion; break;
@@ -1431,51 +1448,42 @@
                     case 'CFR': precioTotal += costes.transporteLocal + costes.transporteInternacional + costes.carga + costes.aduanaExportacion; break;
                     case 'CIF': precioTotal += costes.transporteLocal + costes.transporteInternacional + costes.carga + costes.seguro + costes.aduanaExportacion; break;
                 }
-
-                // Invocar tus funciones globales heredadas de calculadorapro.js
+            
+                // Invocar funciones globales externas
                 const desglose = obtenerDesgloseResponsabilidades(incoterm, costes);
                 const tipoTransporte = document.getElementById('tipo-transporte')?.value;
                 const perfilOperacion = document.getElementById('perfil-operacion')?.value || 'estandar';
-
+            
                 const analisisLogistico = analizarOperacionLogistica({
                     incoterm, tipoTransporte, precioTotal, transporteInternacional: costes.transporteInternacional, aduanaImportacion: costes.aduanaImportacion, seguro: costes.seguro, perfilOperacion, precioVenta
                 });
-
-                // 3. Inicializar el documento PDF (Formato A4)
-                const doc = new jsPDF({
-                    orientation: 'portrait',
-                    unit: 'mm',
-                    format: 'a4'
-                });
-
+            
                 // --- ENCABEZADO CORPORATIVO ---
-                doc.setFillColor(31, 47, 72); // Color oscuro #1f2f48
+                doc.setFillColor(31, 47, 72); 
                 doc.rect(0, 0, 210, 35, 'F');
-
-                // Texto del título principal
+            
                 doc.setTextColor(255, 255, 255);
                 doc.setFont("Helvetica", "bold");
                 doc.setFontSize(22);
                 doc.text("Simulación de Exportación Logística", 15, 16);
-
-                // Subtítulo técnico
+            
                 doc.setFont("Helvetica", "normal");
                 doc.setFontSize(10.5);
                 doc.setTextColor(190, 205, 225); 
                 doc.text("Reporte Comercial Básico de Costes y Rentabilidad", 15, 24);
-
+            
                 // --- SECCIÓN 1: DATOS DE LA OPERACIÓN ---
                 doc.setTextColor(31, 47, 72);
                 doc.setFont("Helvetica", "bold");
                 doc.setFontSize(13);
                 doc.text("1. Datos de la Operación", 15, 48);
-
+            
                 const datosGeneralesBody = [
                     ["Ruta Comercial:", `${lugarExportacion}  -  ${lugarImportacion}`],
                     ["Incoterm Seleccionado:", incoterm],
                     ["Precio Total de Operación:", `${precioTotal.toFixed(2)} ${simbolo}`]
                 ];
-
+            
                 doc.autoTable({
                     startY: 52,
                     margin: { left: 15, right: 15 },
@@ -1487,26 +1495,26 @@
                         1: { textColor: [0, 0, 0] }
                     }
                 });
-
+            
                 // --- SECCIÓN 2: DESGLOSE DE COSTES ---
                 let puntoY_Seccion2 = doc.lastAutoTable.finalY + 9;
                 doc.setTextColor(31, 47, 72);
                 doc.setFont("Helvetica", "bold");
                 doc.setFontSize(13);
                 doc.text("2. Desglose de Costes y Distribución de Pagos", 15, puntoY_Seccion2);
-
+            
                 const columnasCostes = ["Concepto del Coste", "Importe", "Responsable del Pago"];
                 const filasCostes = desglose.map(item => [
                     item.nombre.toUpperCase(),
                     `${item.valor.toFixed(2)} ${simbolo}`,
                     item.responsable.toUpperCase()
                 ]);
-
+            
                 doc.autoTable({
                     startY: puntoY_Seccion2 + 4,
                     head: [columnasCostes],
                     body: filasCostes,
-                    margin: { left: 15, right: 15, bottom: 25 }, // Margen amplio para evitar solapamientos abajo
+                    margin: { left: 15, right: 15, bottom: 25 }, 
                     theme: 'grid',
                     headStyles: { fillColor: [31, 47, 72], textColor: [255, 255, 255], fontStyle: 'bold', halign: 'center' },
                     styles: { fontSize: 9.5, cellPadding: 2.7 },
@@ -1516,15 +1524,15 @@
                         2: { halign: 'center', fontStyle: 'bold' }
                     }
                 });
-
+            
                 // --- SECCIÓN 3: RENDIMIENTO COMERCIAL ---
                 let puntoY_Seccion3 = doc.lastAutoTable.finalY + 9;
-
+            
                 doc.setTextColor(31, 47, 72);
                 doc.setFont("Helvetica", "bold");
                 doc.setFontSize(13);
                 doc.text("3. Rendimiento Comercial", 15, puntoY_Seccion3);
-
+            
                 let datosRentabilidadBody = [];
                 if (analisisLogistico.modoAnalisis === 'analisis') {
                     datosRentabilidadBody = [
@@ -1538,7 +1546,7 @@
                         ["Precio Comercial Sugerido de Venta:", `${analisisLogistico.precioSugerido.toFixed(2)} ${simbolo}`]
                     ];
                 }
-
+            
                 doc.autoTable({
                     startY: puntoY_Seccion3 + 4,
                     margin: { left: 15, right: 15, bottom: 25 },
@@ -1550,58 +1558,51 @@
                         1: { fontStyle: 'bold', textColor: [46, 125, 50] } 
                     }
                 });
-
-                // --- CUADRO FINAL DE RECOMENDACIÓN ESTIRABLE ---
+            
+                // --- CUADRO FINAL DE RECOMENDACIÓN ---
                 let puntoY_Final = doc.lastAutoTable.finalY + 7;
-
-                const lineasTexto = doc.splitTextToSize(analisisLogistico.recomendacion, 172);
+            
+                const lineasTexto = doc.splitTextToSize(analisisLogistico.recomendacion || '', 172);
                 const alturaTexto = lineasTexto.length * 4.8; 
                 const alturaCuadro = alturaTexto + 11; 
-
-                // Verificación definitiva de salto de página para el cuadro estratégico
+            
                 if (puntoY_Final + alturaCuadro > 275) {
                     doc.addPage();
                     puntoY_Final = 20;
                 }
-
-                // Fondo gris del cuadro
+            
                 doc.setFillColor(245, 247, 250);
                 doc.setDrawColor(31, 47, 72);
                 doc.setLineWidth(0.5);
                 doc.rect(15, puntoY_Final, 180, alturaCuadro, 'FD');
-
-                // Línea de adorno lateral izquierda
+            
                 doc.setFillColor(31, 47, 72);
                 doc.rect(15, puntoY_Final, 2, alturaCuadro, 'F');
-
-                // Título interior
+            
                 doc.setTextColor(31, 47, 72);
                 doc.setFont("Helvetica", "bold");
                 doc.setFontSize(10);
                 doc.text("Conclusión Estratégica Logística:", 20, puntoY_Final + 6);
-
-                // Texto interior descriptivo
+            
                 doc.setTextColor(80, 90, 100);
                 doc.setFont("Helvetica", "normal");
                 doc.text(lineasTexto, 20, puntoY_Final + 12);
-
-                // --- PIE DE PÁGINA COMERCIAL DE CIERRE ---
-                // Ponemos una pequeña nota fija abajo del todo en la hoja actual
+            
+                // --- PIE DE PÁGINA ---
                 doc.setFont("Helvetica", "italic");
                 doc.setFontSize(8.5);
                 doc.setTextColor(140, 150, 160);
                 doc.text("Simulación generada de forma gratuita en www.calculaincoterms.es", 15, 287);
-
-                // Guardar el documento finalizado
+            
                 doc.save(`simulacion_comercial_${incoterm}.pdf`);
-
+            
             } catch (error) {
-                console.error("Error en la maquetación:", error);
-                alert("No se pudo compilar el documento PDF debido a una lectura de datos. Comprueba el formulario.");
+                console.error("Error crítico en la generación del PDF:", error);
+                alert("Ocurrió un error inesperado al generar el PDF. Revisa los datos ingresados.");
             }
         }
-
-        // Control de visibilidad del botón de descargas al presionar calcular
+    
+        // Control de visibilidad del botón de descargas
         const btnCalcular = document.getElementById('calcular');
         if (btnCalcular) {
             btnCalcular.addEventListener('click', function() {
@@ -1613,7 +1614,7 @@
                 }, 450);
             });
         }
-
+    
         const btnPDF = document.getElementById('btn-descargar-pdf');
         if (btnPDF) {
             btnPDF.addEventListener('click', descargarPDFSimulacion);
