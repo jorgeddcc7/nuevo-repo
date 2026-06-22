@@ -144,7 +144,7 @@ function analizarOperacionLogistica({
       precioVenta - precioTotal;
 
     rentabilidadReal =
-      (margenReal / precioTotal) * 100;
+      (margenReal / precioVenta) * 100;
 
   } else {
 
@@ -197,7 +197,7 @@ function analizarOperacionLogistica({
     
     }
   
-    else if (rentabilidadReal >= 15) {
+    else if (rentabilidadReal >= 10) {
     
       recomendacion =
         'La operación presenta un margen ajustado. Se recomienda revisar costes logísticos y estrategia comercial.';
@@ -542,7 +542,7 @@ function calcularPrecio(incotermCustom = null, esComparacion = false) {
 
   if (precioVenta && !esComparacion) {
     const beneficioNeto = precioVenta - precioTotal;
-    rentabilidadPorcentaje = (beneficioNeto / precioTotal) * 100;
+    rentabilidadPorcentaje = (beneficioNeto / precioVenta) * 100; 
 
     rentabilidadInicial = rentabilidadPorcentaje;
 
