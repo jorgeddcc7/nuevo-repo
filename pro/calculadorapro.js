@@ -981,6 +981,6 @@ btnPopupCogton.addEventListener('click', () => {
         gtag('event', 'clic_solicitar_analisis');
     }
 
-    window.open('https://cogton.com/es/exporter-test', '_blank');
+    window.open('https://calendar.app.google/HAJCt6EPMxYdo9436', '_blank');
 
 });
