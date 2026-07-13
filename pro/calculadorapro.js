@@ -640,34 +640,6 @@ function calcularPrecio(incotermCustom = null, esComparacion = false) {
   const recursoContextual = (() => {
       const usoPrecioVenta = precioVenta && precioVenta > 0;
       const incotermComplejo = ['DDP', 'CIF', 'DPU'].includes(incoterm);
-
-      // REGLA 1: Prioridad máxima. Si es complejo, va el Pack Avanzado (Checklist)
-      if (incotermComplejo) {
-        return {
-          texto: 'Con ' + incoterm + ' el exportador asume responsabilidades documentales complejas. El Checklist documental por Incoterm reduce errores en aduana.',
-          recurso: 'Checklist de documentación por Incoterm (PDF)',
-          pack: 'Pack Avanzado · 16€',
-          url: 'https://payhip.com/b/lisHL'
-        };
-      } 
-      // REGLA 2: Si no es complejo, pero introduce precio de venta, va el Pack Profesional (Márgenes)
-      else if (usoPrecioVenta) {
-        return {
-          texto: 'Estás calculando rentabilidad. El Simulador de márgenes por Incoterm te permite comparar escenarios y afinar tu precio de venta en Excel.',
-          recurso: 'Simulador de márgenes (Excel)',
-          pack: 'Pack Profesional · 12€',
-          url: 'https://payhip.com/b/mKip4'
-        };
-      } 
-      // REGLA 3: Por defecto para el resto de casos (Costes logísticos)
-      else {
-        return {
-          texto: 'Organiza y controla todos los costes de esta operación con la Plantilla de cálculo de costes logísticos, adaptada a cualquier Incoterm.',
-          recurso: 'Plantilla de costes logísticos (Excel)',
-          pack: 'Pack Profesional · 12€',
-          url: 'https://payhip.com/b/mKip4'
-        };
-      }
     })();
 
     const bloqueRecurso = document.createElement('div');
