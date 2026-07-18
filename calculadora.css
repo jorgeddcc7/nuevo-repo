@@ -929,18 +929,25 @@ button:hover {
     }
 }
 
-/* ===== SHOWCASE DE BLOQUE ÚNICO (sustituye al grid de 3 packs) ===== */
-.incoterms-showcase {
+/* ===== STACK DE BLOQUES ===== */
+.bloques-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ===== SHOWCASE DE BLOQUE (reutilizable) ===== */
+.bloque-showcase {
     position: relative;
     background: #ffffff;
     border-radius: 26px;
     box-shadow: 0 20px 50px rgba(0, 20, 60, 0.18);
-    max-width: 1100px;
-    margin: 0 auto;
     overflow: hidden;
 }
 
-.incoterms-showcase__badge {
+.bloque-showcase__badge {
     position: absolute;
     top: 22px;
     left: 22px;
@@ -954,51 +961,56 @@ button:hover {
     z-index: 2;
 }
 
-.incoterms-showcase__grid {
+.bloque-showcase__grid {
     display: grid;
     grid-template-columns: 1.65fr 1fr;
 }
 
-.incoterms-showcase__info {
+.bloque-showcase__info {
     padding: 64px 44px 40px;
 }
 
-.incoterms-showcase__title {
+.bloque-showcase__title {
     font-size: 26px;
     font-weight: 800;
     color: #1f2d3d;
     margin-bottom: 8px;
 }
 
-.incoterms-showcase__tagline {
+.bloque-showcase__tagline {
     font-size: 15px;
     font-weight: 700;
     color: #0056b3;
     margin-bottom: 14px;
 }
 
-.incoterms-showcase__desc {
+.bloque-showcase__desc {
     font-size: 15px;
     color: #555;
     line-height: 1.7;
-    max-width: 520px;
+    max-width: 560px;
     margin-bottom: 30px;
 }
 
-.incoterms-showcase__columns {
+.bloque-showcase__columns {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
 }
 
-.incoterms-col h4 {
+.bloque-showcase__columns--4 {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.bloque-col h4 {
     font-size: 14px;
     font-weight: 800;
     color: #1f2d3d;
     margin-bottom: 12px;
 }
 
-.incoterms-col ul {
+.bloque-col ul {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -1006,7 +1018,7 @@ button:hover {
     gap: 10px;
 }
 
-.incoterms-col li {
+.bloque-col li {
     position: relative;
     padding-left: 18px;
     font-size: 13.5px;
@@ -1014,7 +1026,7 @@ button:hover {
     line-height: 1.5;
 }
 
-.incoterms-col li::before {
+.bloque-col li::before {
     content: "•";
     position: absolute;
     left: 0;
@@ -1023,7 +1035,7 @@ button:hover {
     font-weight: 900;
 }
 
-.incoterms-showcase__cta {
+.bloque-showcase__cta {
     background: linear-gradient(180deg, #f4f8ff 0%, #eaf1ff 100%);
     border-left: 1px solid rgba(0, 86, 179, 0.12);
     padding: 44px 36px;
@@ -1033,7 +1045,7 @@ button:hover {
     text-align: center;
 }
 
-.incoterms-showcase__cta-label {
+.bloque-showcase__cta-label {
     font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
@@ -1042,7 +1054,7 @@ button:hover {
     margin-bottom: 6px;
 }
 
-.incoterms-showcase__price {
+.bloque-showcase__price {
     font-size: 46px;
     font-weight: 900;
     color: #0056b3;
@@ -1050,20 +1062,20 @@ button:hover {
     margin-bottom: 6px;
 }
 
-.incoterms-showcase__cta-note {
+.bloque-showcase__cta-note {
     font-size: 13.5px;
     color: #60728a;
     margin-bottom: 22px;
 }
 
-.incoterms-showcase__botones {
+.bloque-showcase__botones {
     display: flex;
     flex-direction: column;
     gap: 12px;
     margin-bottom: 24px;
 }
 
-.incoterms-showcase__trust {
+.bloque-showcase__trust {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -1072,7 +1084,7 @@ button:hover {
     text-align: left;
 }
 
-.incoterms-showcase__trust li {
+.bloque-showcase__trust li {
     font-size: 13px;
     color: #2f5d9f;
     font-weight: 600;
@@ -1113,48 +1125,52 @@ button:hover {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 992px) {
-    .incoterms-showcase__grid {
+    .bloque-showcase__grid {
         grid-template-columns: 1fr;
     }
 
-    .incoterms-showcase__cta {
+    .bloque-showcase__cta {
         border-left: none;
         border-top: 1px solid rgba(0, 86, 179, 0.12);
     }
 
-    .incoterms-showcase__info {
+    .bloque-showcase__info {
         padding: 64px 30px 30px;
+    }
+
+    .bloque-showcase__columns--4 {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 768px) {
-    .incoterms-showcase__columns {
+    .bloque-showcase__columns {
         grid-template-columns: 1fr;
         gap: 20px;
     }
 }
 
 @media (max-width: 576px) {
-    .incoterms-showcase__badge {
+    .bloque-showcase__badge {
         top: 14px;
         left: 14px;
         font-size: 12px;
         padding: 6px 12px;
     }
 
-    .incoterms-showcase__info {
+    .bloque-showcase__info {
         padding: 56px 20px 24px;
     }
 
-    .incoterms-showcase__title {
+    .bloque-showcase__title {
         font-size: 22px;
     }
 
-    .incoterms-showcase__price {
+    .bloque-showcase__price {
         font-size: 38px;
     }
 
-    .incoterms-showcase__cta {
+    .bloque-showcase__cta {
         padding: 32px 22px;
     }
 

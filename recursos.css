@@ -167,6 +167,17 @@ a {
     width: 100%;
 }
 
+.btn--outline {
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid rgba(109, 154, 231, 0.35);
+}
+
+.btn--outline:hover {
+    background: #eef5ff;
+    color: var(--primary);
+}
+
 /* HERO */
 .hero-v2 {
     max-width: 1600px;
@@ -1107,10 +1118,32 @@ a {
 /* =========================
    BLOQUE INCOTERMS - contenido completo (lista de 15 recursos)
 ========================= */
+.block-subhead {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #12385f;
+    margin-bottom: 16px;
+}
+
+.block-subhead--spaced {
+    margin-top: 34px;
+}
+
 .block-columns {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 18px;
+}
+
+.block-columns--4 {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+@media (max-width: 1250px) {
+    .block-columns--4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 .block-card {
@@ -1278,9 +1311,21 @@ a {
 }
 
 @media (max-width: 720px) {
-    .block-columns {
+    .block-columns,
+    .block-columns--4 {
         grid-template-columns: 1fr;
     }
+}
+
+/* ===== STACK DE ACCESO (2 bloques disponibles) ===== */
+.acceso-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.acceso-stack .price-single {
+    scroll-margin-top: 100px;
 }
 
 /* =========================
@@ -1319,6 +1364,10 @@ a {
     gap: 10px;
 }
 
+.soon-strip__row--4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
 .soon-chip {
     display: flex;
     align-items: center;
@@ -1353,7 +1402,8 @@ a {
 }
 
 @media (max-width: 1250px) {
-    .soon-strip__row {
+    .soon-strip__row,
+    .soon-strip__row--4 {
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -1363,7 +1413,8 @@ a {
         padding: 18px 16px;
     }
 
-    .soon-strip__row {
+    .soon-strip__row,
+    .soon-strip__row--4 {
         grid-template-columns: repeat(2, 1fr);
     }
 }
