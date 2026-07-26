@@ -86,15 +86,149 @@
             <button id="accept-cookies">Aceptar</button>
         </div>
     </div>
+    <div class="ci-landing">
+      <div class="ci-wrap">
+        <!-- LOGO -->
+        <header class="ci-header">
+          <img
+            src="fotos/logo2.png"
+            alt="Calcula Incoterms"
+            class="ci-logo-img"
+            onerror="this.style.display='none'; document.querySelector('.ci-logo-text').style.display='flex';"
+          />
+          <div class="ci-logo-text">
+            <span class="ci-logo-calcula">Calcula</span>
+            <span class="ci-logo-inco">Incoterms</span>
+          </div>
+        </header>
+    
+        <!-- TÍTULO -->
+        <section class="ci-hero">
+          <h1>Todo lo que necesitas para operar en el exterior</h1>
+        </section>
+    
+        <!-- ¿QUÉ TE INTERESA? -->
+        <div class="ci-question"><span>¿Qué te interesa?</span></div>
+    
+        <div class="ci-grid">
+        
+          <!-- CALCULADORA -->
+          <a href="#formulario" class="ci-card ci-card-calc ci-card-featured" id="ci-calc-btn">
+            <div class="ci-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="4" stroke="white" stroke-width="1.8"/>
+                <line x1="2" y1="8.5" x2="22" y2="8.5" stroke="white" stroke-width="1.6"/>
+                <rect x="5" y="12" width="3.5" height="2.5" rx="0.8" fill="white"/>
+                <rect x="10.2" y="12" width="3.5" height="2.5" rx="0.8" fill="white"/>
+                <rect x="15.5" y="12" width="3.5" height="2.5" rx="0.8" fill="white"/>
+                <rect x="5" y="17" width="3.5" height="2.5" rx="0.8" fill="white"/>
+                <rect x="10.2" y="17" width="3.5" height="2.5" rx="0.8" fill="white"/>
+                <rect x="15.5" y="17" width="3.5" height="2.5" rx="0.8" fill="rgba(255,255,255,.35)"/>
+              </svg>
+            </div>
+            <div class="ci-body">
+              <div class="ci-eyebrow">Herramienta principal</div>
+              <div class="ci-title special">Calculadora de Incoterms 2020</div>
+              <div class="ci-desc">Calcula costes logísticos, compara Incoterms y entiende qué asume cada parte en tu operación internacional.</div>
+              <span class="ci-cta">
+                Calcular ahora
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+                  <path d="M2 6.5h9M7.5 3l3.5 3.5L7.5 10" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+      
+          <!-- BLOG -->
+          <a href="blog/blog.html" target="_blank" rel="noopener noreferrer" class="ci-card">
+            <div class="ci-icon">
+              <svg viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                <rect x="2" y="2" width="18" height="18" rx="4" stroke="#0057D9" stroke-width="1.8"/>
+                <line x1="6" y1="7.5" x2="16" y2="7.5" stroke="#0057D9" stroke-width="1.7" stroke-linecap="round"/>
+                <line x1="6" y1="11" x2="14" y2="11" stroke="#0057D9" stroke-width="1.7" stroke-linecap="round"/>
+                <line x1="6" y1="14.5" x2="11" y2="14.5" stroke="#0057D9" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="ci-body">
+              <div class="ci-eyebrow">Contenido</div>
+              <div class="ci-title">Blog de Comercio</div>
+              <div class="ci-desc">Artículos sobre comercio internacional.</div>
+            </div>
+            <span class="ci-arrow">→</span>
+          </a>
+      
+          <!-- RECURSOS -->
+          <a href="recursos-comercio-internacional.html" target="_blank" rel="noopener noreferrer" class="ci-card">
+            <div class="ci-icon">
+              <svg viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                <path d="M4 18V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v12" stroke="#0057D9" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M2 18h18" stroke="#0057D9" stroke-width="1.8" stroke-linecap="round"/>
+                <rect x="8" y="9" width="6" height="9" rx="1" stroke="#0057D9" stroke-width="1.8"/>
+              </svg>
+            </div>
+            <div class="ci-body">
+              <div class="ci-eyebrow">Descargables</div>
+              <div class="ci-title">Recursos Profesionales</div>
+              <div class="ci-desc">Plantillas, guías y simuladores.</div>
+            </div>
+            <span class="ci-arrow">→</span>
+          </a>
+      
+          <!-- MÁS HERRAMIENTAS -->
+          <a href="#ci-tools" class="ci-card" id="ci-tools-btn">
+            <div class="ci-icon">
+              <svg viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                <circle cx="6" cy="6" r="2.8" stroke="#0057D9" stroke-width="1.8"/>
+                <circle cx="16" cy="6" r="2.8" stroke="#0057D9" stroke-width="1.8"/>
+                <circle cx="6" cy="16" r="2.8" stroke="#0057D9" stroke-width="1.8"/>
+                <circle cx="16" cy="16" r="2.8" stroke="#0057D9" stroke-width="1.8"/>
+              </svg>
+            </div>
+            <div class="ci-body">
+              <div class="ci-eyebrow">Utilidades</div>
+              <div class="ci-title">Más herramientas</div>
+              <div class="ci-desc">Divisas, tiempos, tests y más.</div>
+            </div>
+            <span class="ci-arrow" id="ci-tools-arrow">↓</span>
+          </a>
+      
+        </div>
+    
+        <!-- SUBMENU HERRAMIENTAS (oculto) -->
+        <div id="ci-tools" style="display:none;">
+          <a href="distancias.html" target="_blank" rel="noopener noreferrer" class="ci-tool-link">
+            <span style="font-size:1rem" aria-hidden="true">🚢</span>
+            <div><span class="ci-tool-name">Estimador de entrega</span><span class="ci-tool-sub">Tiempos y distancias</span></div>
+          </a>
+          <a href="medios/medios.html" target="_blank" rel="noopener noreferrer" class="ci-tool-link">
+            <span style="font-size:1rem" aria-hidden="true">💳</span>
+            <div><span class="ci-tool-name">Medios de pago</span><span class="ci-tool-sub">Internacional</span></div>
+          </a>
+          <a href="divisas.html" target="_blank" rel="noopener noreferrer" class="ci-tool-link">
+            <span style="font-size:1rem" aria-hidden="true">💱</span>
+            <div><span class="ci-tool-name">Conversor de divisas</span><span class="ci-tool-sub">Tipos de cambio</span></div>
+          </a>
+          <a href="docs/docs1.html" target="_blank" rel="noopener noreferrer" class="ci-tool-link">
+            <span style="font-size:1rem" aria-hidden="true">📄</span>
+            <div><span class="ci-tool-name">Generador de documentos</span><span class="ci-tool-sub">Factura, packing list…</span></div>
+          </a>
+          <a href="tests/test.html" target="_blank" rel="noopener noreferrer" class="ci-tool-link">
+            <span style="font-size:1rem" aria-hidden="true">🧠</span>
+            <div><span class="ci-tool-name">Tests de comercio</span><span class="ci-tool-sub">Pon a prueba tus conocimientos</span></div>
+          </a>
+          <a href="peso.html" target="_blank" rel="noopener noreferrer" class="ci-tool-link">
+            <span style="font-size:1rem" aria-hidden="true">📦</span>
+            <div><span class="ci-tool-name">Volumen y peso dimensional</span><span class="ci-tool-sub">Cálculo de carga</span></div>
+          </a>
+        </div>
+    
+        <hr class="ci-divider">
+    
+      </div>
+    </div>
     <main class="container">
         <div class="container2">
             <nav class="tool-nav" aria-label="Herramientas de comercio internacional">
-                <a href="blog/blog.html" class="nav-blog-link" target="_blank" rel="noopener noreferrer">Blog Comercio</a>
-            
-                <a href="recursos-comercio-internacional.html" class="nav-recursos-link" target="_blank" rel="noopener noreferrer">
-                    Recursos para el Comercio
-                </a>
-            
                 <div class="tools-dropdown">
                     <button class="tools-toggle" id="toolsToggle" type="button" aria-expanded="false">
                         <span>Más herramientas</span>
@@ -112,7 +246,6 @@
                 </div>
             </nav>
             <header class="hero">
-                <span class="hero-badge">Incoterms 2020 · Exportación e importación</span>
                 <h1>Calculadora de Incoterms 2020: costes, riesgos y responsabilidades</h1>
                 <p>
                     Compara Incoterms, calcula costes logísticos, documentación necesaria y entiende qué asume cada parte en una operación de exportación o importación.
@@ -739,7 +872,7 @@
                         
                             <div class="bloque-showcase__cta">
                                 <span class="bloque-showcase__cta-label">Acceso completo</span>
-                                <div class="bloque-showcase__price">15€</div>
+                                <div class="bloque-showcase__price">19€</div>
                                 <p class="bloque-showcase__cta-note">Pago único · Descarga inmediata</p>
                             
                                 <div class="bloque-showcase__botones">

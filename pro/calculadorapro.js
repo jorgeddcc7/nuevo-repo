@@ -640,6 +640,34 @@ function calcularPrecio(incotermCustom = null, esComparacion = false) {
   const recursoContextual = (() => {
       const usoPrecioVenta = precioVenta && precioVenta > 0;
       const incotermComplejo = ['DDP', 'CIF', 'DPU'].includes(incoterm);
+
+      // REGLA 1: Incoterm complejo
+      if (incotermComplejo) {
+        return {
+          texto: 'Con ' + incoterm + ' el exportador asume responsabilidades documentales complejas. Antes de operar, asegúrate de tener clara la documentación exigida en aduana para este Incoterm y el país de destino.',
+          recurso: 'Bloque de Incoterms',
+          pack: '',
+          url: 'https://payhip.com/b/lisHL'
+        };
+      }
+      // REGLA 2: Usa precio de venta
+      else if (usoPrecioVenta) {
+        return {
+          texto: 'Al calcular rentabilidad, ten en cuenta que el Incoterm elegido puede mover tu margen varios puntos. Compara siempre al menos dos Incoterms antes de fijar el precio de venta.',
+          recurso: 'Bloque de Incoterms',
+          pack: '',
+          url: 'https://payhip.com/b/lisHL'
+        };
+      }
+      // REGLA 3: Caso general
+      else {
+        return {
+          texto: 'Antes de cerrar la operación, verifica que todos los costes logísticos están correctamente asignados entre vendedor y comprador según el Incoterm seleccionado. Un error aquí impacta directamente en el margen.',
+          recurso: 'Bloque de Incoterms',
+          pack: '',
+          url: 'https://payhip.com/b/lisHL'
+        };
+      }
     })();
 
     const bloqueRecurso = document.createElement('div');
@@ -656,9 +684,6 @@ function calcularPrecio(incotermCustom = null, esComparacion = false) {
     bloqueRecurso.innerHTML = `
       <p style="margin: 0 0 10px; color: #aac8e8;">${recursoContextual.texto}</p>
       <a href="${recursoContextual.url}" target="_blank" rel="noopener noreferrer"
-         style="display:inline-block; background-color:#61dafb; color:#0a1628; padding:8px 16px;
-                border-radius:6px; font-weight:bold; font-size:0.85rem; text-decoration:none;">
-        Ver ${recursoContextual.recurso} — ${recursoContextual.pack}
       </a>
     `;
 

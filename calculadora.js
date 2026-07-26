@@ -154,3 +154,23 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+(function(){
+  /* Herramientas toggle */
+  var btn   = document.getElementById('ci-tools-btn');
+  var panel = document.getElementById('ci-tools');
+  var arrow = document.getElementById('ci-tools-arrow');
+  btn.addEventListener('click', function(e){
+    e.preventDefault();
+    var open = panel.style.display === 'none' || !panel.style.display;
+    panel.style.display = open ? 'grid' : 'none';
+    arrow.textContent   = open ? '↑' : '↓';
+  });
+ 
+  /* Scroll suave a la calculadora */
+  document.getElementById('ci-calc-btn').addEventListener('click', function(e){
+    e.preventDefault();
+    var t = document.getElementById('formulario');
+    if(t) t.scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+})();
