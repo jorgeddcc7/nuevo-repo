@@ -317,13 +317,17 @@ body {
 }
  
 /* ── RESPONSIVE ── */
+@media (max-width: 1050px) {
+  .ci-logo-img { left: 20%;}
+}
+
 @media (max-width: 640px) {
   .ci-landing { justify-content: flex-start; padding-top: 32px; }
   .ci-grid { grid-template-columns: 1fr; }
   .ci-card-calc { grid-column: 1; }
   .ci-card-featured { padding: 20px 18px; }
   .ci-card-featured .ci-title { font-size: 1.15rem; }
-  .ci-logo-img { height: 44px; }
+  .ci-logo-img { width: 300px; left: 12%; top: 8%;}
 }
 
 .tool-nav {
