@@ -23,15 +23,6 @@ document.getElementById("mostrar-todos").addEventListener("click", function() {
     this.style.display = "none"; // Oculta el botón una vez se presiona
 });
 
-function openModal(id, event) {
-  event.preventDefault(); // ¡Evita el salto hacia arriba!
-    document.getElementById('modal-' + id).style.display = 'block';
-}
-
-function closeModal(id) {
-    document.getElementById('modal-' + id).style.display = 'none';
-}
-
     const banner = document.getElementById('cookie-banner');
     const acceptBtn = document.getElementById('accept-cookies');
     const rejectBtn = document.getElementById('reject-cookies');
@@ -156,21 +147,25 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 (function(){
-  /* Herramientas toggle */
   var btn   = document.getElementById('ci-tools-btn');
   var panel = document.getElementById('ci-tools');
   var arrow = document.getElementById('ci-tools-arrow');
-  btn.addEventListener('click', function(e){
-    e.preventDefault();
-    var open = panel.style.display === 'none' || !panel.style.display;
-    panel.style.display = open ? 'grid' : 'none';
-    arrow.textContent   = open ? '↑' : '↓';
-  });
- 
-  /* Scroll suave a la calculadora */
-  document.getElementById('ci-calc-btn').addEventListener('click', function(e){
-    e.preventDefault();
-    var t = document.getElementById('formulario');
-    if(t) t.scrollIntoView({ behavior:'smooth', block:'start' });
-  });
+
+  if (btn && panel && arrow) {  // ← añade esto
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      var open = panel.style.display === 'none' || !panel.style.display;
+      panel.style.display = open ? 'grid' : 'none';
+      arrow.textContent   = open ? '↑' : '↓';
+    });
+  }
+
+  var calcBtn = document.getElementById('ci-calc-btn');
+  if (calcBtn) {  // ← y esto
+    calcBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      var t = document.getElementById('formulario');
+      if(t) t.scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+  }
 })();
