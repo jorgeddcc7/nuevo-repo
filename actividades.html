@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crucigrama · Comercio Internacional | Calcula Incoterms</title>
+<meta name="description" content="Crucigrama de comercio internacional. Pon a prueba tus conocimientos sobre Incoterms, logística y comercio exterior.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="icon" href="favicon3.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ── */
+:root {
+  --brand:   #0057D9;
+  --dark:    #062A4D;
+  --bg:      #F7F9FC;
+  --white:   #FFFFFF;
+  --border:  #E2E8F0;
+  --muted:   #4A6A88;
+  --hint:    #8AA0B8;
+  --gold:    #F59E0B;
+  --success: #10B981;
+  --cell:    44px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--dark);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── HEADER ── */
+.site-header{
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+  padding:16px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+.header-brand{
+  display:flex;align-items:center;gap:10px;text-decoration:none;
+}
+.header-logo-text{font-size:1.1rem;font-weight:800;letter-spacing:-.03em;color:var(--dark);}
+.header-logo-text span{color:var(--brand);}
+
+.header-back{
+  display:inline-flex;align-items:center;gap:6px;
+  color:var(--muted);font-size:.85rem;font-weight:500;
+  text-decoration:none;
+  padding:7px 14px;border:1px solid var(--border);border-radius:99px;
+  background:var(--bg);transition:all .2s;
+}
+.header-back:hover{color:var(--brand);border-color:#BDD4FF;background:#EBF2FF;}
+
+/* ── HERO ── */
+.hero{
+  text-align:center;
+  padding:40px 24px 32px;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  background:#EBF2FF;border:1px solid #BDD4FF;
+  color:var(--brand);font-size:.72rem;font-weight:700;
+  letter-spacing:.07em;text-transform:uppercase;
+  padding:5px 14px;border-radius:99px;margin-bottom:16px;
+}
+.hero h1{
+  font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;
+  color:var(--dark);letter-spacing:-.04em;line-height:1.1;
+  margin-bottom:10px;
+}
+.hero-sub{font-size:.95rem;color:var(--muted);max-width:500px;margin:0 auto 24px;}
+
+/* ── TIMER & STATS ── */
+.game-bar{
+  display:flex;align-items:center;justify-content:center;
+  gap:20px;flex-wrap:wrap;
+  margin-bottom:28px;
+}
+
+.timer-box{
+  display:flex;align-items:center;gap:10px;
+  background:var(--dark);color:#fff;
+  border-radius:12px;padding:12px 22px;
+  font-family:'JetBrains Mono',monospace;
+}
+.timer-icon{font-size:1.1rem;}
+.timer-label{font-size:.68rem;font-weight:600;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;}
+.timer-value{font-size:1.6rem;font-weight:700;letter-spacing:.02em;color:#fff;line-height:1;}
+
+.progress-box{
+  display:flex;align-items:center;gap:10px;
+  background:var(--white);border:1px solid var(--border);
+  border-radius:12px;padding:12px 22px;
+}
+.progress-label{font-size:.78rem;color:var(--muted);}
+.progress-val{font-size:1.2rem;font-weight:800;color:var(--brand);}
+
+.btn-reset{
+  display:inline-flex;align-items:center;gap:7px;
+  background:transparent;border:1px solid var(--border);
+  border-radius:99px;padding:10px 18px;
+  font-size:.82rem;font-weight:600;color:var(--muted);
+  cursor:pointer;font-family:inherit;transition:all .2s;
+}
+.btn-reset:hover{background:#EBF2FF;border-color:#BDD4FF;color:var(--brand);}
+
+/* ── LAYOUT PRINCIPAL ── */
+.game-layout{
+  display:grid;
+  grid-template-columns:1fr 320px;
+  gap:24px;
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 24px 48px;
+  align-items:start;
+}
+/* =========================
+   TABLETS (1024px)
+========================= */
+@media (max-width:1024px){
+
+  :root{
+    --cell:40px;
+  }
+
+  .game-layout{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+
+  .clues-panel{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+
+  .clues-list{
+    max-height:260px;
+  }
+
+  .grid-wrap{
+    display:flex;
+    justify-content:center;
+    overflow-x:auto;
+  }
+
+}
+
+
+/* =========================
+   TABLETS PEQUEÑAS
+========================= */
+@media (max-width:768px){
+
+  :root{
+    --cell:34px;
+  }
+
+  .site-header{
+    justify-content:center;
+    text-align:center;
+  }
+
+  .header-back{
+    width:100%;
+    justify-content:center;
+  }
+
+  .hero{
+    padding:24px 16px;
+  }
+
+  .hero h1{
+    font-size:1.8rem;
+  }
+
+  .hero-sub{
+    font-size:.9rem;
+  }
+
+  .game-bar{
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .timer-box,
+  .progress-box,
+  .btn-reset{
+    width:100%;
+    justify-content:center;
+  }
+
+  .grid-wrap{
+    padding:12px;
+  }
+
+  .clues-panel{
+    grid-template-columns:1fr;
+  }
+
+}
+
+
+/* =========================
+   MÓVILES
+========================= */
+@media (max-width:480px){
+
+  :root{
+    --cell:26px;
+  }
+
+  body{
+    font-size:15px;
+  }
+
+  .site-header{
+    padding:14px;
+  }
+
+  .header-logo-text{
+    font-size:1rem;
+  }
+
+  .hero{
+    padding:18px 12px;
+  }
+
+  .hero h1{
+    font-size:1.45rem;
+    line-height:1.2;
+  }
+
+  .hero-sub{
+    font-size:.85rem;
+  }
+
+  .game-layout{
+    padding:0 8px 24px;
+  }
+
+  .grid-wrap{
+    padding:8px;
+    overflow-x:auto;
+  }
+
+  .crossword-grid{
+    margin:auto;
+  }
+
+  .cell-number{
+    font-size:7px;
+  }
+
+  .cell input{
+    font-size:.9rem;
+  }
+
+  .timer-value{
+    font-size:1.3rem;
+  }
+
+  .progress-val{
+    font-size:1rem;
+  }
+
+  .clues-list{
+    max-height:none;
+  }
+
+  .clue-item{
+    font-size:.78rem;
+    padding:8px;
+  }
+
+  .win-card{
+    padding:24px 18px;
+  }
+
+  .win-title{
+    font-size:1.4rem;
+  }
+
+  .win-time{
+    font-size:2rem;
+  }
+
+  .site-header{
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  
+  .header-brand{
+    justify-content:center;
+    width:100%;
+  }
+  
+  .hero{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+  
+  .hero-eyebrow{
+    margin-left:auto;
+    margin-right:auto;
+  }
+  
+  .hero h1,
+  .hero-sub{
+      text-align:center;
+  }
+  
+  .game-bar{
+      align-items:center;
+  }
+  
+  .timer-box,
+  .progress-box,
+  .btn-reset{
+      margin:0 auto;
+  }
+
+}
+
+/* ── GRID ── */
+.grid-wrap{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:24px;
+
+    overflow-x:auto;
+    overflow-y:hidden;
+
+    display:flex;
+    justify-content:center;
+
+    -webkit-overflow-scrolling:touch;
+}
+
+.crossword-grid{
+  display:inline-grid;
+  gap:2px;
+  border:2px solid var(--dark);
+  border-radius:4px;
+  overflow:hidden;
+}
+
+.cell{
+  width:var(--cell);height:var(--cell);
+  position:relative;
+  background:#1a2a3a; /* celdas vacías = negro azulado */
+}
+
+.cell.active{
+  background:var(--white);
+  border:1px solid #cbd5e1;
+}
+
+.cell.active:hover{ background:#EBF2FF; cursor:pointer; }
+
+.cell.highlighted{ background:#dbeafe; }
+
+.cell.selected{ background:#bfdbfe; }
+
+.cell.correct{ background:#d1fae5 !important; }
+
+.cell.wrong{ background:#fee2e2 !important; animation: shake .3s ease; }
+
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  25%{transform:translateX(-3px)}
+  75%{transform:translateX(3px)}
+}
+
+.cell-number{
+  position:absolute;
+  top:2px;left:3px;
+  font-size:9px;font-weight:700;
+  color:var(--brand);
+  font-family:'JetBrains Mono',monospace;
+  line-height:1;
+  pointer-events:none;
+}
+
+.cell-letter{
+  position:absolute;
+  inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'JetBrains Mono',monospace;
+  font-size:1.1rem;font-weight:700;
+  color:var(--dark);
+  text-transform:uppercase;
+  pointer-events:none;
+}
+
+.cell input{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  border:none;outline:none;
+  background:transparent;
+  text-align:center;
+  font-family:'JetBrains Mono',monospace;
+  font-size:1.1rem;font-weight:700;
+  color:var(--dark);
+  text-transform:uppercase;
+  cursor:pointer;
+  caret-color:transparent;
+  padding:0;
+}
+
+/* ── PISTAS ── */
+.clues-panel{
+  display:flex;flex-direction:column;gap:16px;
+}
+
+.clues-card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+}
+
+.clues-head{
+  background:var(--dark);
+  padding:14px 18px;
+  font-size:.75rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.6);
+  display:flex;align-items:center;gap:8px;
+}
+
+.clues-head span{ color:var(--brand); }
+
+.clues-list{
+  list-style:none;
+  max-height:320px;
+  overflow-y:auto;
+  padding:8px;
+}
+
+.clues-list::-webkit-scrollbar{width:4px;}
+.clues-list::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:99px;}
+
+.clue-item{
+  display:flex;gap:10px;align-items:flex-start;
+  padding:9px 10px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:background .15s;
+  font-size:.83rem;line-height:1.5;
+}
+
+.clue-item:hover{background:var(--bg);}
+
+.clue-item.active-clue{
+  background:#EBF2FF;
+}
+
+.clue-item.solved-clue .clue-text{
+  color:var(--hint);text-decoration:line-through;
+}
+
+.clue-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.75rem;font-weight:700;color:var(--brand);
+  min-width:22px;flex-shrink:0;padding-top:1px;
+}
+
+.clue-text{color:var(--muted);}
+
+/* ── MENSAJE VICTORIA ── */
+.win-overlay{
+  display:none;
+  position:fixed;inset:0;z-index:999;
+  background:rgba(6,42,77,.65);
+  backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;
+  padding:24px;
+}
+
+.win-overlay.show{display:flex;}
+
+.win-card{
+  background:var(--white);
+  border-radius:24px;
+  padding:48px 40px;
+  max-width:460px;width:100%;
+  text-align:center;
+  box-shadow:0 32px 80px rgba(6,42,77,.25);
+  animation:popIn .4s cubic-bezier(.34,1.56,.64,1);
+}
+
+@keyframes popIn{
+  from{opacity:0;transform:scale(.8)}
+  to{opacity:1;transform:scale(1)}
+}
+
+.win-emoji{font-size:3.5rem;margin-bottom:16px;display:block;}
+
+.win-title{
+  font-size:1.8rem;font-weight:800;color:var(--dark);
+  letter-spacing:-.04em;margin-bottom:8px;
+}
+
+.win-sub{font-size:1rem;color:var(--muted);margin-bottom:28px;}
+
+.win-time{
+  font-family:'JetBrains Mono',monospace;
+  font-size:3rem;font-weight:700;color:var(--brand);
+  letter-spacing:-.02em;margin-bottom:6px;
+}
+
+.win-time-label{font-size:.78rem;color:var(--hint);text-transform:uppercase;letter-spacing:.08em;margin-bottom:32px;}
+
+.win-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--brand);color:#fff;
+  border:none;border-radius:12px;padding:14px 28px;
+  font-size:.95rem;font-weight:700;font-family:inherit;
+  cursor:pointer;transition:all .2s;
+  box-shadow:0 6px 20px rgba(0,87,217,.3);
+}
+
+.win-btn:hover{background:#0046b3;transform:translateY(-1px);}
+
+/* ── CURRENT CLUE ── */
+.current-clue-bar{
+  background:var(--dark);
+  border-radius:12px;
+  padding:14px 18px;
+  margin-bottom:16px;
+  display:none;
+}
+.current-clue-bar.show{display:block;}
+.current-clue-num{
+  font-size:.68rem;font-weight:700;color:rgba(255,255,255,.4);
+  text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;
+}
+.current-clue-text{font-size:.9rem;color:#fff;line-height:1.5;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="index.html" class="header-brand">
+    <span class="header-logo-text">Calcula <span>Incoterms</span></span>
+  </a>
+  <a href="https://calculaincoterms.es/" target="_blank" class="header-back">← Volver al inicio</a>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">🧩 Actividad semanal</div>
+  <h1>Crucigrama de Comercio Internacional</h1>
+  <p class="hero-sub">Pon a prueba tus conocimientos. Nivel medio-difícil · 19 palabras.</p>
+</div>
+
+<!-- BARRA DE JUEGO -->
+<div class="game-bar">
+  <div class="timer-box">
+    <span class="timer-icon">⏱</span>
+    <div>
+      <div class="timer-label">Tiempo</div>
+      <div class="timer-value" id="timer">00:00</div>
+    </div>
+  </div>
+  <div class="progress-box">
+    <span class="progress-label">Palabras resueltas</span>
+    <span class="progress-val"><span id="solved-count">0</span> / 19</span>
+  </div>
+  <button class="btn-reset" onclick="resetGame()">↺ Reiniciar</button>
+</div>
+
+<!-- LAYOUT -->
+<div class="game-layout">
+
+  <!-- GRID -->
+  <div>
+    <div class="current-clue-bar" id="current-clue-bar">
+      <div class="current-clue-num" id="current-clue-num"></div>
+      <div class="current-clue-text" id="current-clue-text"></div>
+    </div>
+    <div class="grid-wrap">
+      <div class="crossword-grid" id="crossword-grid"></div>
+    </div>
+  </div>
+
+  <!-- PISTAS -->
+  <aside class="clues-panel">
+    <div class="clues-card">
+      <div class="clues-head">Horizontales <span>→</span></div>
+      <ul class="clues-list" id="clues-h"></ul>
+    </div>
+    <div class="clues-card">
+      <div class="clues-head">Verticales <span>↓</span></div>
+      <ul class="clues-list" id="clues-v"></ul>
+    </div>
+  </aside>
+
+</div>
+
+<!-- VICTORIA -->
+<div class="win-overlay" id="win-overlay">
+  <div class="win-card">
+    <span class="win-emoji">🏆</span>
+    <h2 class="win-title">¡Crucigrama completado!</h2>
+    <p class="win-sub">Has resuelto las 19 palabras correctamente.</p>
+    <div class="win-time" id="win-time">00:00</div>
+    <div class="win-time-label">Tiempo total</div>
+    <button class="win-btn" onclick="resetGame(); document.getElementById('win-overlay').classList.remove('show')">
+      Jugar de nuevo
+    </button>
+  </div>
+</div>
+
+<script>
+// ============================================================
+//  DATOS DEL CRUCIGRAMA
+// ============================================================
+const WORDS = [
+  {id:1,  word:"PERFECCIONAMIENTO", row:9,  col:1,  dir:"H", clue:"Régimen aduanero que permite importar temporalmente para transformar y reexportar sin pagar aranceles definitivos"},
+  {id:2,  word:"CONSIGNATARIO",     row:0,  col:0,  dir:"H", clue:"Destinatario de la mercancía indicado en el conocimiento de embarque"},
+  {id:3,  word:"MULTIMODAL",        row:6,  col:2,  dir:"H", clue:"Transporte que combina dos o más modos bajo un único contrato y responsable único"},
+  {id:4,  word:"EXPORTACION",       row:3,  col:3,  dir:"H", clue:"Salida legal de mercancías del territorio aduanero de un país"},
+  {id:5,  word:"DEPOSITO",          row:12, col:7,  dir:"H", clue:"Primera palabra del régimen donde la mercancía queda bajo control aduanero temporal sin pagar aranceles"},
+  {id:6,  word:"SHANGHAI",          row:15, col:5,  dir:"H", clue:"Puerto que mueve más contenedores del mundo, situado en China"},
+  {id:7,  word:"DRAWBACK",          row:17, col:0,  dir:"H", clue:"Mecanismo de devolución de aranceles pagados sobre materias primas que se reexportan transformadas"},
+  {id:8,  word:"ARANCEL",           row:17, col:11, dir:"H", clue:"Impuesto que grava las mercancías al cruzar una frontera aduanera"},
+  {id:9,  word:"NAVIERA",           row:19, col:3,  dir:"H", clue:"Empresa que opera buques para el transporte marítimo de mercancías"},
+  {id:10, word:"ADUANA",            row:0,  col:9,  dir:"V", clue:"Organismo público que controla la entrada y salida de mercancías en fronteras"},
+  {id:11, word:"ICC",               row:0,  col:4,  dir:"V", clue:"Organización que publica y actualiza las reglas Incoterms (siglas en inglés)"},
+  {id:12, word:"OEAC",              row:3,  col:12, dir:"V", clue:"Estatuto que otorga simplificaciones aduaneras a operadores económicos fiables (siglas en español)"},
+  {id:13, word:"INCOTERM",          row:0,  col:14, dir:"V", clue:"Regla internacional que define costes, riesgos y responsabilidades en una operación de comercio exterior"},
+  {id:14, word:"TRANSITARIO",       row:0,  col:13, dir:"V", clue:"Operador que organiza y coordina el transporte internacional en nombre del cliente exportador o importador"},
+  {id:15, word:"DESPACHO",          row:3,  col:18, dir:"V", clue:"Trámite ante la aduana para liberar la mercancía y ponerla a disposición del importador"},
+  {id:16, word:"FOB",               row:13, col:18, dir:"V", clue:"Incoterm marítimo donde el riesgo se transfiere cuando la mercancía está a bordo del buque"},
+  {id:17, word:"SEGURO",            row:13, col:1,  dir:"V", clue:"Cobertura del riesgo de pérdida o daño de la mercancía durante el transporte; obligatorio en CIP y CIF"},
+  {id:18, word:"FLETE",             row:13, col:16, dir:"V", clue:"Precio del transporte de mercancías desde el origen hasta el destino"},
+  {id:19, word:"MANIFIESTO",        row:0,  col:19, dir:"V", clue:"Documento oficial que relaciona toda la carga transportada en un buque o aeronave"},
+];
+
+const ROWS = 20, COLS = 20;
+
+// ============================================================
+//  BUILD GRID DATA
+// ============================================================
+let gridData = Array.from({length: ROWS}, () =>
+  Array.from({length: COLS}, () => ({ active: false, letter: '', number: 0, wordIds: [] }))
+);
+
+// Assign numbers: first cell of each word
+let numberMap = {}; // "r,c" → number
+let nextNum = 1;
+
+// Sort words by position to assign numbers in reading order
+let sortedWords = [...WORDS].sort((a,b) => a.row !== b.row ? a.row - b.row : a.col - b.col);
+let wordNumberMap = {};
+
+sortedWords.forEach(w => {
+  let key = w.row+','+w.col;
+  if (!numberMap[key]) {
+    numberMap[key] = nextNum++;
+  }
+  wordNumberMap[w.id] = numberMap[key];
+});
+
+// Fill cells
+WORDS.forEach(w => {
+  for (let i = 0; i < w.word.length; i++) {
+    let r = w.row + (w.dir==='V' ? i : 0);
+    let c = w.col + (w.dir==='H' ? i : 0);
+    if (r < ROWS && c < COLS) {
+      gridData[r][c].active = true;
+      gridData[r][c].letter = w.word[i];
+      gridData[r][c].wordIds.push(w.id);
+    }
+  }
+});
+
+// Assign cell numbers
+Object.entries(numberMap).forEach(([key, num]) => {
+  let [r, c] = key.split(',').map(Number);
+  if (gridData[r][c].active) gridData[r][c].number = num;
+});
+
+// ============================================================
+//  GAME STATE
+// ============================================================
+let userGrid = Array.from({length: ROWS}, () => Array(COLS).fill(''));
+let solvedWords = new Set();
+let selectedCell = null;
+let selectedDir = 'H';
+let selectedWordId = null;
+let timerInterval = null;
+let seconds = 0;
+let started = false;
+
+// ============================================================
+//  RENDER GRID
+// ============================================================
+function renderGrid() {
+  const container = document.getElementById('crossword-grid');
+  container.style.gridTemplateColumns = `repeat(${COLS}, var(--cell))`;
+  container.style.gridTemplateRows = `repeat(${ROWS}, var(--cell))`;
+  container.innerHTML = '';
+
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      const cell = document.createElement('div');
+      cell.className = 'cell' + (gridData[r][c].active ? ' active' : '');
+      cell.dataset.r = r;
+      cell.dataset.c = c;
+
+      if (gridData[r][c].active) {
+        if (gridData[r][c].number) {
+          const num = document.createElement('div');
+          num.className = 'cell-number';
+          num.textContent = gridData[r][c].number;
+          cell.appendChild(num);
+        }
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.maxLength = 1;
+        input.dataset.r = r;
+        input.dataset.c = c;
+        input.autocomplete = 'off';
+        input.autocorrect = 'off';
+        input.autocapitalize = 'characters';
+        input.spellcheck = false;
+        if (userGrid[r][c]) input.value = userGrid[r][c];
+
+        input.addEventListener('focus', () => onCellFocus(r, c, input));
+        input.addEventListener('keydown', (e) => onKeyDown(e, r, c));
+        input.addEventListener('input', (e) => onInput(e, r, c, input));
+
+        cell.appendChild(input);
+        cell.addEventListener('click', () => {
+          const inp = cell.querySelector('input');
+          if (inp) inp.focus();
+        });
+      }
+
+      container.appendChild(cell);
+    }
+  }
+}
+
+// ============================================================
+//  CELL INTERACTION
+// ============================================================
+function onCellFocus(r, c, input) {
+  if (!started) startTimer();
+
+  // Determine direction: prefer current, else pick first available
+  let wordIds = gridData[r][c].wordIds;
+  let hWords = wordIds.filter(id => WORDS.find(w=>w.id===id).dir==='H');
+  let vWords = wordIds.filter(id => WORDS.find(w=>w.id===id).dir==='V');
+
+  if (selectedCell && selectedCell[0]===r && selectedCell[1]===c) {
+    // Toggle direction on second click
+    if (hWords.length && vWords.length) {
+      selectedDir = selectedDir==='H' ? 'V' : 'H';
+    }
+  } else {
+    // Pick direction based on availability
+    if (hWords.length && selectedDir==='H') selectedDir='H';
+    else if (vWords.length && selectedDir==='V') selectedDir='V';
+    else if (hWords.length) selectedDir='H';
+    else if (vWords.length) selectedDir='V';
+  }
+
+  // Find word in current direction
+  let candidates = wordIds.filter(id => WORDS.find(w=>w.id===id).dir===selectedDir);
+  selectedWordId = candidates.length ? candidates[0] : (wordIds[0] || null);
+  if (selectedWordId) selectedDir = WORDS.find(w=>w.id===selectedWordId).dir;
+
+  selectedCell = [r, c];
+  highlightWord();
+  updateCurrentClue();
+}
+
+function onKeyDown(e, r, c) {
+  if (e.key === 'Backspace') {
+    e.preventDefault();
+    if (userGrid[r][c]) {
+      userGrid[r][c] = '';
+      getInput(r,c).value = '';
+      updateCellState(r,c);
+    } else {
+      moveCursor(-1);
+    }
+  } else if (e.key === 'ArrowRight') { e.preventDefault(); selectedDir='H'; moveCursor(1); }
+  else if (e.key === 'ArrowLeft')  { e.preventDefault(); selectedDir='H'; moveCursor(-1); }
+  else if (e.key === 'ArrowDown')  { e.preventDefault(); selectedDir='V'; moveCursor(1); }
+  else if (e.key === 'ArrowUp')    { e.preventDefault(); selectedDir='V'; moveCursor(-1); }
+  else if (e.key === 'Tab') {
+    e.preventDefault();
+    moveToNextWord(e.shiftKey ? -1 : 1);
+  }
+}
+
+function onInput(e, r, c, input) {
+  let val = (input.value || '').toUpperCase().replace(/[^A-ZÁÉÍÓÚÑ]/g, '').slice(-1);
+  input.value = val;
+  userGrid[r][c] = val;
+  updateCellState(r, c);
+  if (val) {
+    checkWordComplete();
+    moveCursor(1);
+  }
+}
+
+function getInput(r, c) {
+  return document.querySelector(`input[data-r="${r}"][data-c="${c}"]`);
+}
+
+function moveCursor(delta) {
+  if (!selectedCell) return;
+  let [r, c] = selectedCell;
+  let nr = r + (selectedDir==='V' ? delta : 0);
+  let nc = c + (selectedDir==='H' ? delta : 0);
+  if (nr>=0 && nr<ROWS && nc>=0 && nc<COLS && gridData[nr][nc].active) {
+    let inp = getInput(nr, nc);
+    if (inp) inp.focus();
+  }
+}
+
+function moveToNextWord(delta) {
+  let currentIdx = WORDS.findIndex(w=>w.id===selectedWordId);
+  let nextIdx = (currentIdx + delta + WORDS.length) % WORDS.length;
+  let w = WORDS[nextIdx];
+  let inp = getInput(w.row, w.col);
+  if (inp) { selectedDir = w.dir; inp.focus(); }
+}
+
+// ============================================================
+//  HIGHLIGHT
+// ============================================================
+function highlightWord() {
+  // Clear all highlights
+  document.querySelectorAll('.cell').forEach(el => {
+    el.classList.remove('highlighted','selected');
+  });
+
+  if (!selectedWordId) return;
+  let w = WORDS.find(x=>x.id===selectedWordId);
+  for (let i=0; i<w.word.length; i++) {
+    let r = w.row+(w.dir==='V'?i:0);
+    let c = w.col+(w.dir==='H'?i:0);
+    let cell = document.querySelector(`.cell[data-r="${r}"][data-c="${c}"]`);
+    if (cell) cell.classList.add('highlighted');
+  }
+
+  if (selectedCell) {
+    let [r,c] = selectedCell;
+    let cell = document.querySelector(`.cell[data-r="${r}"][data-c="${c}"]`);
+    if (cell) { cell.classList.remove('highlighted'); cell.classList.add('selected'); }
+  }
+
+  // Highlight clue
+  document.querySelectorAll('.clue-item').forEach(el => el.classList.remove('active-clue'));
+  let clueEl = document.getElementById('clue-'+selectedWordId);
+  if (clueEl) {
+    clueEl.classList.add('active-clue');
+    clueEl.scrollIntoView({block:'nearest',behavior:'smooth'});
+  }
+}
+
+// ============================================================
+//  CURRENT CLUE BAR
+// ============================================================
+function updateCurrentClue() {
+  const bar = document.getElementById('current-clue-bar');
+  if (!selectedWordId) { bar.classList.remove('show'); return; }
+  let w = WORDS.find(x=>x.id===selectedWordId);
+  let num = wordNumberMap[w.id];
+  document.getElementById('current-clue-num').textContent =
+    `${num} ${w.dir==='H'?'Horizontal':'Vertical'}`;
+  document.getElementById('current-clue-text').textContent = w.clue;
+  bar.classList.add('show');
+}
+
+// ============================================================
+//  CELL STATE (correct / wrong / neutral)
+// ============================================================
+function updateCellState(r, c) {
+  let cell = document.querySelector(`.cell[data-r="${r}"][data-c="${c}"]`);
+  if (!cell) return;
+  cell.classList.remove('correct','wrong');
+  if (userGrid[r][c]) {
+    if (userGrid[r][c] === gridData[r][c].letter) {
+      cell.classList.add('correct');
+    } else {
+      cell.classList.add('wrong');
+    }
+  }
+}
+
+// ============================================================
+//  CHECK WORD / WIN
+// ============================================================
+function checkWordComplete() {
+  WORDS.forEach(w => {
+    if (solvedWords.has(w.id)) return;
+    let correct = true;
+    for (let i=0; i<w.word.length; i++) {
+      let r = w.row+(w.dir==='V'?i:0);
+      let c = w.col+(w.dir==='H'?i:0);
+      if (userGrid[r][c] !== w.word[i]) { correct=false; break; }
+    }
+    if (correct) {
+      solvedWords.add(w.id);
+      document.getElementById('solved-count').textContent = solvedWords.size;
+      let clueEl = document.getElementById('clue-'+w.id);
+      if (clueEl) clueEl.classList.add('solved-clue');
+    }
+  });
+
+  if (solvedWords.size === WORDS.length) showWin();
+}
+
+// ============================================================
+//  TIMER
+// ============================================================
+function startTimer() {
+  started = true;
+  timerInterval = setInterval(() => {
+    seconds++;
+    document.getElementById('timer').textContent = formatTime(seconds);
+  }, 1000);
+}
+
+function formatTime(s) {
+  let m = Math.floor(s/60);
+  return String(m).padStart(2,'0') + ':' + String(s%60).padStart(2,'0');
+}
+
+// ============================================================
+//  WIN
+// ============================================================
+function showWin() {
+  clearInterval(timerInterval);
+  document.getElementById('win-time').textContent = formatTime(seconds);
+  document.getElementById('win-overlay').classList.add('show');
+}
+
+// ============================================================
+//  RESET
+// ============================================================
+function resetGame() {
+  clearInterval(timerInterval);
+  seconds = 0; started = false;
+  userGrid = Array.from({length:ROWS}, ()=>Array(COLS).fill(''));
+  solvedWords.clear();
+  selectedCell = null; selectedWordId = null;
+  document.getElementById('timer').textContent = '00:00';
+  document.getElementById('solved-count').textContent = '0';
+  document.getElementById('current-clue-bar').classList.remove('show');
+  renderGrid();
+  renderClues();
+}
+
+// ============================================================
+//  RENDER CLUES
+// ============================================================
+function renderClues() {
+  const hList = document.getElementById('clues-h');
+  const vList = document.getElementById('clues-v');
+  hList.innerHTML = ''; vList.innerHTML = '';
+
+  // Sort by number
+  let hWords = WORDS.filter(w=>w.dir==='H').sort((a,b)=>wordNumberMap[a.id]-wordNumberMap[b.id]);
+  let vWords = WORDS.filter(w=>w.dir==='V').sort((a,b)=>wordNumberMap[a.id]-wordNumberMap[b.id]);
+
+  [hWords, vWords].forEach((list, i) => {
+    let container = i===0 ? hList : vList;
+    list.forEach(w => {
+      let li = document.createElement('li');
+      li.className = 'clue-item';
+      li.id = 'clue-'+w.id;
+      li.innerHTML = `<span class="clue-num">${wordNumberMap[w.id]}</span><span class="clue-text">${w.clue}</span>`;
+      li.addEventListener('click', () => {
+        selectedDir = w.dir;
+        selectedWordId = w.id;
+        let inp = getInput(w.row, w.col);
+        if (inp) inp.focus();
+      });
+      container.appendChild(li);
+    });
+  });
+}
+
+// ============================================================
+//  INIT
+// ============================================================
+renderGrid();
+renderClues();
+</script>
+</body>
+</html>
