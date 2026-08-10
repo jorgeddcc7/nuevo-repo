@@ -303,6 +303,20 @@ function calcularPrecio(incotermCustom = null, esComparacion = false) {
     case 'CIF': precioTotal += transporteLocal + transporteInternacional + seguro + aduanaExportacion + carga; break;
   }
 
+  // ── Calcular arancel sobre valor CIF ──
+  // Valor CIF = precio fábrica + transporte local + flete + seguro + aduana exportación + carga
+  const valorCIF = precioFabrica + transporteLocal + transporteInternacional + seguro + aduanaExportacion + carga;
+  const importeArancel = calcularImporteArancel(valorCIF);
+  const descripcionArancel = describir_arancel();
+
+  // El arancel solo forma parte del coste del VENDEDOR si el Incoterm es DDP
+  if (incoterm === 'DDP') {
+    precioTotal += importeArancel;
+  }
+
+  // Para mostrar el coste total de la operación (informativo, lo pague quien lo pague)
+  const costeTotalOperacion = precioTotal + (incoterm === 'DDP' ? 0 : importeArancel);
+  
   // 🔹 Preparar desglose de costes
   const costes = {
     precioFabrica,
@@ -379,6 +393,12 @@ function calcularPrecio(incotermCustom = null, esComparacion = false) {
     const nombreFormateado = nombre.charAt(0).toUpperCase() + nombre.slice(1);
     resumenHTML += `<li><strong>${nombreFormateado}:</strong> ${valor.toFixed(2)} ${simbolo} <em>(${responsable})</em></li>`;
   });
+
+  // ── Arancel en el desglose ──
+  if (importeArancel > 0 && descripcionArancel) {
+    const responsableArancel = incoterm === 'DDP' ? 'vendedor' : 'comprador';
+    resumenHTML += `<li><strong>Arancel de importación:</strong> ${importeArancel.toFixed(2)} ${simbolo} <em>(${responsableArancel} · ${descripcionArancel})</em></li>`;
+  }
 
   resumenHTML += `<li><strong>Transferencia de responsabilidad (riesgo):</strong> ${transferenciaResponsabilidad}</li></ul>`;
 
@@ -981,3 +1001,93 @@ btnPopupCogton.addEventListener('click', () => {
     window.open('https://calendar.app.google/HAJCt6EPMxYdo9436', '_blank');
 
 });
+
+// ── ARANCEL TABS ──
+(function() {
+    const tabs = document.querySelectorAll('.arancel-tab');
+    const campos = {
+        advalorem:  document.getElementById('arancel-advalorem'),
+        especifico: document.getElementById('arancel-especifico'),
+        mixto:      document.getElementById('arancel-mixto'),
+    };
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            tabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            Object.values(campos).forEach(c => { if(c) c.style.display = 'none'; });
+            const tipo = this.dataset.tipo;
+            if (campos[tipo]) campos[tipo].style.display = 'block';
+        });
+    });
+
+    // Sincronizar etiqueta de unidad en específico
+    const selEsp = document.getElementById('arancel-especifico-unidad');
+    const labelEsp = document.getElementById('arancel-especifico-unidad-label');
+    if (selEsp && labelEsp) {
+        selEsp.addEventListener('change', () => { labelEsp.textContent = selEsp.value; });
+    }
+
+    // Sincronizar etiqueta de unidad en mixto
+    const selMix = document.getElementById('arancel-mixto-unidad');
+    const labelMix = document.getElementById('arancel-mixto-unidad-label');
+    if (selMix && labelMix) {
+        selMix.addEventListener('change', () => { labelMix.textContent = selMix.value; });
+    }
+})();
+
+// ── FUNCIÓN PARA OBTENER IMPORTE ARANCEL ──
+function calcularImporteArancel(valorCIF) {
+    const tipoActivo = document.querySelector('.arancel-tab.active')?.dataset.tipo;
+    if (!tipoActivo || tipoActivo === 'ninguno') return 0;
+
+    if (tipoActivo === 'advalorem') {
+        const pct = parseFloat(document.getElementById('arancel-advalorem-valor')?.value) || 0;
+        return valorCIF * (pct / 100);
+    }
+
+    if (tipoActivo === 'especifico') {
+        const tarifa   = parseFloat(document.getElementById('arancel-especifico-valor')?.value) || 0;
+        const cantidad = parseFloat(document.getElementById('arancel-especifico-cantidad')?.value) || 0;
+        return tarifa * cantidad;
+    }
+
+    if (tipoActivo === 'mixto') {
+        const valorCIFLocal  = valorCIF;
+        const pct      = parseFloat(document.getElementById('arancel-mixto-advalorem')?.value) || 0;
+        const tarifa   = parseFloat(document.getElementById('arancel-mixto-especifico')?.value) || 0;
+        const cantidad = parseFloat(document.getElementById('arancel-mixto-cantidad')?.value) || 0;
+        return (valorCIFLocal * (pct / 100)) + (tarifa * cantidad);
+    }
+
+    return 0;
+}
+
+// ── FUNCIÓN PARA DESCRIBIR EL ARANCEL APLICADO ──
+function describir_arancel() {
+    const tipoActivo = document.querySelector('.arancel-tab.active')?.dataset.tipo;
+    if (!tipoActivo || tipoActivo === 'ninguno') return '';
+
+    if (tipoActivo === 'advalorem') {
+        const pct = parseFloat(document.getElementById('arancel-advalorem-valor')?.value) || 0;
+        if (pct <= 0) return '';
+        return `${pct}% ad valorem`;
+    }
+
+    if (tipoActivo === 'especifico') {
+        const tarifa = parseFloat(document.getElementById('arancel-especifico-valor')?.value) || 0;
+        const unidad = document.getElementById('arancel-especifico-unidad')?.value || 'ud';
+        if (tarifa <= 0) return '';
+        return `arancel específico de ${tarifa} por ${unidad}`;
+    }
+
+    if (tipoActivo === 'mixto') {
+        const pct = parseFloat(document.getElementById('arancel-mixto-advalorem')?.value) || 0;
+        const tarifa = parseFloat(document.getElementById('arancel-mixto-especifico')?.value) || 0;
+        const unidad = document.getElementById('arancel-mixto-unidad')?.value || 'ud';
+        if (pct <= 0 && tarifa <= 0) return '';
+        return `arancel mixto: ${pct}% + ${tarifa} por ${unidad}`;
+    }
+
+    return '';
+}

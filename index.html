@@ -540,94 +540,77 @@
                     <small style="color: var(--muted); font-size: 0.8rem; display: block; margin-top: 4px;">Poner 0 en la mayoría de Incoterms. Solo se desglosa aquí si vendes en DPU.</small>
                 </div>
 
+                <!-- ARANCEL -->
+                <div class="input-group arancel-group">
+                    <label>Arancel <span class="arancel-opcional">(opcional · se aplica sobre valor CIF)</span></label>
+                
+                    <div class="arancel-tipo-tabs">
+                        <button type="button" class="arancel-tab active" data-tipo="ninguno">Ninguno</button>
+                        <button type="button" class="arancel-tab" data-tipo="advalorem">Ad valorem</button>
+                        <button type="button" class="arancel-tab" data-tipo="especifico">Específico</button>
+                        <button type="button" class="arancel-tab" data-tipo="mixto">Mixto</button>
+                    </div>
+                
+                    <!-- Ad valorem -->
+                    <div class="arancel-campo" id="arancel-advalorem" style="display:none;">
+                        <div class="arancel-input-wrap">
+                            <input type="number" id="arancel-advalorem-valor" placeholder="Ej. 5.5" min="0" step="0.01">
+                            <span class="arancel-unit">%</span>
+                        </div>
+                        <small>Porcentaje sobre el valor CIF de la mercancía</small>
+                    </div>
+                
+                    <!-- Específico -->
+                    <div class="arancel-campo" id="arancel-especifico" style="display:none;">
+                        <div class="arancel-input-wrap">
+                            <input type="number" id="arancel-especifico-valor" placeholder="Ej. 0.80" min="0" step="0.01">
+                            <select id="arancel-especifico-unidad" class="arancel-unit-select">
+                                <option value="kg">€ / kg</option>
+                                <option value="litro">€ / litro</option>
+                                <option value="unidad">€ / unidad</option>
+                                <option value="m2">€ / m²</option>
+                                <option value="m3">€ / m³</option>
+                                <option value="tonelada">€ / tonelada</option>
+                            </select>
+                        </div>
+                        <div class="arancel-input-wrap" style="margin-top:8px;">
+                            <input type="number" id="arancel-especifico-cantidad" placeholder="Cantidad (ej. 500 kg)" min="0" step="any">
+                            <span class="arancel-unit" id="arancel-especifico-unidad-label">kg</span>
+                        </div>
+                        <small>Importe fijo por unidad de medida física</small>
+                    </div>
+                
+                    <!-- Mixto -->
+                    <div class="arancel-campo" id="arancel-mixto" style="display:none;">
+                        <div class="arancel-input-wrap">
+                            <input type="number" id="arancel-mixto-advalorem" placeholder="Ad valorem Ej. 3.5" min="0" step="0.01">
+                            <span class="arancel-unit">%</span>
+                        </div>
+                        <div class="arancel-input-wrap" style="margin-top:8px;">
+                            <input type="number" id="arancel-mixto-especifico" placeholder="Específico Ej. 0.50" min="0" step="0.01">
+                            <select id="arancel-mixto-unidad" class="arancel-unit-select">
+                                <option value="kg">€ / kg</option>
+                                <option value="litro">€ / litro</option>
+                                <option value="unidad">€ / unidad</option>
+                                <option value="m2">€ / m²</option>
+                                <option value="m3">€ / m³</option>
+                                <option value="tonelada">€ / tonelada</option>
+                            </select>
+                        </div>
+                        <div class="arancel-input-wrap" style="margin-top:8px;">
+                            <input type="number" id="arancel-mixto-cantidad" placeholder="Cantidad (ej. 500 kg)" min="0" step="any">
+                            <span class="arancel-unit" id="arancel-mixto-unidad-label">kg</span>
+                        </div>
+                        <small>Suma de porcentaje sobre CIF más importe por unidad física</small>
+                    </div>
+                </div>
+
                 <div class="input-group">
                     <label for="otros-costes">Otros costes (importe total/opcional):</label>
                     <input type="number" id="otros-costes" name="otros_costes">
                 </div>
 
-                <!-- MÓDULO TRANSITARIO -->
-
-                <section class="transitario-module">
                 
-                    <div class="transitario-top">
-                    
-                        <label class="switch">
-                            <input type="checkbox" id="activar-transitario">
-                            <span class="slider"></span>
-                        </label>
-                    
-                        <div>
-                        
-                            <h3>
-                                Análisis Comercial Logístico
-                            </h3>
-                        
-                            <p class="transitario-subtitle">
-                                Herramientas avanzadas para transitarios y operadores logísticos.
-                            </p>
-                        
-                        </div>
-                    
-                    </div>
-                
-                    <div id="configuracion-transitario" class="transitario-content">
-                    
-                        <div class="input-group">
-                        
-                            <label for="perfil-operacion" class="perfil-label">
-                                Perfil de cotización logística
-                            </label>
-                        
-                            <select id="perfil-operacion">
-                            
-                                <option value="estandar">
-                                    Estándar
-                                </option>
-                            
-                                <option value="competitivo">
-                                    Competitivo
-                                </option>
-                            
-                                <option value="premium">
-                                    Premium
-                                </option>
-                            
-                                <option value="urgente">
-                                    Urgente
-                                </option>
-                            
-                            </select>
-                        
-                        </div>
-                    
-                        <div class="perfil-explicacion">
-                        
-                            <div>
-                                <strong>Estándar:</strong>
-                                equilibrio entre competitividad y rentabilidad.
-                            </div>
-                        
-                            <div>
-                                <strong>Competitivo:</strong>
-                                cotización ajustada para captación comercial.
-                            </div>
-                        
-                            <div>
-                                <strong>Premium:</strong>
-                                mayor cobertura operativa y margen recomendado.
-                            </div>
-                        
-                            <div>
-                                <strong>Urgente:</strong>
-                                operaciones prioritarias con mayor riesgo operativo.
-                            </div>
-                        
-                        </div>
-                    
-                    </div>
-                
-                </section>
-
                 <!-- Incoterm -->
                 <div class="input-group">
                     <label for="incoterm-select">Selecciona el Incoterm:</label>
