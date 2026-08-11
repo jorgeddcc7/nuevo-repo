@@ -1,0 +1,804 @@
+/* ── GLOBAL MÓVIL ── */
+@media (max-width: 768px) {
+
+  body {
+    background: linear-gradient(180deg, #F7F9FC 0%, #dce9fc 30%);
+    font-size: 15px;
+  }
+
+  /* Padding lateral global */
+  .container2 {
+    padding: 16px;
+    margin: 12px auto;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(31,47,72,.08);
+  }
+
+  /* ── LANDING SECTION ── */
+  .ci-landing {
+    min-height: auto;
+    justify-content: flex-start;
+    padding: 24px 0 20px;
+  }
+
+  .ci-wrap {
+    padding: 0 16px;
+  }
+
+  .ci-header {
+    margin-bottom: 20px;
+  }
+
+  .ci-logo-img {
+    position: static;
+    width: 220px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .ci-hero {
+    margin-top: 16px;
+    margin-bottom: 18px;
+  }
+
+  .ci-hero h1 {
+    font-size: 1.55rem;
+    line-height: 1.15;
+  }
+
+  .ci-question {
+    margin-bottom: 10px;
+  }
+
+  /* Grid landing: calculadora arriba, resto en fila de 3 */
+  .ci-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  /* Las 3 cards pequeñas: fila horizontal */
+  .ci-grid > .ci-card:not(.ci-card-calc) {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .ci-card-calc {
+    grid-column: 1;
+  }
+
+  .ci-card-featured {
+    padding: 20px 18px;
+    gap: 16px;
+  }
+
+  .ci-card-featured .ci-title {
+    font-size: 1.25rem;
+  }
+
+  .ci-card-featured .ci-desc {
+    font-size: 0.85rem;
+  }
+
+  .ci-cta {
+    padding: 9px 16px;
+    font-size: 0.82rem;
+    margin-top: 10px;
+  }
+
+  .ci-title {
+    font-size: 0.95rem;
+  }
+
+  .ci-desc {
+    font-size: 0.78rem;
+  }
+
+  .ci-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .ci-card-featured .ci-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  /* Herramientas submenu */
+  #ci-tools {
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+  }
+
+  .ci-tool-link {
+    padding: 10px 11px;
+    gap: 8px;
+    border-radius: 10px;
+  }
+
+  .ci-tool-name { font-size: .8rem; }
+  .ci-tool-sub  { font-size: .7rem; }
+
+  .ci-divider { margin: 20px 0 0; }
+
+  /* ── NAV HERRAMIENTAS ── */
+  .tool-nav {
+    gap: 7px;
+    margin-bottom: 16px;
+    justify-content: center;
+  }
+
+  .tool-nav a,
+  .tools-toggle {
+    font-size: 0.82rem;
+    padding: 8px 13px;
+  }
+
+  .tools-menu {
+    min-width: 240px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  /* ── HERO CALCULADORA ── */
+  .hero {
+    padding: 24px 18px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-size: 1.4rem;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .hero p {
+    font-size: 0.88rem;
+    margin-bottom: 0;
+  }
+
+  /* ── FORMULARIO ── */
+  #formulario {
+    gap: 12px;
+  }
+
+  #formulario h2 {
+    font-size: 1.1rem;
+  }
+
+  #formulario > p {
+    font-size: 0.85rem;
+    padding: 10px 12px;
+  }
+
+  .input-group label {
+    font-size: 0.85rem;
+  }
+
+  .input-group input,
+  .input-group select {
+    padding: 12px 11px;
+    font-size: 16px; /* 16px mínimo para no hacer zoom en iOS */
+    border-radius: 10px;
+  }
+
+  /* Precio unitario / unidades: columna en móvil */
+  .dual-input-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* ── MÓDULO TRANSITARIO ── */
+  .transitario-module {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .transitario-top h3 {
+    font-size: 0.92rem;
+  }
+
+  .transitario-subtitle {
+    font-size: 0.76rem;
+  }
+
+  .perfil-explicacion div {
+    font-size: 0.82rem;
+    padding: 10px 12px;
+  }
+
+  /* ── ARANCEL ── */
+  .arancel-tipo-tabs {
+    gap: 5px;
+  }
+
+  .arancel-tab {
+    padding: 7px 12px;
+    font-size: 0.8rem;
+  }
+
+  .arancel-input-wrap input {
+    font-size: 16px;
+    padding: 11px 10px;
+  }
+
+  .arancel-unit {
+    padding: 0 10px;
+    font-size: 0.8rem;
+    min-height: 44px;
+  }
+
+  .arancel-unit-select {
+    min-height: 44px;
+    font-size: 0.8rem;
+    padding: 0 22px 0 9px;
+  }
+
+  /* ── BOTÓN CALCULAR ── */
+  button#calcular {
+    padding: 15px;
+    font-size: 1rem;
+    margin-top: 18px;
+    border-radius: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── BANNER COGTON ── */
+  .cogton-banner-filtro {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+    padding: 18px;
+    border-radius: 12px;
+  }
+
+  .cogton-banner-filtro__btn {
+    width: 100%;
+    text-align: center;
+    padding: 13px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+
+  /* ── RESUMEN DATOS ── */
+  #resumen-datos {
+    padding: 18px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    max-width: 100%;
+    margin: 18px 0;
+  }
+
+  #resumen-datos h3,
+  #resumen-datos h4 {
+    font-size: 1rem;
+    margin-top: 18px;
+    margin-bottom: 10px;
+  }
+
+  #resumen-datos ul li {
+    flex-direction: column;
+    gap: 3px;
+    padding: 10px 8px;
+    font-size: 13.5px;
+    align-items: flex-start;
+  }
+
+  /* ── GRÁFICO ── */
+  #grafico-costes-section {
+    max-width: 100%;
+    margin: 18px 0;
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  /* ── ANÁLISIS LOGÍSTICO ── */
+  .analisis-logistico-box {
+    padding: 16px;
+    border-radius: 12px;
+    margin-top: 16px;
+  }
+
+  .analisis-logistico-box h3 {
+    font-size: 1rem;
+    margin-bottom: 14px;
+  }
+
+  .metric-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .metric-card {
+    padding: 14px;
+    border-radius: 10px;
+  }
+
+  .metric-title { font-size: 0.78rem; }
+  .metric-value { font-size: 1.2rem; }
+
+  .recomendacion-logistica {
+    font-size: 0.85rem;
+    padding: 12px 14px;
+    margin-top: 14px;
+  }
+
+  /* ── ACUERDOS / ARANCELES ── */
+  #info-acuerdo {
+    max-width: 100%;
+    margin: 14px 0;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 13.5px;
+  }
+
+  #aranceles-section {
+    max-width: 100%;
+    margin: 14px 0;
+    padding: 16px;
+    border-radius: 12px;
+    overflow-x: auto;
+  }
+
+  #aranceles-section table {
+    font-size: 12px;
+    min-width: 340px;
+  }
+
+  /* ── COMPARAR INCOTERM ── */
+  #comparar-incoterm-section {
+    margin-top: 20px;
+  }
+
+  #comparar-incoterm-section h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  #resultado-comparacion {
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 14px;
+  }
+
+  /* ── TABLA INCOTERMS ── */
+  #tabla-incoterms {
+    margin-top: 36px;
+    overflow-x: auto;
+  }
+
+  .tabla-incoterms {
+    font-size: 12px;
+    min-width: 480px;
+  }
+
+  .tabla-incoterms th,
+  .tabla-incoterms td {
+    padding: 8px;
+  }
+
+  .incoterms-title { font-size: 1.2rem; }
+
+  /* ── FAQ ── */
+  #faq-incoterms {
+    padding: 18px 16px;
+    border-radius: 10px;
+  }
+
+  #faq-incoterms h2 { font-size: 1.2rem; }
+  #faq-incoterms h3 { font-size: 0.92rem; }
+  #faq-incoterms p  { font-size: 0.85rem; }
+
+  /* ── GLOSARIO ── */
+  .glosario-container {
+    width: 100%;
+    padding: 18px 16px;
+    border-radius: 12px;
+  }
+
+  .glosario-container h2 { font-size: 1.2rem; }
+
+  .glosario-tabla {
+    font-size: 12.5px;
+  }
+
+  .glosario-tabla th,
+  .glosario-tabla td {
+    padding: 9px 8px;
+  }
+
+  #mostrar-todos {
+    font-size: 0.88rem;
+    padding: 11px 18px;
+    width: 100%;
+    margin-top: 14px;
+  }
+
+  /* ── PACKS ── */
+  .packs-container {
+    padding: 28px 16px;
+    border-radius: 16px;
+    margin: 24px 0;
+  }
+
+  .packs-title { font-size: 1.3rem; }
+  .packs-intro { font-size: 0.9rem; }
+  .packs-subintro { font-size: 0.82rem; margin-bottom: 20px; }
+
+  .packs-grid { gap: 14px; }
+
+  .pack {
+    padding: 22px 18px;
+    border-radius: 14px;
+  }
+
+  .pack h3 { font-size: 1.1rem; }
+  .pack-price { font-size: 1.8rem; }
+  .pack-descripcion { font-size: 0.85rem; }
+  .pack-lista { font-size: 0.82rem; }
+  .pack-badge { font-size: 11px; padding: 5px 12px; }
+
+  .boton-pack {
+    padding: 12px 16px;
+    font-size: 0.88rem;
+    border-radius: 10px;
+  }
+
+  /* ── SOBRE NOSOTROS ── */
+  .sobre-nosotros {
+    width: 100%;
+    padding: 24px 18px;
+    margin: 24px 0 40px;
+    border-radius: 12px;
+  }
+
+  .sobre-nosotros:hover { transform: none; }
+
+  .sobre-nosotros h3 { font-size: 1.1rem; }
+  .sobre-nosotros p  { font-size: 0.88rem; margin: 14px 0; }
+
+  .redes-sociales {
+    margin-top: 20px;
+    padding-top: 16px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .social-link img { width: 26px; }
+  .linkedin img    { width: 44px; }
+
+  /* ── CONTACTO ── */
+  .contact-form {
+    margin: 0 0 24px;
+    padding: 18px 16px;
+    border-radius: 12px;
+    gap: 12px;
+  }
+
+  .contact-form h3 { font-size: 1.1rem; }
+
+  .contact-form input,
+  .contact-form textarea {
+    padding: 13px;
+    font-size: 16px;
+    border-radius: 8px;
+  }
+
+  .contact-form button {
+    padding: 14px;
+    font-size: 1rem;
+  }
+
+  /* ── PDF BUTTON ── */
+  #btn-descargar-pdf {
+    font-size: 0.9rem;
+    padding: 13px 18px;
+    border-radius: 10px;
+  }
+
+  /* ── POPUP COGTON ── */
+  .popup-cogton {
+    padding: 28px 20px;
+    border-radius: 22px;
+  }
+
+  .popup-cogton h3 {
+    font-size: 1.25rem;
+  }
+
+  .popup-texto {
+    font-size: 0.88rem;
+  }
+
+  .popup-metricas {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .popup-metrica {
+    padding: 14px;
+    border-radius: 12px;
+  }
+
+  .popup-numero { font-size: 1.4rem; }
+  .popup-label  { font-size: 11px; }
+
+  #btn-popup-cogton {
+    padding: 15px;
+    font-size: 0.95rem;
+    border-radius: 12px;
+  }
+
+  #continuar-resultado {
+    padding: 12px;
+    font-size: 0.85rem;
+  }
+
+  /* ── MODALES ── */
+  .modal-content {
+    padding: 20px 16px;
+    border-radius: 16px;
+    margin: 2vh auto;
+  }
+
+  .modal-text {
+    max-height: 78vh;
+    font-size: 0.875rem;
+  }
+
+  .modal-text h2 { font-size: 1.15rem; }
+  .modal-text h3 { font-size: 0.9rem; margin-top: 16px; }
+
+  .modal-text table {
+    font-size: 0.75rem;
+    min-width: 320px;
+    display: block;
+    overflow-x: auto;
+  }
+
+  /* ── COOKIE BANNER ── */
+  #cookie-banner {
+    bottom: 10px;
+    border-radius: 16px;
+    padding: 14px 16px;
+    flex-direction: column;
+    gap: 12px;
+    width: calc(100% - 20px);
+  }
+
+  #cookie-banner .cookie-text p {
+    font-size: 0.83rem;
+    line-height: 1.5;
+  }
+
+  .cookie-buttons {
+    width: 100%;
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .cookie-buttons button {
+    flex: 1;
+    padding: 10px;
+    font-size: 0.85rem;
+    margin-top: 0;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding-top: 36px;
+  }
+
+  .footer-wrap {
+    padding: 0 18px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding-bottom: 32px;
+  }
+
+  .footer-brand-col {
+    grid-column: 1 / -1;
+  }
+
+  .footer-logo-text { font-size: 1.1rem; }
+
+  .footer-tagline {
+    font-size: 0.82rem;
+    max-width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .footer-email {
+    font-size: 0.78rem;
+    padding: 8px 14px;
+  }
+
+  .footer-col-title { font-size: 0.65rem; margin-bottom: 12px; }
+
+  .footer-links a,
+  .footer-links button {
+    font-size: 0.82rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 0 22px;
+    gap: 6px;
+  }
+
+  .footer-copy { font-size: 0.72rem; }
+  .footer-icc  { font-size: 0.7rem; }
+
+  /* ── SEO CONTENT ── */
+  #contenido-seo {
+    padding: 12px 0;
+    font-size: 0.82rem;
+  }
+
+  #contenido-seo h2 { font-size: 0.92rem; }
+  #contenido-seo h3 { font-size: 0.85rem; }
+
+  /* ── BLOQUES SHOWCASE ── */
+  .bloque-showcase {
+    border-radius: 18px;
+  }
+
+  .bloque-showcase__info {
+    padding: 48px 18px 24px;
+  }
+
+  .bloque-showcase__title   { font-size: 1.15rem; }
+  .bloque-showcase__tagline { font-size: 0.88rem; }
+  .bloque-showcase__desc    { font-size: 0.85rem; margin-bottom: 20px; }
+
+  .bloque-showcase__columns {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .bloque-showcase__columns--4 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .bloque-showcase__cta {
+    padding: 24px 18px;
+  }
+
+  .bloque-showcase__price { font-size: 2.2rem; }
+
+  .bloque-col h4    { font-size: 0.85rem; }
+  .bloque-col li    { font-size: 0.82rem; }
+
+}
+
+/* ── MÓVIL PEQUEÑO (≤ 420px) ── */
+@media (max-width: 420px) {
+
+  body { font-size: 14px; }
+
+  .container2 {
+    padding: 14px;
+    margin: 8px;
+    border-radius: 12px;
+  }
+
+  .ci-logo-img { width: 180px; }
+
+  .ci-hero h1 { font-size: 1.35rem; }
+
+  /* Cards pequeñas en columna única en móvil muy pequeño */
+  #ci-tools {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1       { font-size: 1.2rem; }
+  .hero p        { font-size: 0.82rem; }
+
+  #formulario h2 { font-size: 1rem; }
+
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-links a,
+  .footer-links button {
+    font-size: 0.8rem;
+  }
+
+  .packs-title  { font-size: 1.1rem; }
+  .pack h3      { font-size: 1rem; }
+  .pack-price   { font-size: 1.6rem; }
+
+  .arancel-tipo-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .arancel-tab { text-align: center; }
+
+  .popup-metricas {
+    grid-template-columns: 1fr;
+  }
+
+  .bloque-showcase__columns--4 {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+/* ── TABLET (769px - 1024px) ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  .container2 {
+    padding: 24px 20px;
+    margin: 20px auto;
+  }
+
+  .ci-logo-img {
+    position: static;
+    width: 280px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .ci-hero { margin-top: 20px; }
+
+  /* Landing grid: calculadora + 3 en fila */
+  .ci-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .ci-card-calc { grid-column: 1 / -1; }
+
+  .footer-grid {
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 28px;
+  }
+
+  .footer-brand-col { grid-column: 1 / -1; }
+
+  .packs-grid { grid-template-columns: 1fr; gap: 16px; }
+
+  .bloque-showcase__columns--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #resumen-datos {
+    max-width: 100%;
+  }
+
+  .sobre-nosotros {
+    width: 85%;
+  }
+
+}
+
+/* ── PREVENCIÓN ZOOM iOS en inputs ── */
+@media (max-width: 768px) {
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* ── TOUCH: quitar hover effects que no aplican en táctil ── */
+@media (hover: none) {
+  .ci-card:hover          { transform: none; box-shadow: none; }
+  .pack:hover             { transform: none; box-shadow: none; }
+  .sobre-nosotros:hover   { transform: none; }
+  .ci-card-featured:hover { transform: none; box-shadow: none; }
+  .boton-pack:hover       { transform: none; }
+}
