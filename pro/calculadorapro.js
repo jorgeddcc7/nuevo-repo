@@ -773,14 +773,6 @@ document.getElementById('calcular')
     return;
   }
 
-  const leadDetectado =
-    detectarLeadCogton();
-
-  if (leadDetectado) {
-    abrirPopupCogton();
-    return; // ← CLAVE: para aquí, no calcula todavía
-  }
-
   await calcularPrecio()
 
 });
